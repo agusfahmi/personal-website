@@ -1,32 +1,19 @@
 list:
-  - title: CVSS Base Score Calculator
-    description: Implementation of CVSS 3.1 to calculate vulnerability base score.
-    projectLink: https://github.com/cham11ng/cvss-calculator
-    demoLink: https://cham11ng.github.io/cvss-calculator/
-  - title: react-copy-button
-    description: Copy to clipboard react button component.
-    projectLink: https://github.com/cham11ng/react-copy-button
-    demoLink: https://cham11ng.github.io/react-copy-button/
-  - title: async-store
-    description: Global store utility for an async operation lifecycle and chain of callbacks.
-    projectLink: https://github.com/leapfrogtechnology/async-store
-  - title: sync-db
-    description: Utility to synchronize relational database objects across databases.
-    projectLink: https://github.com/leapfrogtechnology/sync-db
-  - title: Face Recognition in Javascript
-    description: Local Binary Pattern implementation for Face Recognition App 📷
-    projectLink: https://github.com/cham11ng/face-recognition
-    demoLink: https://cham11ng.github.io/face-recognition/
-  - title: Flappy Bird Game
-    description: Implementation of Flappy Bird in Javascript.
-    projectLink: https://github.com/cham11ng/internship-experience/tree/main/js-experiments/5-flappy-bird
-    demoLink: https://schamling.com.np/js-experiments/5-flappy-bird/
-  - title: TypeScript Express API Starter
-    description: Node (🤖) express.js API in TypeScript
-    projectLink: https://github.com/cham11ng/typescript-api-starter
-  - title: Flask API Starter
-    description: Starter for Flask API (Python) 🐍
-    projectLink: https://github.com/cham11ng/flask-api-starter
-  - title: Bun API Starter
-    description: Bun (🍔) Elysia.js API Starter
-    projectLink: https://github.com/cham11ng/bun-api-starter
+  - title: Pasar Kita App
+    description: Implementation of recommender system on android app
+    projectLink: https://github.com/Capstone-PS441
+    demoLink: 
+  - title: O-Care app
+    description: Implementation of oral diseases image classification on android app
+    projectLink: https://github.com/The-Lab-Rats
+    demoLink: 
+  - title: Search Document for Putusan Mahkamah Agung
+    description: Implementation of document seach engine with svm
+    projectLink: 
+  - title: Doctor Assistant with LLM
+    description: Implementation of LLM with Google AI but spesific in doctor assistant
+    projectLink: 
+  - title: Image Classification Deploy with Flask
+    description: Implementation of Flask with AI Calssification Model
+    projectLink: 
+    demoLink: 
