@@ -9,7 +9,7 @@ showWordCount: false
 showReadingTime: false
 cover:
   relative: true
-  image: 'img/slides/leaptalk.webp'
+  image: ''
   alt: 'Sagar presenting linux system administrator commands slides'
   hidden: false
 tags: ['python', 'inheritance', 'oop', 'decorators', 'mixin']
