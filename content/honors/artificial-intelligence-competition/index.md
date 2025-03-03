@@ -8,7 +8,7 @@ tags: ['artificial intelligence', 'competition', 'compfest']
 showtoc: false
 cover:
   relative: true
-  image: 'img/announcement.webp'
+  image: 'img/thumbnail-compfest.webp'
   alt: 'Competition Announcement'
   hidden: false
 ---
