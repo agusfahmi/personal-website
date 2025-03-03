@@ -10,7 +10,7 @@ showWordCount: false
 showReadingTime: false
 cover:
   relative: true
-  image: 'img/slides/awareness2023.webp'
+  image: ''
   alt: 'Sagar presenting Awareness slides'
   hidden: false
 tags: ['social engineering', 'phishing', 'cybersecurity', 'awareness']
