@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nse on Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+    <link>http://localhost:1313/tags/nse/</link>
+    <description>Recent content in Nse on Agus Fahmi Aji Pramana&#39;s Blogging Site</description>
+    <image>
+      <title>Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+      <url>http://localhost:1313/logo.svg</url>
+      <link>http://localhost:1313/logo.svg</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <atom:link href="http://localhost:1313/tags/nse/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nmap Basics for Capture The Flag (CTF)</title>
+      <link>http://localhost:1313/notes/nmap-basic-for-capture-the-flag-ctf/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/notes/nmap-basic-for-capture-the-flag-ctf/</guid>
+      <description>Understand different options used in Nmap to scan targets</description>
+      <content:encoded><![CDATA[<h2 id="intro">Intro</h2>
+<p><code>nmap</code> is Network Mapper used for network discovery and security auditing. Nmap can be used for enumeration to identify open ports and services. <strong>Enumeration</strong> in Cybersecurity is information gathering technique.</p>
+<blockquote>
+<p>Some of the scripts in this category are considered intrusive and should not be run against a target network without permission.</p></blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Active host, network discovery</span>
+</span></span><span class="line"><span class="cl">sudo nmap -sn 10.10.0.0/24
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Scan all ports, takes longer.</span>
+</span></span><span class="line"><span class="cl">sudo nmap -p- &lt;target-ip-addr&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Enable version detection, name and description of identified services.</span>
+</span></span><span class="line"><span class="cl">sudo nmap -sV &lt;target-ip-addr&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Performs a script scan using the default set of scripts</span>
+</span></span><span class="line"><span class="cl">sudo nmap -sC &lt;target-ip-addr&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Aggressive scan.</span>
+</span></span><span class="line"><span class="cl">nmap -A &lt;target-ip-addr&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Aggressive, OS detection, Time Template Aggressive, Scan for vulnerability.</span>
+</span></span><span class="line"><span class="cl">nmap -A -O -T4 --script<span class="o">=</span>vuln &lt;target-ip-addr&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Version, perform script, 5000 packets per second, all ports</span>
+</span></span><span class="line"><span class="cl">nmap -sV -sC -T4 –min-rate <span class="m">5000</span> -p- &lt;target-ip-addr&gt;
+</span></span></code></pre></div><blockquote>
+<p>RFC 9293 states that: &ldquo;If the connection is CLOSED or doesn&rsquo;t exists, then a RST is sent in response.&rdquo;</p></blockquote>
+<h3 id="ping-sweep">ping sweep</h3>
+<p>For black box penetration testing, &ldquo;ping sweep&rdquo; become very handy to map network structure with active IP address of hosts. Nmap provides <code>-sn</code> switch followed by IP range or CIDR notation to perform it.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nmap -sn 10.0.0.1-254
+</span></span><span class="line"><span class="cl">or
+</span></span><span class="line"><span class="cl">nmap -sn 10.10.0.0/24
+</span></span></code></pre></div><h3 id="nmap-options">Nmap Options</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Options</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>-sS</td>
+          <td>TCP SYN scan</td>
+      </tr>
+      <tr>
+          <td>-sT</td>
+          <td>TCP connect scan</td>
+      </tr>
+      <tr>
+          <td>-sU</td>
+          <td>UDP scans</td>
+      </tr>
+      <tr>
+          <td>-sN; -sF; -sX</td>
+          <td>TCP NULL, FIN, and Xmas scans, used for firewall evasion. Microsoft Windows/Cisco devices respond with a RST to any malformed TCP packet</td>
+      </tr>
+      <tr>
+          <td>-sC</td>
+          <td>Performs a script scan using the default set of scripts. It is equivalent to &ndash;script=default.</td>
+      </tr>
+      <tr>
+          <td>-sV</td>
+          <td>Enables version detection, which will detect what versions are running on what port.</td>
+      </tr>
+      <tr>
+          <td>-O; &ndash;osscan-guess; &ndash;fuzzy</td>
+          <td>Enable OS detection, guess near-match possibilities</td>
+      </tr>
+      <tr>
+          <td>-A</td>
+          <td>Aggressive Scan. Presently this enables OS detection (-O), version scanning (-sV), script scanning (-sC) and traceroute (&ndash;traceroute)</td>
+      </tr>
+      <tr>
+          <td>-p-</td>
+          <td>This flag scans for all TCP ports ranging from 0-65535</td>
+      </tr>
+      <tr>
+          <td>-p <port-ranges></td>
+          <td>Scan specified ports</td>
+      </tr>
+      <tr>
+          <td>&ndash;min-rate &lt;no. packet/sec&gt;</td>
+          <td>This is used to specify the minimum number of packets Nmap should send per second; it speeds up the scan as the number goes higher</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="timing-templates">Timing Templates</h3>
+<table>
+  <thead>
+      <tr>
+          <th>T0</th>
+          <th>T1</th>
+          <th>T2</th>
+          <th>T3</th>
+          <th>T4</th>
+          <th>T5</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Paranoid</td>
+          <td>Sneaky</td>
+          <td>Polite</td>
+          <td>Normal</td>
+          <td>Aggressive</td>
+          <td>Insane</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="understanding-network-traffic">Understanding Network Traffic</h2>
+<p>Changing the TCP connection options in nmap or using browser changes the type of network traffic in Wireshark. Differentiating all network scan traffic:</p>
+<ul>
+<li><strong>Browser</strong>:
+The network traffic captured shows full TCP handshake (<code>SYN, SYN-ACK, ACK</code>) for each new TCP connection. This is because the browser is establishing a full connection to retrieve the requested web page.</li>
+<li>Nmap Scan with <strong><code>-sS</code></strong> (TCP SYN Scan):
+The network traffic sent is (<code>SYN, SYN-ACK</code>). If nmap receives SYN-ACK then it indicates the port is open. There is no complete handshake with an ACK packet instead Nmap immediately sends an <code>RST</code> packet to close the connection referred to as (a half-open scan). This makes the scan faster and less likely to be logged by the target system.</li>
+<li>Nmap Scan with <strong><code>-sT</code></strong> (TCP Connect Scan):
+The network traffic sent is a full TCP connection (<code>SYN, SYN-ACK, ACK</code>) with each target port. This type of scan is more likely to be logged by the target system because it establishes a full connection</li>
+</ul>
+<h2 id="understanding-nse">Understanding NSE</h2>
+<p>The Nmap Scripting Engine (NSE) is a powerful reconnaissance tool used for vulnerabilities scan, automating exploits.</p>
+<p>Some categories include (Reference: <a href="https://tryhackme.com/room/furthernmap">TryHackMe</a>):</p>
+<table>
+  <thead>
+      <tr>
+          <th>category</th>
+          <th>description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>safe</td>
+          <td>Won&rsquo;t affect the target</td>
+      </tr>
+      <tr>
+          <td>intrusive</td>
+          <td><strong>Not safe</strong>: likely to affect the target</td>
+      </tr>
+      <tr>
+          <td>vuln</td>
+          <td>Scan for vulnerabilities</td>
+      </tr>
+      <tr>
+          <td>exploit</td>
+          <td>Attempt to exploit a vulnerability</td>
+      </tr>
+      <tr>
+          <td>auth</td>
+          <td>Attempt to bypass authentication for running services (e.g. Log into an FTP server anonymously)</td>
+      </tr>
+      <tr>
+          <td>brute</td>
+          <td>Attempt to bruteforce credentials for running services</td>
+      </tr>
+      <tr>
+          <td>discovery</td>
+          <td>Attempt to query running services for further information about the network (e.g. query an SNMP server).</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://nmap.org/book/performance-timing-templates.html">https://nmap.org/book/performance-timing-templates.html</a></li>
+<li><a href="https://nmap.org/nsedoc/categories/vuln.html">https://nmap.org/nsedoc/categories/vuln.html</a></li>
+<li><a href="https://nmap.org/book/nse-usage.html">https://nmap.org/book/nse-usage.html</a></li>
+<li><a href="https://mohomedarfath.medium.com/nmap-tryhackme-room-level-1-level-7-41ba9ff689ae">https://mohomedarfath.medium.com/nmap-tryhackme-room-level-1-level-7-41ba9ff689ae</a></li>
+</ul>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

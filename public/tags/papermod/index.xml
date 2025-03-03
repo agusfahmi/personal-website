@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Papermod on Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+    <link>http://localhost:1313/tags/papermod/</link>
+    <description>Recent content in Papermod on Agus Fahmi Aji Pramana&#39;s Blogging Site</description>
+    <image>
+      <title>Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+      <url>http://localhost:1313/logo.svg</url>
+      <link>http://localhost:1313/logo.svg</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 09 Oct 2023 23:10:19 -0400</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/papermod/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How I setup my website using Hugo, Github Pages and Porkbun</title>
+      <link>http://localhost:1313/blogs/tech/how-i-setup-my-website-using-hugo-github-pages-and-porkbun/</link>
+      <pubDate>Mon, 09 Oct 2023 23:10:19 -0400</pubDate>
+      <guid>http://localhost:1313/blogs/tech/how-i-setup-my-website-using-hugo-github-pages-and-porkbun/</guid>
+      <description>Step by Step Guide for setting up a personal website</description>
+      <content:encoded><![CDATA[<p>In this step-by-step guide, I&rsquo;ll walk you through the process of setting up your personal blog site using Hugo, a popular static site generator written in Go, and the PaperMod theme.</p>
+<p>Along with that, I&rsquo;ll also show you how I configured my domain and hosting for this site. If you are following then by the end of this tutorial, you&rsquo;ll have your blog up and running and ready to share your thoughts with the world.</p>
+<hr>
+<h2 id="step-0-identify-purpose">Step 0: Identify Purpose</h2>
+<p>I opted for a static website generator because I wanted a website that&rsquo;s incredibly easy to maintain and configure. Additionally, it had to be fast and secure. My primary goal is to have a personal site where I can centralize all my contents and showcase my work, all in one place. I had straightforward requirements, which led me to choose a static site generator.</p>
+<h2 id="step-1-static-site-generator-with-hugo">Step 1: Static Site Generator with <code>hugo</code></h2>
+<p>Comparing <code>Gatsby</code> vs <code>Hugo</code>, &ldquo;Generated websites are super fast&rdquo; vs <strong>&ldquo;Lightning fast&rdquo;</strong>. According to my personal website idea, it doesn&rsquo;t require a dynamic contents or any user interactions, which is purely based on static architecture. I selected <strong><code>Hugo</code></strong> over Gatsby.</p>
+<h3 id="install-go-hugo">Install Go, Hugo</h3>
+<p>The first step is to install Go and Hugo on your local machine. You can follow the installation instructions for your specific operating system <a href="https://gohugo.io/getting-started/installing/">here</a>.</p>
+<blockquote>
+<p>Please refer to the relevant documentation for installation instructions:</p>
+<ul>
+<li>Git</li>
+<li>Go</li>
+<li>Dart Sass</li>
+</ul></blockquote>
+<h3 id="create-a-new-hugo-site">Create a New Hugo Site</h3>
+<p>Once Hugo is installed, create a new Hugo site using the following command:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">hugo new site sagarchamling.com
+</span></span></code></pre></div><p>Replace <code>sagarchamling.com</code> with the desired name of your blog.</p>
+<h2 id="step-2-choosing-theme">Step 2: Choosing Theme</h2>
+<p>Hugo offers a wide range of themes. Find your choice and make sure you give them a credit.</p>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-e0138" hidden />
+  <label for="zoomCheck-e0138">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/hugo-themes.webp"
+      alt="Hugo Themes"
+       />
+  </label>
+</p>
+<h3 id="install-the-papermod-theme">Install the PaperMod Theme</h3>
+<p>For my blog, I&rsquo;ll use the PaperMod theme. To install it, navigate to your theme&rsquo;s github page <a href="https://github.com/adityatelange/hugo-PaperMod/wiki/Installation">here</a> and run:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git init <span class="c1"># Initialize your git repository</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git submodule add --depth<span class="o">=</span><span class="m">1</span> https://github.com/adityatelange/hugo-PaperMod.git themes/PaperMod
+</span></span></code></pre></div><p>Next, open your blog&rsquo;s <code>config.toml</code> file and set the <code>theme</code> parameter to <code>&quot;PaperMod&quot;</code>.
+or
+You can take a reference of <a href="https://github.com/adityatelange/hugo-PaperMod/tree/exampleSite">exampleSite</a> to begin with.</p>
+<h2 id="step-3-customize-your-site">Step 3: Customize Your Site</h2>
+<h3 id="customizing-theme-css">Customizing theme css</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">.<span class="o">(</span>site root<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── content/
+</span></span><span class="line"><span class="cl">├── theme/PaperMod/
+</span></span><span class="line"><span class="cl">└── assets/
+</span></span><span class="line"><span class="cl">    └── css/
+</span></span><span class="line"><span class="cl">        └── extended/         &lt;---
+</span></span><span class="line"><span class="cl">            ├── custom.css    &lt;---
+</span></span><span class="line"><span class="cl">            └── any_name.css  &lt;---
+</span></span></code></pre></div><h3 id="customizing-header-and-footer-partials">Customizing header and footer partials</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">.<span class="o">(</span>site root<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── config.yml
+</span></span><span class="line"><span class="cl">├── content/
+</span></span><span class="line"><span class="cl">├── theme/hugo-PaperMod/
+</span></span><span class="line"><span class="cl">└── layouts
+</span></span><span class="line"><span class="cl">    ├── partials
+</span></span><span class="line"><span class="cl">    │   ├── extend_footer.html &lt;---
+</span></span><span class="line"><span class="cl">    │   └── extend_head.html   &lt;---
+</span></span><span class="line"><span class="cl">    └── robots.txt
+</span></span></code></pre></div><h3 id="create-content">Create Content</h3>
+<p>Create your blog posts in the <code>content</code> directory. You can use Markdown to format your posts. For example, to create a new post, run:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">hugo new blogs/my-first-post.md
+</span></span></code></pre></div><p>Edit the Markdown file to write your content.</p>
+<h2 id="step-4-deploy-in-github-pages">Step 4: Deploy in Github Pages</h2>
+<h3 id="create-a-gitignore-file">Create a <code>.gitignore</code> file</h3>
+<p>Create a <code>.gitignore</code> file to exclude unnecessary files from version control. Here&rsquo;s a sample <code>.gitignore</code> for Hugo sites:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">/resources/
+</span></span><span class="line"><span class="cl">/public/
+</span></span></code></pre></div><h3 id="commit-and-push-to-github">Commit and Push to GitHub</h3>
+<p>Commit your changes and push your blog to a GitHub repository:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;Initial commit&#34;</span>
+</span></span><span class="line"><span class="cl">git remote add origin git@github.com/cham11ng/sagarchamling.com
+</span></span><span class="line"><span class="cl">git push -u origin main
+</span></span></code></pre></div><h2 id="step-5-select-domain-name">Step 5: Select Domain Name</h2>
+<p>I considered using a domain registrar like <a href="https://porkbun.com">Porkbun</a> for two major reason; it&rsquo;s cheap and easy configuration process.</p>
+<p>Search for available domain names, and once you find one that suits your blog, register it.</p>
+<h2 id="step-6-configure-and-publish-site">Step 6: Configure and Publish Site</h2>
+<h3 id="configure-domain">Configure Domain</h3>
+<p>In your domain registrar&rsquo;s dashboard (<code>Porkbun</code> in this case), configure your domain&rsquo;s DNS settings. This typically involves setting up a CNAME record with the GitHub Pages URL provided earlier.</p>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-6be0f" hidden />
+  <label for="zoomCheck-6be0f">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/edit-dns-record.webp"
+      alt="Edit DNS Record"
+       />
+  </label>
+
+Go to the DNS Records section and select &ldquo;Edit.&rdquo;</p>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-da20c" hidden />
+  <label for="zoomCheck-da20c">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/quick-dns.webp"
+      alt="Quick DNS Config"
+       />
+  </label>
+
+In the Quick DNS Config section, select the &ldquo;Github&rdquo; button to quickly configure domain&rsquo;s DNS settings to point Github Pages.</p>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-97060" hidden />
+  <label for="zoomCheck-97060">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/cname-record.webp"
+      alt="CNAME Record"
+       />
+  </label>
+
+You&rsquo;ll also need to create your subdomain CNAME record. In the Host field, enter the subdomain you want. It can be &ldquo;www&rdquo; or whatever you wish it to be.</p>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-3dc70" hidden />
+  <label for="zoomCheck-3dc70">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/dns-records.webp"
+      alt="DNS Records"
+       />
+  </label>
+
+Finally, you&rsquo;ll see your DNS records successfully updated to the Github Pages DNS under Current Records.</p>
+<h3 id="configure-github-pages">Configure GitHub Pages</h3>
+<p>In your GitHub repository, go to the <code>Settings</code> tab and scroll down to the <code>Pages</code> section. Provide the custom domain with a URL for your published site. It may take some time for DNS changes to propagate. Once it&rsquo;s done, your blog will be accessible through your custom domain.</p>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-7feab" hidden />
+  <label for="zoomCheck-7feab">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/github-pages.webp"
+      alt="Github Pages Configuration"
+       />
+  </label>
+</p>
+<p>Congratulations! You&rsquo;ve successfully set up your personal blog site using Hugo, customized it with the PaperMod theme, and published it with your own domain name. Now, you&rsquo;re ready to start sharing your thoughts and ideas with the world. Happy blogging!</p>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

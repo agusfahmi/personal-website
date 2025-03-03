@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+    <link>http://localhost:1313/tags/docker/</link>
+    <description>Recent content in Docker on Agus Fahmi Aji Pramana&#39;s Blogging Site</description>
+    <image>
+      <title>Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+      <url>http://localhost:1313/logo.svg</url>
+      <link>http://localhost:1313/logo.svg</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 11 Feb 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Introduction to Containers, Docker, and IBM Cloud Container Registry Lab</title>
+      <link>http://localhost:1313/blogs/training/introduction-to-containers/introduction-to-containers-docker-ibm-cloud-container-registry-lab/</link>
+      <pubDate>Sun, 11 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blogs/training/introduction-to-containers/introduction-to-containers-docker-ibm-cloud-container-registry-lab/</guid>
+      <description>Explore and work on a hand-on Container, Docker and IBM Container Registry</description>
+      <content:encoded><![CDATA[<h2 id="objectives">Objectives</h2>
+<p>In this lab, I will:</p>
+<ul>
+<li>Pull an image from Docker Hub</li>
+<li>Run an image as a container using docker</li>
+<li>Build an image using a Dockerfile</li>
+<li>Push an image to IBM Cloud Container Registry</li>
+</ul>
+<h2 id="verify-environment-and-command-line-tools">Verify Environment and Command line tools</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ docker --version
+</span></span><span class="line"><span class="cl">Docker version 24.0.7, build afdd53b
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ ibmcloud version
+</span></span><span class="line"><span class="cl">ibmcloud version 2.20.0+f382323-2023-09-19T20:06:39+00:00
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ <span class="o">[</span> ! -d <span class="s1">&#39;CC201&#39;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> git clone <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  https://github.com/ibm-developer-skills-network/CC201.git
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> CC201/labs/1_ContainersAndDocker/
+</span></span><span class="line"><span class="cl">$ ls
+</span></span><span class="line"><span class="cl">Dockerfile  app.js  package.json
+</span></span></code></pre></div><h2 id="pulling-an-image-from-docker-hub-and-running-as-a-container">Pulling an image from Docker Hub and running as a container</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># listing images, initially empty</span>
+</span></span><span class="line"><span class="cl">$ docker images
+</span></span><span class="line"><span class="cl">REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># pull docker hello-world from Docker Hub</span>
+</span></span><span class="line"><span class="cl">$ docker pull hello-world
+</span></span><span class="line"><span class="cl">Using default tag: latest
+</span></span><span class="line"><span class="cl">latest: Pulling from library/hello-world
+</span></span><span class="line"><span class="cl">c1ec31eb5944: Pull <span class="nb">complete</span>
+</span></span><span class="line"><span class="cl">Digest: sha256:encoded-code
+</span></span><span class="line"><span class="cl">Status: Downloaded newer image <span class="k">for</span> hello-world:latest
+</span></span><span class="line"><span class="cl">docker.io/library/hello-world:latest
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># listing images again</span>
+</span></span><span class="line"><span class="cl">$ docker images
+</span></span><span class="line"><span class="cl">REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+</span></span><span class="line"><span class="cl">hello-world   latest    d2c94e258dcb   <span class="m">9</span> months ago   13.3kB
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># running `hello-world` image as a container</span>
+</span></span><span class="line"><span class="cl">$ docker run hello-world
+</span></span><span class="line"><span class="cl">Hello from Docker!
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># list the containers to see it exited successfully</span>
+</span></span><span class="line"><span class="cl">$ docker ps -a
+</span></span><span class="line"><span class="cl">CONTAINER ID IMAGE       COMMAND  CREATED STATUS   PORTS   NAMES
+</span></span><span class="line"><span class="cl">9c755c404f2c hello-world <span class="s2">&#34;/hello&#34;</span> <span class="m">1</span> sec   Exited <span class="o">(</span>0<span class="o">)</span> <span class="m">3</span> sec reverent_hoover
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># remove container</span>
+</span></span><span class="line"><span class="cl">$ docker container rm 9c755c404f2c
+</span></span><span class="line"><span class="cl">9c755c404f2c
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># verify the container has been removed</span>
+</span></span><span class="line"><span class="cl">$ docker ps -a
+</span></span><span class="line"><span class="cl">CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+</span></span></code></pre></div><h2 id="build-an-image-using-dockerfile">Build an image using Dockerfile</h2>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-ead9e" hidden />
+  <label for="zoomCheck-ead9e">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/exploring-dockerfile.webp"
+      alt="Exploring Dockerfile"
+       />
+  </label>
+</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ docker build . -t myimage:v1
+</span></span><span class="line"><span class="cl"><span class="o">=</span>&gt; <span class="o">=</span>&gt; naming to docker.io/library/myimage:v1          0.0s
+</span></span></code></pre></div><h2 id="run-the-image-as-a-container">Run the image as a container</h2>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-f2777" hidden />
+  <label for="zoomCheck-f2777">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/exploring-codebase.webp"
+      alt="Exploring codebase"
+       />
+  </label>
+</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># run container</span>
+</span></span><span class="line"><span class="cl">docker run -dp 8080:8080 myimage:v1
+</span></span><span class="line"><span class="cl">349f19114bfcb01a40328092a687f0cd18da3c97e07c8bb6e99e87aaeb4c83d4
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ping the application</span>
+</span></span><span class="line"><span class="cl">curl localhost:8080
+</span></span><span class="line"><span class="cl">Hello world from 349f19114bfc! Your app is up and running!
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># stop the list of all running container</span>
+</span></span><span class="line"><span class="cl">docker stop <span class="k">$(</span>docker ps -q<span class="k">)</span>
+</span></span><span class="line"><span class="cl">349f19114bfc
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># check container has stopped or not</span>
+</span></span><span class="line"><span class="cl">docker ps
+</span></span><span class="line"><span class="cl">CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+</span></span></code></pre></div><h2 id="push-the-image-to-ibm-cloud-container-registry">Push the image to IBM Cloud Container Registry</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># environment has already logged into IBM Cloud account</span>
+</span></span><span class="line"><span class="cl">$ ibmcloud target
+</span></span><span class="line"><span class="cl">API endpoint:   https://cloud.ibm.com
+</span></span><span class="line"><span class="cl">Region:         us-south
+</span></span><span class="line"><span class="cl">User:           ServiceId-9917a3b5-23f8-4163-a5f6-463699167d84 <span class="o">(</span>sn-labs-x<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Account:        QuickLabs - IBM Skills Network <span class="o">(</span>xyz<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Resource group: No resource group targeted
+</span></span><span class="line"><span class="cl">CF API endpoint:
+</span></span><span class="line"><span class="cl">Org:
+</span></span><span class="line"><span class="cl">Space:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># environment has created ICR namespace for you</span>
+</span></span><span class="line"><span class="cl">$ ibmcloud cr namespaces
+</span></span><span class="line"><span class="cl">Listing namespaces <span class="k">for</span> account <span class="s1">&#39;IBM Skills Network&#39;</span> in registry <span class="s1">&#39;us.icr.io&#39;</span>.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Namespace
+</span></span><span class="line"><span class="cl">sn-labs-x
+</span></span><span class="line"><span class="cl">sn-labsassets
+</span></span><span class="line"><span class="cl">OK
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># setting appropriate region where the namespace reside</span>
+</span></span><span class="line"><span class="cl">$ ibmcloud cr region-set us-south
+</span></span><span class="line"><span class="cl">The region is <span class="nb">set</span> to <span class="s1">&#39;us-south&#39;</span>, the registry is <span class="s1">&#39;us.icr.io&#39;</span>
+</span></span><span class="line"><span class="cl">OK
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># login to local Docker daemon into IBM Cloud Registry</span>
+</span></span><span class="line"><span class="cl">$ ibmcloud cr login
+</span></span><span class="line"><span class="cl">Logging <span class="s1">&#39;docker&#39;</span> in to <span class="s1">&#39;us.icr.io&#39;</span>...
+</span></span><span class="line"><span class="cl">Logged in to <span class="s1">&#39;us.icr.io&#39;</span>.
+</span></span><span class="line"><span class="cl">OK
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># export namespace as environment variable</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">export</span> <span class="nv">MY_NAMESPACE</span><span class="o">=</span>sn-labs-<span class="nv">$USERNAME</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># tag image so that it can be pushed</span>
+</span></span><span class="line"><span class="cl">$ docker tag myimage:v1 us.icr.io/<span class="nv">$MY_NAMESPACE</span>/hello-world:1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># push the newly tagged image to ICR</span>
+</span></span><span class="line"><span class="cl">$ docker push us.icr.io/<span class="nv">$MY_NAMESPACE</span>/hello-world:1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># to only view images within a specific namespace</span>
+</span></span><span class="line"><span class="cl">$ ibmcloud cr images --restrict <span class="nv">$MY_NAMESPACE</span>
+</span></span><span class="line"><span class="cl">ibmcloud cr images --restrict <span class="nv">$MY_NAMESPACE</span>
+</span></span><span class="line"><span class="cl">Listing images...
+</span></span><span class="line"><span class="cl">Repository                        Tag   Digest         Namespace   Created
+</span></span><span class="line"><span class="cl">us.icr.io/sn-labs-x/hello-world   <span class="m">1</span>     b63783d1b808   sn-labs-x   z sec
+</span></span><span class="line"><span class="cl">OK
+</span></span></code></pre></div><h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.coursera.org/learn/ibm-containers-docker-kubernetes-openshift">https://www.coursera.org/learn/ibm-containers-docker-kubernetes-openshift</a></li>
+</ul>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Php on Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+    <link>http://localhost:1313/tags/php/</link>
+    <description>Recent content in Php on Agus Fahmi Aji Pramana&#39;s Blogging Site</description>
+    <image>
+      <title>Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+      <url>http://localhost:1313/logo.svg</url>
+      <link>http://localhost:1313/logo.svg</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 11 Feb 2018 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/php/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux Server Stack Setup in Ubuntu 16.04 LTS</title>
+      <link>http://localhost:1313/blogs/tech/linux-server-setup/</link>
+      <pubDate>Sun, 11 Feb 2018 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blogs/tech/linux-server-setup/</guid>
+      <description>Learn to setup LEPP manually in Ubuntu Server.</description>
+      <content:encoded><![CDATA[<blockquote>
+<p>Credit: Anup Dhakal (<a href="https://anupdhakal.com">https://anupdhakal.com</a>)</p></blockquote>
+<h2 id="introduction">Introduction</h2>
+<p>In this guide, <strong>LEPP</strong> stands for <strong>Linux</strong>, <strong>Nginx</strong> (pronounced as Engine-X) , <strong>Postgres</strong> and <strong>PHP</strong> (PHP Hypertext Preprocessor).</p>
+<h3 id="specificationstarget">Specifications/Target</h3>
+<ul>
+<li><strong>Ubuntu</strong> v16.04</li>
+<li><strong>Nginx</strong> v1.10</li>
+<li><strong>PHP</strong> v7.1</li>
+<li><strong>Postgres</strong> v9.6.3</li>
+<li><strong>phpPgAdmin</strong> v5.2</li>
+</ul>
+<p>But before we start, let&rsquo;s quickly make sure that we have some basic tools ready. Run the following commands in the terminal.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo apt update
+</span></span><span class="line"><span class="cl">sudo apt install wget
+</span></span><span class="line"><span class="cl">sudo apt install software-properties-common
+</span></span></code></pre></div><p>Now let&rsquo;s start!</p>
+<h2 id="custom-repositories">Custom Repositories</h2>
+<p>Before beginning the installation, we want to add some repositories which will give us the latest corresponding packages for our server stack.</p>
+<h3 id="nginx-repository">Nginx Repository</h3>
+<p>For Ubuntu, in order to authenticate the Nginx repository signature and to eliminate warnings about missing PGP key during installation of the Nginx package, it is necessary to add the key used to sign the Nginx packages and repository to the apt program keyring. Only after then we will dare to add the repositories.</p>
+<p><em>The above fact is true every time we add a custom repository. If we don&rsquo;t want to add any custom repository and use the ones provided to us by &ldquo;vanilla&rdquo; Ubuntu itself, we can just ignore this section of the guide, entirely. We have to keep in mind that the version numbers used in this guide are according to the default, most recent versions of the respective packages at the time of creation of this guide. So, we might have to be careful in coming sections of the guide where we start installation and setup of the stack. We would want to make sure then, that the version number would match to what we have installed, not what is shown in this guide.</em></p>
+<p>Run the following code one by one in the terminal to add the Nginx stable repository. We need to accept any prompts, if asked.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">wget http://nginx.org/keys/nginx_signing.key
+</span></span><span class="line"><span class="cl">sudo apt-key add nginx_signing.key
+</span></span><span class="line"><span class="cl">sudo sed -i <span class="s1">&#39;$a deb http://nginx.org/packages/ubuntu/ xenial nginx&#39;</span> /etc/apt/sources.list
+</span></span><span class="line"><span class="cl">sudo sed -i <span class="s1">&#39;$a # deb-src http://nginx.org/packages/ubuntu/ xenial nginx&#39;</span> /etc/apt/sources.list
+</span></span></code></pre></div><h3 id="postgres-repository">Postgres Repository</h3>
+<p>The PostgreSQL apt repository supports LTS versions of Ubuntu 16.04 on amd64 and i386 architectures. This repository will integrate with your normal systems and patch management, and provide automatic updates for all supported versions of PostgreSQL throughout the support lifetime of PostgreSQL.</p>
+<ul>
+<li>Create the file <code>/etc/apt/sources.list.d/pgdg.list</code>, and add a line for the repository</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main
+</span></span></code></pre></div><ul>
+<li>Import the repository signing key, and update the package lists</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc <span class="p">|</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  sudo apt-key add -
+</span></span></code></pre></div><h3 id="php-repository">PHP Repository</h3>
+<p>The repository here we are going to install is the PHP PPA by <a href="https://launchpad.net/~ondrej/&#43;archive/ubuntu/php" title="Ondrej PHP PPA">Ondrej</a>. We can update our system with unsupported packages from this untrusted PPA by adding ppa:ondrej/php to our system&rsquo;s Software Sources. The following commands will help us to do so. We need to accept any prompts, if asked.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo add-apt-repository ppa:ondrej/php
+</span></span></code></pre></div><p><em>We might feel a little bit confused by the terms &ldquo;untrusted PPA&rdquo;, but there is actually no reason to worry. We just need to remember that, unlike Nginx&rsquo;s or the MariaDB&rsquo;s repositories, this is <strong>not</strong> an official upgrade path. But the PPA is well known, and is relatively safe to use.</em></p>
+<h2 id="update-apt">Update APT</h2>
+<p>Let&rsquo;s finally begin the actual installations processes.</p>
+<p>First, we want to make sure we have the latest records in our local packages registry. Let&rsquo;s run the following command in the terminal like so.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo apt update
+</span></span></code></pre></div><h2 id="installing-nginx">Installing Nginx</h2>
+<p>First thing we’re going to install is the server called Nginx.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo apt install nginx
+</span></span></code></pre></div><p>We can check if Nginx is installed by typing <code>nginx -v</code> in the terminal.</p>
+<h2 id="installing-postgres">Installing Postgres</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo apt-get install postgresql postgresql-contrib
+</span></span></code></pre></div><p>We can check if Postgres is installed by executing <code>psql --version</code> in the terminal.</p>
+<p><em>PHP makes use of the package <code>php-pgsql</code> as the database driver for Postgres.</em></p>
+<h2 id="installing-php">Installing PHP</h2>
+<p>Next thing we want to install is PHP. We need to install PHP with a few extensions that are mandatory for modern web applications.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo apt install php-cli php-fpm php-zip php-xml php-mbstring php-mcrypt php-curl php-gd php-pgsql php-bz2 php-gettext php-pear php-phpseclib php-tcpdf
+</span></span></code></pre></div><p>We may run <code>php -v</code> in the terminal to check the version of PHP installed.</p>
+<h2 id="configuring-nginx">Configuring Nginx</h2>
+<p>We don&rsquo;t need to change anything right now. But if we want to, we can change the main configuration of Nginx as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo gedit /etc/nginx/nginx.conf
+</span></span></code></pre></div><p>In the config file, notice the line with <code>user nginx</code>. This means Nginx will run as the user <strong>nginx</strong>. We should not forget to run <code>sudo systemctl restart nginx.service</code> if we make changes to any configuration file of Nginx.</p>
+<h3 id="configuring-php-to-work-with-nginx">Configuring PHP to work with Nginx</h3>
+<p>In order for PHP and Nginx to work together, we need to configure both of them. <em>We need to make sure that PHP-FPM (FastCGI Process Manager) runs as the <strong>same user</strong> as Nginx.</em> And for that we need to run <code>sudo gedit /etc/php/7.1/fpm/pool.d/www.conf</code> in the terminal and change the relevant lines as:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="na">...</span>
+</span></span><span class="line"><span class="cl"><span class="na">user</span> <span class="o">=</span> <span class="s">nginx</span>
+</span></span><span class="line"><span class="cl"><span class="na">group</span> <span class="o">=</span> <span class="s">nginx</span>
+</span></span><span class="line"><span class="cl"><span class="na">...</span>
+</span></span><span class="line"><span class="cl"><span class="na">listen.owner</span> <span class="o">=</span> <span class="s">nginx</span>
+</span></span><span class="line"><span class="cl"><span class="na">listen.group</span> <span class="o">=</span> <span class="s">nginx</span>
+</span></span><span class="line"><span class="cl"><span class="na">...</span>
+</span></span></code></pre></div><p><em>Note the command where we used &hellip; php/<strong>7.1</strong>/fpm &hellip; . We want to make sure that <strong>7.1</strong> is the version that we actually have installed in our system. Refer <a href="/blogs/tech/linux-server-setup/#installing-php">this</a> section to go back and see how we installed PHP and PHP-FPM, and how to see the version of PHP installed.</em></p>
+<p>We need to run <code>sudo systemctl restart php7.1-fpm.service</code> in the terminal to load the new configuration.</p>
+<h3 id="default-site">Default Site</h3>
+<p>Now comes the fun part where we create a default site that supports PHP. In our case, we want <code>~/www</code> as our directory of all websites. Normally, <code>/var/www</code> is used as the default one. Here we want to change it to a custom directory inside our home directory, as mentioned above.</p>
+<p>First, we want to make sure the directory exists. Let&rsquo;s create a default site directory <code>_default_</code> with command <code>mkdir -p ~/www/_default_/public</code>.</p>
+<p><em>Note that to add other sites, we can follow a similar pattern. We may create a new folder for each site, which has a <code>public</code> folder in it as the public entry point of the site.</em></p>
+<p>Now to edit the default site configuration, let&rsquo;s run the following command in the terminal</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo gedit /etc/nginx/conf.d/default.conf
+</span></span></code></pre></div><p>and replace its content with this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">server</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">listen</span> <span class="mi">80</span> <span class="s">default_server</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">listen</span> <span class="s">[::]:80</span> <span class="s">default_server</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kn">root</span> <span class="s">/home/[OUR_USERNAME]/www/_default_/public</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kn">index</span> <span class="s">index.html</span> <span class="s">index.htm</span> <span class="s">index.php</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kn">server_name</span> <span class="s">_</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">try_files</span> <span class="nv">$uri</span> <span class="nv">$uri/</span> <span class="p">=</span><span class="mi">404</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">autoindex</span> <span class="no">on</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kn">location</span> <span class="p">~</span> <span class="sr">\.php$</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">try_files</span> <span class="nv">$uri</span> <span class="p">=</span><span class="mi">404</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">fastcgi_split_path_info</span> <span class="s">^(.+\.php)(/.+)</span>$<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">fastcgi_pass</span> <span class="s">unix:/run/php/php7.1-fpm.sock</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">fastcgi_index</span> <span class="s">index.php</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">fastcgi_param</span> <span class="s">SCRIPT_FILENAME</span> <span class="nv">$document_root$fastcgi_script_name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">include</span> <span class="s">fastcgi_params</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><em>Please note that we need to change <strong>[OUR_USERNAME]</strong> from above config file to our actual username.</em></p>
+<p>Now let&rsquo;s run <code>sudo systemctl restart nginx.service</code> to reload our new configuration.</p>
+<p>Now we should be able to see on browser that <a href="http://localhost" title="Localhost">http://localhost</a> actually works, and most probably shows an empty index.</p>
+<p><strong>**Ba Dum Tis**</strong></p>
+<p>We can put any file in the <code>~/www/_default_/public</code> directory and it should be showing in the browser after a refresh.</p>
+<h2 id="configuring-postgres">Configuring Postgres</h2>
+<p>Switch over to the postgres account on your server by typing:</p>
+<pre tabindex="0"><code>user@aspire:~$ sudo -i -u postgres
+</code></pre><p>Let&rsquo;s Create a New Role</p>
+<pre tabindex="0"><code>postgres@aspire:~$ createuser --interactive -P
+Enter name of role to add: {role name}
+Enter password for new role:
+Enter it again:
+Shall the new role be a superuser? (y/n)
+</code></pre><h2 id="installing-phppgadmin">Installing phpPgAdmin</h2>
+<h3 id="setting-up-host">Setting Up Host</h3>
+<p>We want to be able to lunch phpPgAdmin by going to <a href="http://phppgadmin.app" title="phpPgAdmin">http://phppgadmin.app</a> in the address bar of the browser.</p>
+<p>So, first of all, run <code>sudo gedit /etc/hosts</code> and add an entry as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">127.1.1.1    phppgadmin.app
+</span></span></code></pre></div><h3 id="phppgadmin">phpPgAdmin</h3>
+<p>Run the following commands to install phpmyadmin:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> /usr/share
+</span></span><span class="line"><span class="cl">sudo git clone git@github.com:phppgadmin/phppgadmin.git
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> phppgadmin/config
+</span></span><span class="line"><span class="cl">sudo cp config.inc.php-dist config.inc.php
+</span></span></code></pre></div><p>If extra login security is true, then logins via phpPgAdmin with no password or certain usernames (pgsql, postgres, root, administrator) will be denied. Only set this false once you have read the FAQ and understand how to change PostgreSQL&rsquo;s pg_hba.conf to enable passworded local connections.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$conf</span><span class="p">[</span><span class="s1">&#39;servers&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;host&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$conf</span><span class="p">[</span><span class="s1">&#39;extra_login_security&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+</span></span></code></pre></div><h3 id="setting-up-server-block">Setting Up Server Block</h3>
+<p>Now, we will setup an <strong>Nginx server block</strong> (a.k.a. virtual host in Apache httpd).</p>
+<p>Let&rsquo;s run the command <code>sudo touch /etc/nginx/conf.d/phppgadmin.conf</code> to create a <strong>site</strong> (configuration file).</p>
+<p>Let&rsquo;s open it with <code>sudo gedit /etc/nginx/conf.d/phppgadmin.conf</code> and add the contents as follows.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">server</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kn">root</span> <span class="s">/usr/share/phppgadmin</span><span class="p">;</span> <span class="c1"># make sure to enter the correct location of phppgadmin here
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kn">index</span> <span class="s">index.php</span> <span class="s">index.html</span> <span class="s">index.htm</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kn">server_name</span> <span class="s">phppgadmin.app</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">try_files</span> <span class="nv">$uri</span> <span class="nv">$uri/</span> <span class="s">/index.php?</span><span class="nv">$query_string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kn">location</span> <span class="p">~</span> <span class="sr">\.php$</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">try_files</span> <span class="nv">$uri</span> <span class="s">/index.php</span> <span class="p">=</span><span class="mi">404</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">fastcgi_split_path_info</span> <span class="s">^(.+\.php)(/.+)</span>$<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">fastcgi_pass</span> <span class="s">unix:/run/php/php7.1-fpm.sock</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">fastcgi_index</span> <span class="s">index.php</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">fastcgi_param</span> <span class="s">SCRIPT_FILENAME</span> <span class="nv">$document_root$fastcgi_script_name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">include</span> <span class="s">fastcgi_params</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="activating-the-server-block">Activating the server block</h3>
+<p>Now we have to restart Nginx to activate our new site (config file) by running:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo systemctl restart nginx.service
+</span></span></code></pre></div><p>Try hitting <a href="http://phppgadmin.app" title="phpPgGAdmin">http://phppgadmin.app</a> and it should work!</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>There we have it! We should by now have a working and relatively secure LEPP server stack with Nginx running at <a href="http://localhost" title="Localhost">http://localhost</a>, as well as our phpPgAdmin app running at <a href="http://phppgadmin.app" title="phpPgAdmin">http://phppgadmin.app</a></p>
+<p><em>In this guide we didn&rsquo;t talk anything about firewall. This is because a fresh install of &ldquo;vanilla&rdquo; Ubuntu 16.04 should not have one running it automatically. We may research about it later if we wish to. Right now, that would be beyond the scope of this guide.</em></p>
+<p>So, did you find this guide helpful? Feedbacks are precious. Suggestions are highly appreciated.</p>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

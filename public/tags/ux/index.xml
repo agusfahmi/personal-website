@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ux on Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+    <link>http://localhost:1313/tags/ux/</link>
+    <description>Recent content in Ux on Agus Fahmi Aji Pramana&#39;s Blogging Site</description>
+    <image>
+      <title>Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+      <url>http://localhost:1313/logo.svg</url>
+      <link>http://localhost:1313/logo.svg</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 17 Oct 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/ux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dive into Design Basics</title>
+      <link>http://localhost:1313/blogs/tech/dive-into-design-basics/</link>
+      <pubDate>Tue, 17 Oct 2017 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blogs/tech/dive-into-design-basics/</guid>
+      <description>Learn few things about design basics.</description>
+      <content:encoded><![CDATA[<h2 id="basic">Basic</h2>
+<ul>
+<li>Design is solution to problem.</li>
+<li><code>1997-2004</code> called web design.</li>
+<li><code>2005-later</code> called UI/UX.</li>
+<li>UI/UX is science.</li>
+<li><strong>UX ? Why not UE?</strong></li>
+<li>UX is responsible for secure feeling.</li>
+<li>Identify KiKi and BoBo.</li>
+<li>UI is looks and UX is usability.</li>
+<li>Design product such that it can be used without user manual.</li>
+</ul>
+<h2 id="good-vs-bad-design">Good vs Bad Design</h2>
+<ul>
+<li>Human Computer Interaction (HCI).</li>
+<li>Selection of chair. Revolving chair is not placed in meeting room.</li>
+<li>Change shape in case of different products. (e.g. Shampoo/Conditioner)</li>
+<li>Don&rsquo;t change conceptual model. <code>Affordance</code></li>
+<li>Get real time user&rsquo;s feedback.</li>
+<li><code>Aesthetics</code> of a site.</li>
+<li><strong>Less is more</strong></li>
+</ul>
+<h2 id="elements-of-design">Elements of Design</h2>
+<ul>
+<li>Line
+<ul>
+<li>link/highlights -&gt; a</li>
+<li>header -&gt; h1</li>
+<li>list/menu/table -&gt; ul/li/table</li>
+<li>Separator (different topic) -&gt; hr</li>
+<li>panel</li>
+</ul>
+</li>
+<li>Shape
+<ul>
+<li>menu, radio, checkbox, tabs, textarea, textbox, dropdown, layout</li>
+</ul>
+</li>
+<li>Direction</li>
+<li>Size</li>
+<li>Texture</li>
+<li>Color</li>
+</ul>
+<h2 id="principle-of-design">Principle of Design</h2>
+<ul>
+<li>Repetition</li>
+<li>Alignment
+<ul>
+<li>pixel perfect</li>
+</ul>
+</li>
+<li>Proximity
+<ul>
+<li>visual connection</li>
+</ul>
+</li>
+<li>Space
+<ul>
+<li>let the content breath</li>
+</ul>
+</li>
+<li>Balance</li>
+<li>Contrast
+<ul>
+<li>juxtaposition of opposing element</li>
+</ul>
+</li>
+<li>Common Fate</li>
+</ul>
+<h2 id="synesthesia-exercise">Synesthesia Exercise</h2>
+<ul>
+<li>What did you see?</li>
+<li>How it tastes like?</li>
+<li>What it smells like?</li>
+</ul>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

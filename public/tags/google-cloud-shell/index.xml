@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Google Cloud Shell on Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+    <link>http://localhost:1313/tags/google-cloud-shell/</link>
+    <description>Recent content in Google Cloud Shell on Agus Fahmi Aji Pramana&#39;s Blogging Site</description>
+    <image>
+      <title>Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+      <url>http://localhost:1313/logo.svg</url>
+      <link>http://localhost:1313/logo.svg</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 19 Oct 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/google-cloud-shell/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mission 3 Challenge - Intensive Cloud Training</title>
+      <link>http://localhost:1313/blogs/training/intensive-cloud-training/mission-3-challenge/</link>
+      <pubDate>Thu, 19 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blogs/training/intensive-cloud-training/mission-3-challenge/</guid>
+      <description>Learning and Outcome from Mission 3 Challenge</description>
+      <content:encoded><![CDATA[<h2 id="mission-introduction">Mission Introduction</h2>
+<p>In this mission, we&rsquo;ll perform the database migration and files migration in Google Cloud SQL and AWS S3 respectively. After the migration process is done, we successfully finished all the mission from the trainings. Then we start to deprovision and delete all the resources to avoid charges in Cloud Services.</p>
+<h3 id="inside">Inside</h3>
+<ul>
+<li>We migrate the SQL dump file data to Google Cloud SQL using Google Cloud Shell.</li>
+<li>Then, we migrate the PDF files to S3 Bucket using AWS CloudShell.</li>
+<li>Deprovision and delete all resource using Terraform.</li>
+</ul>
+<h2 id="begin-hands-on-project">Begin Hands-on Project</h2>
+<h3 id="database-migration-to-google-cloud-sql-using-mysql-dump">Database migration to Google Cloud SQL using MySQL dump</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-5aa00" hidden />
+  <label for="zoomCheck-5aa00">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/dump-mysql.webp"
+      alt="Dump MySQL to Google CLoud"
+       />
+  </label>
+</p>
+<h3 id="pdf-files-migration-to-s3-bucket-using-aws-cloudshell">PDF Files Migration to S3 Bucket using AWS CloudShell</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-ac596" hidden />
+  <label for="zoomCheck-ac596">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/aws-cloudshell-upload.webp"
+      alt="AWS CloudShell PDF Uploads"
+       />
+  </label>
+</p>
+<h3 id="uploaded-files-in-aws-s3-bucket">Uploaded files in AWS S3 Bucket</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-e589b" hidden />
+  <label for="zoomCheck-e589b">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/listing-aws-s3.webp"
+      alt="Uploaded file in AWS S3 Bucket"
+       />
+  </label>
+</p>
+<h2 id="mission-accomplished">Mission Accomplished</h2>
+<h3 id="navigating-records-in-application">Navigating records in Application</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-ac1ce" hidden />
+  <label for="zoomCheck-ac1ce">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/navigating-records.webp"
+      alt="Navigating records in App"
+       />
+  </label>
+</p>
+<h3 id="accessing-the-file-from-application">Accessing the file from Application</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-5efe8" hidden />
+  <label for="zoomCheck-5efe8">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/accessing-file.webp"
+      alt="Accessing the file from Application"
+       />
+  </label>
+</p>
+<h2 id="cleanup">Cleanup</h2>
+<h3 id="disabling-deletion-protection-in-terraform-file">Disabling deletion protection in Terraform file</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-6c4a3" hidden />
+  <label for="zoomCheck-6c4a3">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/cloud-editor.webp"
+      alt="Updating configuration in Cloud Editor"
+       />
+  </label>
+</p>
+<h3 id="disabling-deletion-protection-in-tfstate">Disabling deletion protection in tfstate</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-5549d" hidden />
+  <label for="zoomCheck-5549d">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/cloud-editor-changes.webp"
+      alt="Updating tfstate in Cloud Editor"
+       />
+  </label>
+</p>
+<h3 id="deleted-resources">Deleted resources</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-061b6" hidden />
+  <label for="zoomCheck-061b6">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/deleted-resources.webp"
+      alt="Deleted resources"
+       />
+  </label>
+</p>
+<h2 id="certificate-of-completion">Certificate of Completion</h2>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-7e138" hidden />
+  <label for="zoomCheck-7e138">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/certificate.webp"
+      alt="Alt text"
+       />
+  </label>
+</p>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

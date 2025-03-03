@@ -1,0 +1,1104 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>#tech on Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+    <link>http://localhost:1313/blogs/tech/</link>
+    <description>Recent content in #tech on Agus Fahmi Aji Pramana&#39;s Blogging Site</description>
+    <image>
+      <title>Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+      <url>http://localhost:1313/logo.svg</url>
+      <link>http://localhost:1313/logo.svg</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 09 Oct 2023 23:10:19 -0400</lastBuildDate>
+    <atom:link href="http://localhost:1313/blogs/tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How I setup my website using Hugo, Github Pages and Porkbun</title>
+      <link>http://localhost:1313/blogs/tech/how-i-setup-my-website-using-hugo-github-pages-and-porkbun/</link>
+      <pubDate>Mon, 09 Oct 2023 23:10:19 -0400</pubDate>
+      <guid>http://localhost:1313/blogs/tech/how-i-setup-my-website-using-hugo-github-pages-and-porkbun/</guid>
+      <description>Step by Step Guide for setting up a personal website</description>
+      <content:encoded><![CDATA[<p>In this step-by-step guide, I&rsquo;ll walk you through the process of setting up your personal blog site using Hugo, a popular static site generator written in Go, and the PaperMod theme.</p>
+<p>Along with that, I&rsquo;ll also show you how I configured my domain and hosting for this site. If you are following then by the end of this tutorial, you&rsquo;ll have your blog up and running and ready to share your thoughts with the world.</p>
+<hr>
+<h2 id="step-0-identify-purpose">Step 0: Identify Purpose</h2>
+<p>I opted for a static website generator because I wanted a website that&rsquo;s incredibly easy to maintain and configure. Additionally, it had to be fast and secure. My primary goal is to have a personal site where I can centralize all my contents and showcase my work, all in one place. I had straightforward requirements, which led me to choose a static site generator.</p>
+<h2 id="step-1-static-site-generator-with-hugo">Step 1: Static Site Generator with <code>hugo</code></h2>
+<p>Comparing <code>Gatsby</code> vs <code>Hugo</code>, &ldquo;Generated websites are super fast&rdquo; vs <strong>&ldquo;Lightning fast&rdquo;</strong>. According to my personal website idea, it doesn&rsquo;t require a dynamic contents or any user interactions, which is purely based on static architecture. I selected <strong><code>Hugo</code></strong> over Gatsby.</p>
+<h3 id="install-go-hugo">Install Go, Hugo</h3>
+<p>The first step is to install Go and Hugo on your local machine. You can follow the installation instructions for your specific operating system <a href="https://gohugo.io/getting-started/installing/">here</a>.</p>
+<blockquote>
+<p>Please refer to the relevant documentation for installation instructions:</p>
+<ul>
+<li>Git</li>
+<li>Go</li>
+<li>Dart Sass</li>
+</ul></blockquote>
+<h3 id="create-a-new-hugo-site">Create a New Hugo Site</h3>
+<p>Once Hugo is installed, create a new Hugo site using the following command:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">hugo new site sagarchamling.com
+</span></span></code></pre></div><p>Replace <code>sagarchamling.com</code> with the desired name of your blog.</p>
+<h2 id="step-2-choosing-theme">Step 2: Choosing Theme</h2>
+<p>Hugo offers a wide range of themes. Find your choice and make sure you give them a credit.</p>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-e0138" hidden />
+  <label for="zoomCheck-e0138">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/hugo-themes.webp"
+      alt="Hugo Themes"
+       />
+  </label>
+</p>
+<h3 id="install-the-papermod-theme">Install the PaperMod Theme</h3>
+<p>For my blog, I&rsquo;ll use the PaperMod theme. To install it, navigate to your theme&rsquo;s github page <a href="https://github.com/adityatelange/hugo-PaperMod/wiki/Installation">here</a> and run:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git init <span class="c1"># Initialize your git repository</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git submodule add --depth<span class="o">=</span><span class="m">1</span> https://github.com/adityatelange/hugo-PaperMod.git themes/PaperMod
+</span></span></code></pre></div><p>Next, open your blog&rsquo;s <code>config.toml</code> file and set the <code>theme</code> parameter to <code>&quot;PaperMod&quot;</code>.
+or
+You can take a reference of <a href="https://github.com/adityatelange/hugo-PaperMod/tree/exampleSite">exampleSite</a> to begin with.</p>
+<h2 id="step-3-customize-your-site">Step 3: Customize Your Site</h2>
+<h3 id="customizing-theme-css">Customizing theme css</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">.<span class="o">(</span>site root<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── content/
+</span></span><span class="line"><span class="cl">├── theme/PaperMod/
+</span></span><span class="line"><span class="cl">└── assets/
+</span></span><span class="line"><span class="cl">    └── css/
+</span></span><span class="line"><span class="cl">        └── extended/         &lt;---
+</span></span><span class="line"><span class="cl">            ├── custom.css    &lt;---
+</span></span><span class="line"><span class="cl">            └── any_name.css  &lt;---
+</span></span></code></pre></div><h3 id="customizing-header-and-footer-partials">Customizing header and footer partials</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">.<span class="o">(</span>site root<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── config.yml
+</span></span><span class="line"><span class="cl">├── content/
+</span></span><span class="line"><span class="cl">├── theme/hugo-PaperMod/
+</span></span><span class="line"><span class="cl">└── layouts
+</span></span><span class="line"><span class="cl">    ├── partials
+</span></span><span class="line"><span class="cl">    │   ├── extend_footer.html &lt;---
+</span></span><span class="line"><span class="cl">    │   └── extend_head.html   &lt;---
+</span></span><span class="line"><span class="cl">    └── robots.txt
+</span></span></code></pre></div><h3 id="create-content">Create Content</h3>
+<p>Create your blog posts in the <code>content</code> directory. You can use Markdown to format your posts. For example, to create a new post, run:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">hugo new blogs/my-first-post.md
+</span></span></code></pre></div><p>Edit the Markdown file to write your content.</p>
+<h2 id="step-4-deploy-in-github-pages">Step 4: Deploy in Github Pages</h2>
+<h3 id="create-a-gitignore-file">Create a <code>.gitignore</code> file</h3>
+<p>Create a <code>.gitignore</code> file to exclude unnecessary files from version control. Here&rsquo;s a sample <code>.gitignore</code> for Hugo sites:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">/resources/
+</span></span><span class="line"><span class="cl">/public/
+</span></span></code></pre></div><h3 id="commit-and-push-to-github">Commit and Push to GitHub</h3>
+<p>Commit your changes and push your blog to a GitHub repository:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;Initial commit&#34;</span>
+</span></span><span class="line"><span class="cl">git remote add origin git@github.com/cham11ng/sagarchamling.com
+</span></span><span class="line"><span class="cl">git push -u origin main
+</span></span></code></pre></div><h2 id="step-5-select-domain-name">Step 5: Select Domain Name</h2>
+<p>I considered using a domain registrar like <a href="https://porkbun.com">Porkbun</a> for two major reason; it&rsquo;s cheap and easy configuration process.</p>
+<p>Search for available domain names, and once you find one that suits your blog, register it.</p>
+<h2 id="step-6-configure-and-publish-site">Step 6: Configure and Publish Site</h2>
+<h3 id="configure-domain">Configure Domain</h3>
+<p>In your domain registrar&rsquo;s dashboard (<code>Porkbun</code> in this case), configure your domain&rsquo;s DNS settings. This typically involves setting up a CNAME record with the GitHub Pages URL provided earlier.</p>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-6be0f" hidden />
+  <label for="zoomCheck-6be0f">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/edit-dns-record.webp"
+      alt="Edit DNS Record"
+       />
+  </label>
+
+Go to the DNS Records section and select &ldquo;Edit.&rdquo;</p>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-da20c" hidden />
+  <label for="zoomCheck-da20c">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/quick-dns.webp"
+      alt="Quick DNS Config"
+       />
+  </label>
+
+In the Quick DNS Config section, select the &ldquo;Github&rdquo; button to quickly configure domain&rsquo;s DNS settings to point Github Pages.</p>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-97060" hidden />
+  <label for="zoomCheck-97060">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/cname-record.webp"
+      alt="CNAME Record"
+       />
+  </label>
+
+You&rsquo;ll also need to create your subdomain CNAME record. In the Host field, enter the subdomain you want. It can be &ldquo;www&rdquo; or whatever you wish it to be.</p>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-3dc70" hidden />
+  <label for="zoomCheck-3dc70">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/dns-records.webp"
+      alt="DNS Records"
+       />
+  </label>
+
+Finally, you&rsquo;ll see your DNS records successfully updated to the Github Pages DNS under Current Records.</p>
+<h3 id="configure-github-pages">Configure GitHub Pages</h3>
+<p>In your GitHub repository, go to the <code>Settings</code> tab and scroll down to the <code>Pages</code> section. Provide the custom domain with a URL for your published site. It may take some time for DNS changes to propagate. Once it&rsquo;s done, your blog will be accessible through your custom domain.</p>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-7feab" hidden />
+  <label for="zoomCheck-7feab">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/github-pages.webp"
+      alt="Github Pages Configuration"
+       />
+  </label>
+</p>
+<p>Congratulations! You&rsquo;ve successfully set up your personal blog site using Hugo, customized it with the PaperMod theme, and published it with your own domain name. Now, you&rsquo;re ready to start sharing your thoughts and ideas with the world. Happy blogging!</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>HTTP Security with Content-Security-Policy headers</title>
+      <link>http://localhost:1313/blogs/tech/http-security-with-csp-headers/</link>
+      <pubDate>Wed, 02 Mar 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blogs/tech/http-security-with-csp-headers/</guid>
+      <description>Key notes of CSP response headers and troubleshooting guide</description>
+      <content:encoded><![CDATA[<h2 id="introduction">Introduction</h2>
+<p>The Content-Security-Policy header adds the layer of security that facilitates web application administrators to control resources the user agent is allowed to load for a given page. This helps guard against cross-site scripting attacks (XSS), packet sniffing and data injection attacks.</p>
+<h3 id="syntax">Syntax</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">Content-Security-Policy: {policy-directive}; {policy-directive}
+</span></span></code></pre></div><h3 id="example">Example</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">Content-Security-Policy: default-src https: &#39;unsafe-eval&#39; &#39;unsafe-inline&#39;;
+</span></span><span class="line"><span class="cl">object-src &#39;none&#39;
+</span></span></code></pre></div><h2 id="directive-terms">Directive Terms</h2>
+<h3 id="fetch-directive">Fetch directive</h3>
+<p>Fetch directives control the locations from which certain resource types may be loaded. All fetch directives fall back to <code>default-src</code>.</p>
+<h3 id="script-src">script-src</h3>
+<p>Directive specifies valid sources for JavaScript.</p>
+<h3 id="nonce">Nonce</h3>
+<ul>
+<li>Usage for script elements <a href="https://www.w3.org/TR/CSP2/#script-src-nonce-usage">Content Security Policy Level 2 </a></li>
+<li>Ideally, developers would avoid inline scripts entirely and whitelist scripts by URL.</li>
+<li>However, in some cases, removing inline scripts can be difficult or impossible</li>
+<li>For those cases, developers can whitelist scripts using a randomly generated nonce.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">Content-Security-Policy: default-src &#39;self&#39;; script-src &#39;self&#39;
+</span></span><span class="line"><span class="cl">https://example.com &#39;nonce-EDNnf03nceIOfn39fn3e9h3sdfa&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">nonce</span><span class="o">=</span><span class="s">&#34;EDNnf03nceIOfn39fn3e9h3sdfa&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Still blocked because nonce is wrong.&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></div><h3 id="default-src">default-src</h3>
+<p>Directive serves as a fallback for the other CSP fetch directives.</p>
+<h3 id="style-src">style-src</h3>
+<p>Directive specifies valid sources for stylesheets.</p>
+<h3 id="frame-ancestors">frame-ancestors</h3>
+<p>Directive specifies valid parents that may embed a page using <code>&lt;frame&gt;</code>, <code>&lt;iframe&gt;</code>, <code>&lt;object&gt;</code>, <code>&lt;embed&gt;</code>, or <code>&lt;applet&gt;</code>.</p>
+<h3 id="object-src">object-src</h3>
+<p>Directive specifies valid sources for the <code>&lt;object&gt;</code>, <code>&lt;embed&gt;</code>, and <code>&lt;applet&gt;</code> elements.</p>
+<h3 id="report-to">report-to</h3>
+<p>Directive instructs the user agent to store reporting endpoints for an origin.</p>
+<h2 id="implementing-in-aws-amplify">Implementing in AWS Amplify</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="c"># customHTTP.yml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">customHeaders</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">pattern</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;**/*&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">headers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Strict-Transport-Security&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;max-age=31536000; includeSubDomains&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;X-Frame-Options&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;SAMEORIGIN&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;X-XSS-Protection&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;1; mode=block&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;X-Content-Type-Options&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;nosniff&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Content-Security-Policy&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;default-src &#39;self&#39;; style-src &#39;self&#39;; img-src &#39;self&#39; data:;&#34;</span><span class="w">
+</span></span></span></code></pre></div><h2 id="troubleshooting">Troubleshooting</h2>
+<p>Mitigating with CSP policy directive for corresponding errors:</p>
+<h3 id="directive-1-img-src-self-data">Directive 1: img-src &lsquo;self&rsquo; data:</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Refused to load the image &#39;data:image/png;base64,somerandomnumber&#39; because it
+</span></span><span class="line"><span class="cl">violates the following Content Security Policy directive: &#34;img-src &#39;self&#39; data&#34;
+</span></span></code></pre></div><h3 id="directive-2-connect-src-httpsexample1com">Directive 2: connect-src https://*.example1.com</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">Refused to connect to &#39;https://hello.example1.com/&#39; because it violates the
+</span></span><span class="line"><span class="cl">following Content Security Policy directive: &#34;default-src &#39;self&#39;&#34;. Note that
+</span></span><span class="line"><span class="cl">&#39;connect-src&#39; was not explicitly set, so &#39;default-src&#39; is used as a fallback.
+</span></span></code></pre></div><h3 id="directive-3-connect-src-wssexamplenet">Directive 3: connect-src wss://example.net</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">Refused to connect to &#39;wss://example.net&#39; because it violates the following
+</span></span><span class="line"><span class="cl">Content Security Policy directive.
+</span></span></code></pre></div><h3 id="directive-4-style-src-elem-self-unsafe-inline">Directive 4: style-src-elem &lsquo;self&rsquo; &lsquo;unsafe-inline&rsquo; <a href="https://example.com">https://example.com</a></h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">Refused to load the stylesheet &#39;https://example.com/custom.css&#39; because it
+</span></span><span class="line"><span class="cl">violates the following Content Security Policy directive: &#34;style-src &#39;self&#39;
+</span></span><span class="line"><span class="cl">&#39;unsafe-inline&#39;&#34;. Note that &#39;style-src-elem&#39; was not explicitly set, so
+</span></span><span class="line"><span class="cl">&#39;style-src&#39; is used as a fallback.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/css&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://example.com/custom.css&#34;</span> <span class="p">/&gt;</span>
+</span></span></code></pre></div><h3 id="directive-5-font-src-self-data">Directive 5: font-src &lsquo;self&rsquo; data:;</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">Refused specific: data:font/woff;base64,&#34;someBase64encoded font&#34;,
+</span></span></code></pre></div><h2 id="validation-tools">Validation Tools</h2>
+<ul>
+<li>
+<p>CSP Validator (<a href="https://csp-evaluator.withgoogle.com/">https://csp-evaluator.withgoogle.com/</a>)</p>
+</li>
+<li>
+<p>CSP Scanner (<a href="https://csper.io/evaluator">https://csper.io/evaluator</a>)</p>
+</li>
+</ul>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>SQL Index Monitoring and Rebuilding</title>
+      <link>http://localhost:1313/blogs/tech/sql-index-monitoring-and-rebuilding/</link>
+      <pubDate>Mon, 19 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blogs/tech/sql-index-monitoring-and-rebuilding/</guid>
+      <description>Monitoring and Rebuilding Indexes in SQL</description>
+      <content:encoded><![CDATA[<h2 id="index-fragmentation">Index Fragmentation</h2>
+<ul>
+<li>Index Fragmentation percentage varies when the logical page orders don’t coordinate with the physical page order in the page allocation of an index.</li>
+<li>With the data modification in the table, information can be resized on the data page.</li>
+<li>Users can observe the disturbing page order with the massive delete operation on the table.</li>
+<li>Along with the update and delete operations, the data page won’t be a top-full or empty page. Therefore, non-utilized free space raises the order mismatch between logical page and physical page with increasing the fragmentation, and that can cause worst query performance and consumes more server resources as well.</li>
+<li>There can be a number of indexes created on a single table with the combination of various columns, and each index can have a different fragmentation percentage.</li>
+</ul>
+<h3 id="fragmentation-status-using-the-inbuilt-t-sql-statement">Fragmentation Status using the inbuilt T-SQL statement</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">S</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39;Schema&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">T</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39;Table&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">I</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39;Index&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">DDIPS</span><span class="p">.</span><span class="n">avg_fragmentation_in_percent</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">DDIPS</span><span class="p">.</span><span class="n">page_count</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">sys</span><span class="p">.</span><span class="n">dm_db_index_physical_stats</span><span class="p">(</span><span class="n">DB_ID</span><span class="p">(),</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="k">NULL</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">DDIPS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">sys</span><span class="p">.</span><span class="n">tables</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">T</span><span class="p">.</span><span class="n">object_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDIPS</span><span class="p">.</span><span class="n">object_id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">sys</span><span class="p">.</span><span class="n">schemas</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">T</span><span class="p">.</span><span class="n">schema_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">S</span><span class="p">.</span><span class="n">schema_id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">sys</span><span class="p">.</span><span class="n">indexes</span><span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">I</span><span class="p">.</span><span class="n">object_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDIPS</span><span class="p">.</span><span class="n">object_id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">DDIPS</span><span class="p">.</span><span class="n">index_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">I</span><span class="p">.</span><span class="n">index_id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">DDIPS</span><span class="p">.</span><span class="n">database_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DB_ID</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">I</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">DDIPS</span><span class="p">.</span><span class="n">avg_fragmentation_in_percent</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">DDIPS</span><span class="p">.</span><span class="n">avg_fragmentation_in_percent</span><span class="w"> </span><span class="k">DESC</span><span class="w">
+</span></span></span></code></pre></div><h3 id="output">Output</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-cf812" hidden />
+  <label for="zoomCheck-cf812">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/index-result.webp"
+      alt="Indexing Result"
+       />
+  </label>
+</p>
+<p>Here, we can see the maximum fragmentation percentage is 94% in the local database right after loading
+dummy data. To reduce this fragmentation, either of these can be performed in the database:</p>
+<h3 id="rebuild-index">REBUILD INDEX</h3>
+<p>The INDEX REBUILD always drops the index and reproduces it with new index pages which runs with the ALTER INDEX command. This activity can be run in parallel using an online option which does not affect the running requests and tasks of a similar table. In the case of REBUILD INDEX offline, then the object resource of the
+index won’t be accessible till the end of the REBUILD process completion.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">--Basic Rebuild Command
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">Index_Name</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">Table_Name</span><span class="w"> </span><span class="n">REBUILD</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">--REBUILD Index with ONLINE OPTION
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">Index_Name</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">Table_Name</span><span class="w"> </span><span class="n">REBUILD</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="p">(</span><span class="n">ONLINE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">ON</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></div><h3 id="reorganize-index">REORGANIZE INDEX</h3>
+<p>The REORGANIZE INDEX command reorders the index page by expelling the free or unused space on the page. Ideally, index pages are reordered physically in the data file. REORGANIZE does not drop and create the index but simply restructures the information on the page. REORGANIZE does not have any offline choice, and REORGANIZE does not affect the statistics compared to the REBUILD option. REORGANIZE performs online always.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">ALTER</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">Index_Name</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">Table_Name</span><span class="w"> </span><span class="n">REORGANIZE</span><span class="w">
+</span></span></span></code></pre></div><h3 id="sql-server-index-and-statistics-maintenance">SQL Server Index and Statistics Maintenance</h3>
+<p>Link to Maintenance Solution: <a href="https://ola.hallengren.com/sql-server-index-and-statistics-maintenance.html">https://ola.hallengren.com/sql-server-index-and-statistics-maintenance.html</a></p>
+<p>IndexOptimize is the SQL Server Maintenance Solution’s stored procedure for rebuilding and reorganizing indexes and updating statistics. IndexOptimize is supported on SQL Server 2008, SQL Server 2008 R2, SQL Server 2012, SQL Server 2014, SQL Server 2016, SQL Server 2017, SQL Server 2019, Azure SQL Database, and Azure SQL Database Managed Instance.</p>
+<p>Download <a href="https://ola.hallengren.com/downloads.html">MaintenanceSolution.sql</a>. This script creates all the objects and jobs that you need. You can also download the objects as separate scripts. The SQL Server Maintenance Solution is available on GitHub.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- Rebuild or reorganize all indexes with fragmentation on database1
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- database2 and index more than 5% will be REORGANIZED and REBUILT
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- whereas index more than 30% will only be REBUILT, update modified
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- statistics and log the results to a table.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">EXECUTE</span><span class="w"> </span><span class="n">dbo</span><span class="p">.</span><span class="n">IndexOptimize</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">@</span><span class="n">Databases</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;database1, database2&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">@</span><span class="n">FragmentationLow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">@</span><span class="n">FragmentationMedium</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;INDEX_REORGANIZE,INDEX_REBUILD_ONLINE,INDEX_REBUILD_OFFLINE&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">@</span><span class="n">FragmentationHigh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;INDEX_REBUILD_ONLINE,INDEX_REBUILD_OFFLINE&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">@</span><span class="n">FragmentationLevel1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">@</span><span class="n">FragmentationLevel2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">@</span><span class="n">MinNumberOfPages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">@</span><span class="n">UpdateStatistics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ALL&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">@</span><span class="n">SortInTempdb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Y&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">@</span><span class="n">MaxDOP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">@</span><span class="n">LogToTable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Y&#39;</span><span class="w">
+</span></span></span></code></pre></div><h4 id="databases">Databases</h4>
+<p>Select databases. The hyphen character (-) is used to exclude databases, and the percent character (%) is
+used for wildcard selection. All of these operations can be combined by using the comma (,).</p>
+<table>
+  <thead>
+      <tr>
+          <th>Value</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>SYSTEM_DATABASES</td>
+          <td>All system databases (master, msdb, and model)</td>
+      </tr>
+      <tr>
+          <td>USER_DATABASES</td>
+          <td>All user databases</td>
+      </tr>
+      <tr>
+          <td>ALL_DATABASES</td>
+          <td>All databases</td>
+      </tr>
+      <tr>
+          <td>AVAILABILITY_GROUP_DATABASES</td>
+          <td>All databases in availability groups</td>
+      </tr>
+      <tr>
+          <td>USER_DATABASES, AVAILABILITY_GROUP_DATABASES</td>
+          <td>All user databases that are not in availability groups</td>
+      </tr>
+      <tr>
+          <td>Db1</td>
+          <td>The database Db1</td>
+      </tr>
+      <tr>
+          <td>Db1, Db2</td>
+          <td>The databases Db1 and Db2</td>
+      </tr>
+      <tr>
+          <td>USER_DATABASES, -Db1</td>
+          <td>All user databases, except Db1</td>
+      </tr>
+      <tr>
+          <td>%Db%</td>
+          <td>All databases that have “Db” in the name</td>
+      </tr>
+      <tr>
+          <td>%Db%, -Db1</td>
+          <td>All databases that have “Db” in the name, except Db1</td>
+      </tr>
+      <tr>
+          <td>ALL_DATABASES, -%Db%</td>
+          <td>All databases that do not have “Db” in the name</td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="fragmentationlow--fragmentationmedium--fragmentationhigh">FragmentationLow / FragmentationMedium / FragmentationHigh</h4>
+<p>Specify index maintenance operations to be performed on a low/medium/high-fragmented index. An online index rebuild or an index reorganization is not always possible. Because of this, you can specify multiple index-maintenance operations for each fragmentation group. These operations are prioritized from left to right: If the first operation is supported for the index, then that operation is used; if the first operation is not supported, then the second operation is used (if supported), and so on. If none of the specified operations are supported for an index, then that index is not maintained.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Value</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>INDEX_REBUILD_ONLINE</td>
+          <td>Rebuild index online.</td>
+      </tr>
+      <tr>
+          <td>INDEX_REBUILD_OFFLINE</td>
+          <td>Rebuild index offline.</td>
+      </tr>
+      <tr>
+          <td>INDEX_REORGANIZE</td>
+          <td>Reorganize index.</td>
+      </tr>
+      <tr>
+          <td>INDEX_REBUILD_ONLINE, INDEX_REBUILD_OFFLINE</td>
+          <td>Rebuild index online. Rebuild index offline if online rebuilding is not supported on an index.</td>
+      </tr>
+      <tr>
+          <td>INDEX_REBUILD_ONLINE, INDEX_REORGANIZE</td>
+          <td>Rebuild index online. Reorganize index if online rebuilding is not supported on an index.</td>
+      </tr>
+      <tr>
+          <td>INDEX_REORGANIZE, INDEX_REBUILD_ONLINE, INDEX_REBUILD_OFFLINE</td>
+          <td>Reorganize index. Rebuild index online if reorganizing is not supported on an index. Rebuild index offline if reorganizing and online rebuilding are not supported on an index</td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="fragmentationlevel1--fragmentationlevel2">FragmentationLevel1 / FragmentationLevel2</h4>
+<p>Set the lower limit, as a percentage, for medium fragmentation. The default is 5 percent.</p>
+<p>Set the lower limit, as a percentage, for high fragmentation. The default is 30 percent.</p>
+<p>This is based on Microsoft’s recommendation in Books Online. IndexOptimize checks avg_fragmentation_in_percent in sys.dm_db_index_physical_stats to determine the fragmentation.</p>
+<h4 id="minnumberofpages--maxnumberofpages">MinNumberOfPages / MaxNumberOfPages</h4>
+<p>Set a size, in pages; indexes with fewer pages are skipped for index maintenance. The default is 1000 pages. This is based on Microsoft’s recommendation.</p>
+<p>Set a size, in pages; indexes with a greater number of pages are skipped for index maintenance. The default is no limitation.</p>
+<p>IndexOptimize checks page_count in sys.dm_db_index_physical_stats to determine the size of the index.</p>
+<h4 id="updatestatistics">UpdateStatistics</h4>
+<table>
+  <thead>
+      <tr>
+          <th>Value</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>ALL</td>
+          <td>Update index and column statistics.</td>
+      </tr>
+      <tr>
+          <td>INDEX</td>
+          <td>Update index statistics.</td>
+      </tr>
+      <tr>
+          <td>COLUMNS</td>
+          <td>Update column statistics.</td>
+      </tr>
+      <tr>
+          <td>NULL</td>
+          <td>Do not perform statistics maintenance. This is the default.</td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="sortintempdb">SortInTempdb</h4>
+<p>Use tempdb for sort operations when rebuilding indexes. The SortInTempdb option in IndexOptimize uses the SORT_IN_TEMPDB option in the SQL Server ALTER INDEX command. Values: Y and N (default N ).</p>
+<h4 id="maxdop">MaxDOP</h4>
+<p>Specify the number of CPUs to use when rebuilding indexes. If this number is not specified, the global maximum degree of parallelism is used.</p>
+<p>The MaxDOP option in IndexOptimize uses the MAXDOP option in the SQL Server ALTER INDEX command.</p>
+<h4 id="logtotable">LogToTable</h4>
+<p>Log commands to the table dbo.CommandLog . Values: Y and N (default N ).</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">CONCAT</span><span class="p">(</span><span class="n">DatabaseName</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">SchemaName</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">ObjectName</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">DatabaseSchemaObjectName</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">CASE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">WHEN</span><span class="w"> </span><span class="n">ObjectType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;U&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;USER_TABLE&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">WHEN</span><span class="w"> </span><span class="n">ObjectType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;V&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;VIEW&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">END</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ObjectType</span><span class="p">,</span><span class="w"> </span><span class="n">IndexName</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">CASE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">WHEN</span><span class="w"> </span><span class="n">IndexType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;CLUSTERED&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">WHEN</span><span class="w"> </span><span class="n">IndexType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;NONCLUSTERED&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">WHEN</span><span class="w"> </span><span class="n">IndexType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;XML&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">WHEN</span><span class="w"> </span><span class="n">IndexType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;SPATIAL&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">END</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">IndexType</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">ExtendedInfo</span><span class="p">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;(ExtendedInfo/PageCount)[1]&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;int&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">[</span><span class="n">PageCount</span><span class="p">],</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">ExtendedInfo</span><span class="p">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;(ExtendedInfo/Fragmentation)[1]&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;float&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Fragmentation</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">PartitionNumber</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">CommandType</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">Command</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">StartTime</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">EndTime</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">IIF</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">DATEDIFF</span><span class="p">(</span><span class="n">SS</span><span class="p">,</span><span class="w"> </span><span class="n">StartTime</span><span class="p">,</span><span class="w"> </span><span class="n">EndTime</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">24</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">3600</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">CAST</span><span class="p">(</span><span class="n">DATEDIFF</span><span class="p">(</span><span class="n">SS</span><span class="p">,</span><span class="w"> </span><span class="n">StartTime</span><span class="p">,</span><span class="w"> </span><span class="n">EndTime</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">24</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">3600</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">NVARCHAR</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="s1">&#39;&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">LEFT</span><span class="p">(</span><span class="k">CAST</span><span class="p">(</span><span class="n">DATEADD</span><span class="p">(</span><span class="n">MS</span><span class="p">,</span><span class="w"> </span><span class="n">DATEDIFF</span><span class="p">(</span><span class="n">MS</span><span class="p">,</span><span class="w"> </span><span class="n">StartTime</span><span class="p">,</span><span class="w"> </span><span class="n">EndTime</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">TIME</span><span class="p">),</span><span class="w"> </span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Duration</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">ErrorNumber</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">ErrorMessage</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">dbo</span><span class="p">.</span><span class="n">CommandLog</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">CommandType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ALTER_INDEX&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">DatabaseName</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.sqlshack.com/how-to-identify-and-resolve-sql-server-index-fragmentation/">https://www.sqlshack.com/how-to-identify-and-resolve-sql-server-index-fragmentation/</a></li>
+<li><a href="https://ola.hallengren.com/sql-server-index-and-statistics-maintenance.html">https://ola.hallengren.com/sql-server-index-and-statistics-maintenance.html</a></li>
+</ul>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>SQL performance benchmarking queries</title>
+      <link>http://localhost:1313/blogs/tech/sql-benchmarking/</link>
+      <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blogs/tech/sql-benchmarking/</guid>
+      <description>Script that benchmark the given queries.</description>
+      <content:encoded><![CDATA[<h2 id="checking-the-performance-of-the-query">Checking the performance of the query</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">DECLARE</span><span class="w"> </span><span class="o">@</span><span class="n">r</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DECLARE</span><span class="w"> </span><span class="o">@</span><span class="n">ts</span><span class="w"> </span><span class="n">DATETIME</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DECLARE</span><span class="w"> </span><span class="o">@</span><span class="k">statement</span><span class="w"> </span><span class="k">CURSOR</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- This is the type selected value of the query
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">DECLARE</span><span class="w"> </span><span class="o">@</span><span class="n">dummy</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DECLARE</span><span class="w"> </span><span class="o">@</span><span class="n">results</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="p">(</span><span class="n">elapsed</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SET</span><span class="w"> </span><span class="o">@</span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">WHILE</span><span class="w"> </span><span class="o">@</span><span class="n">r</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">SET</span><span class="w"> </span><span class="o">@</span><span class="k">statement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">CURSOR</span><span class="w"> </span><span class="k">FOR</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">-- Replace this QUERY.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">SET</span><span class="w"> </span><span class="o">@</span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">@</span><span class="n">r</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">SET</span><span class="w"> </span><span class="o">@</span><span class="n">ts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">current_timestamp</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">OPEN</span><span class="w"> </span><span class="o">@</span><span class="k">statement</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">FETCH</span><span class="w"> </span><span class="k">NEXT</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="o">@</span><span class="k">statement</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="o">@</span><span class="n">dummy</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">WHILE</span><span class="w"> </span><span class="o">@@</span><span class="n">FETCH_STATUS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FETCH</span><span class="w"> </span><span class="k">NEXT</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="o">@</span><span class="k">statement</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="o">@</span><span class="n">dummy</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">END</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">CLOSE</span><span class="w"> </span><span class="o">@</span><span class="k">statement</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">DEALLOCATE</span><span class="w"> </span><span class="o">@</span><span class="k">statement</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="o">@</span><span class="n">results</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="n">DATEDIFF</span><span class="p">(</span><span class="n">MS</span><span class="p">,</span><span class="w"> </span><span class="o">@</span><span class="n">ts</span><span class="p">,</span><span class="w"> </span><span class="k">current_timestamp</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="k">CAST</span><span class="p">(</span><span class="n">elapsed</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">elapsed</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="o">@</span><span class="n">results</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><h3 id="output">Output</h3>
+<table>
+  <thead>
+      <tr>
+          <th>elapsed (ms)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>14773.00000</td>
+      </tr>
+      <tr>
+          <td>18177.00000</td>
+      </tr>
+      <tr>
+          <td>14020.00000</td>
+      </tr>
+      <tr>
+          <td>9120.00000</td>
+      </tr>
+      <tr>
+          <td>9450.00000</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="benchmarking-sql-queries">Benchmarking SQL Queries</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">DECLARE</span><span class="w"> </span><span class="o">@</span><span class="n">ts</span><span class="w"> </span><span class="n">DATETIME</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DECLARE</span><span class="w"> </span><span class="o">@</span><span class="n">repeat</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DECLARE</span><span class="w"> </span><span class="o">@</span><span class="n">r</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DECLARE</span><span class="w"> </span><span class="o">@</span><span class="n">i</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DECLARE</span><span class="w"> </span><span class="o">@</span><span class="n">dummy</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DECLARE</span><span class="w"> </span><span class="o">@</span><span class="n">statement1</span><span class="w"> </span><span class="k">CURSOR</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DECLARE</span><span class="w"> </span><span class="o">@</span><span class="n">statement2</span><span class="w"> </span><span class="k">CURSOR</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DECLARE</span><span class="w"> </span><span class="o">@</span><span class="n">results</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">run</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">statement</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">elapsed</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SET</span><span class="w"> </span><span class="o">@</span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">WHILE</span><span class="w"> </span><span class="o">@</span><span class="n">r</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">SET</span><span class="w"> </span><span class="o">@</span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">@</span><span class="n">r</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">SET</span><span class="w"> </span><span class="o">@</span><span class="n">statement1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">CURSOR</span><span class="w"> </span><span class="k">FOR</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">-- Paste statement 1 here
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">employee_comments</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">SET</span><span class="w"> </span><span class="o">@</span><span class="n">statement2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">CURSOR</span><span class="w"> </span><span class="k">FOR</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">-- Paste statement 2 here
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">SET</span><span class="w"> </span><span class="o">@</span><span class="n">ts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">current_timestamp</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">SET</span><span class="w"> </span><span class="o">@</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">WHILE</span><span class="w"> </span><span class="o">@</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="o">@</span><span class="n">repeat</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SET</span><span class="w"> </span><span class="o">@</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">@</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">OPEN</span><span class="w"> </span><span class="o">@</span><span class="n">statement1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FETCH</span><span class="w"> </span><span class="k">NEXT</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="o">@</span><span class="n">statement1</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="o">@</span><span class="n">dummy</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">WHILE</span><span class="w"> </span><span class="o">@@</span><span class="n">FETCH_STATUS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="k">FETCH</span><span class="w"> </span><span class="k">NEXT</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="o">@</span><span class="n">statement1</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="o">@</span><span class="n">dummy</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">END</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">CLOSE</span><span class="w"> </span><span class="o">@</span><span class="n">statement1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">END</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">DEALLOCATE</span><span class="w"> </span><span class="o">@</span><span class="n">statement1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="o">@</span><span class="n">results</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="o">@</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">DATEDIFF</span><span class="p">(</span><span class="n">MS</span><span class="p">,</span><span class="w"> </span><span class="o">@</span><span class="n">ts</span><span class="p">,</span><span class="w"> </span><span class="k">current_timestamp</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">SET</span><span class="w"> </span><span class="o">@</span><span class="n">ts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">current_timestamp</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">SET</span><span class="w"> </span><span class="o">@</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">WHILE</span><span class="w"> </span><span class="o">@</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="o">@</span><span class="n">repeat</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SET</span><span class="w"> </span><span class="o">@</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">@</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">OPEN</span><span class="w"> </span><span class="o">@</span><span class="n">statement2</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FETCH</span><span class="w"> </span><span class="k">NEXT</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="o">@</span><span class="n">statement2</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="o">@</span><span class="n">dummy</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">WHILE</span><span class="w"> </span><span class="o">@@</span><span class="n">FETCH_STATUS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="k">FETCH</span><span class="w"> </span><span class="k">NEXT</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="o">@</span><span class="n">statement2</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="o">@</span><span class="n">dummy</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">END</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">CLOSE</span><span class="w"> </span><span class="o">@</span><span class="n">statement2</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">END</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">DEALLOCATE</span><span class="w"> </span><span class="o">@</span><span class="n">statement2</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="o">@</span><span class="n">results</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="o">@</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">DATEDIFF</span><span class="p">(</span><span class="n">MS</span><span class="p">,</span><span class="w"> </span><span class="o">@</span><span class="n">ts</span><span class="p">,</span><span class="w"> </span><span class="k">current_timestamp</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">statement</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">run</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">CAST</span><span class="p">(</span><span class="k">CAST</span><span class="p">(</span><span class="n">elapsed</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">MIN</span><span class="p">(</span><span class="n">elapsed</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">elapsed_ratio</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="o">@</span><span class="n">results</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">statement</span><span class="p">,</span><span class="w"> </span><span class="n">run</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><h3 id="output-1">Output</h3>
+<table>
+  <thead>
+      <tr>
+          <th>statement</th>
+          <th>run</th>
+          <th>elapsed_ratio</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>1</td>
+          <td>100.46154</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>2</td>
+          <td>101.76923</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>3</td>
+          <td>91.53846</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>4</td>
+          <td>100.76923</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>5</td>
+          <td>92.07692</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>1</td>
+          <td>1.07692</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>2</td>
+          <td>1.30769</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>3</td>
+          <td>1.53846</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>4</td>
+          <td>1.00000</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>5</td>
+          <td>1.00000</td>
+      </tr>
+  </tbody>
+</table>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Linux Server Stack Setup in Ubuntu 16.04 LTS</title>
+      <link>http://localhost:1313/blogs/tech/linux-server-setup/</link>
+      <pubDate>Sun, 11 Feb 2018 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blogs/tech/linux-server-setup/</guid>
+      <description>Learn to setup LEPP manually in Ubuntu Server.</description>
+      <content:encoded><![CDATA[<blockquote>
+<p>Credit: Anup Dhakal (<a href="https://anupdhakal.com">https://anupdhakal.com</a>)</p></blockquote>
+<h2 id="introduction">Introduction</h2>
+<p>In this guide, <strong>LEPP</strong> stands for <strong>Linux</strong>, <strong>Nginx</strong> (pronounced as Engine-X) , <strong>Postgres</strong> and <strong>PHP</strong> (PHP Hypertext Preprocessor).</p>
+<h3 id="specificationstarget">Specifications/Target</h3>
+<ul>
+<li><strong>Ubuntu</strong> v16.04</li>
+<li><strong>Nginx</strong> v1.10</li>
+<li><strong>PHP</strong> v7.1</li>
+<li><strong>Postgres</strong> v9.6.3</li>
+<li><strong>phpPgAdmin</strong> v5.2</li>
+</ul>
+<p>But before we start, let&rsquo;s quickly make sure that we have some basic tools ready. Run the following commands in the terminal.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo apt update
+</span></span><span class="line"><span class="cl">sudo apt install wget
+</span></span><span class="line"><span class="cl">sudo apt install software-properties-common
+</span></span></code></pre></div><p>Now let&rsquo;s start!</p>
+<h2 id="custom-repositories">Custom Repositories</h2>
+<p>Before beginning the installation, we want to add some repositories which will give us the latest corresponding packages for our server stack.</p>
+<h3 id="nginx-repository">Nginx Repository</h3>
+<p>For Ubuntu, in order to authenticate the Nginx repository signature and to eliminate warnings about missing PGP key during installation of the Nginx package, it is necessary to add the key used to sign the Nginx packages and repository to the apt program keyring. Only after then we will dare to add the repositories.</p>
+<p><em>The above fact is true every time we add a custom repository. If we don&rsquo;t want to add any custom repository and use the ones provided to us by &ldquo;vanilla&rdquo; Ubuntu itself, we can just ignore this section of the guide, entirely. We have to keep in mind that the version numbers used in this guide are according to the default, most recent versions of the respective packages at the time of creation of this guide. So, we might have to be careful in coming sections of the guide where we start installation and setup of the stack. We would want to make sure then, that the version number would match to what we have installed, not what is shown in this guide.</em></p>
+<p>Run the following code one by one in the terminal to add the Nginx stable repository. We need to accept any prompts, if asked.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">wget http://nginx.org/keys/nginx_signing.key
+</span></span><span class="line"><span class="cl">sudo apt-key add nginx_signing.key
+</span></span><span class="line"><span class="cl">sudo sed -i <span class="s1">&#39;$a deb http://nginx.org/packages/ubuntu/ xenial nginx&#39;</span> /etc/apt/sources.list
+</span></span><span class="line"><span class="cl">sudo sed -i <span class="s1">&#39;$a # deb-src http://nginx.org/packages/ubuntu/ xenial nginx&#39;</span> /etc/apt/sources.list
+</span></span></code></pre></div><h3 id="postgres-repository">Postgres Repository</h3>
+<p>The PostgreSQL apt repository supports LTS versions of Ubuntu 16.04 on amd64 and i386 architectures. This repository will integrate with your normal systems and patch management, and provide automatic updates for all supported versions of PostgreSQL throughout the support lifetime of PostgreSQL.</p>
+<ul>
+<li>Create the file <code>/etc/apt/sources.list.d/pgdg.list</code>, and add a line for the repository</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main
+</span></span></code></pre></div><ul>
+<li>Import the repository signing key, and update the package lists</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc <span class="p">|</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  sudo apt-key add -
+</span></span></code></pre></div><h3 id="php-repository">PHP Repository</h3>
+<p>The repository here we are going to install is the PHP PPA by <a href="https://launchpad.net/~ondrej/&#43;archive/ubuntu/php" title="Ondrej PHP PPA">Ondrej</a>. We can update our system with unsupported packages from this untrusted PPA by adding ppa:ondrej/php to our system&rsquo;s Software Sources. The following commands will help us to do so. We need to accept any prompts, if asked.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo add-apt-repository ppa:ondrej/php
+</span></span></code></pre></div><p><em>We might feel a little bit confused by the terms &ldquo;untrusted PPA&rdquo;, but there is actually no reason to worry. We just need to remember that, unlike Nginx&rsquo;s or the MariaDB&rsquo;s repositories, this is <strong>not</strong> an official upgrade path. But the PPA is well known, and is relatively safe to use.</em></p>
+<h2 id="update-apt">Update APT</h2>
+<p>Let&rsquo;s finally begin the actual installations processes.</p>
+<p>First, we want to make sure we have the latest records in our local packages registry. Let&rsquo;s run the following command in the terminal like so.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo apt update
+</span></span></code></pre></div><h2 id="installing-nginx">Installing Nginx</h2>
+<p>First thing we’re going to install is the server called Nginx.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo apt install nginx
+</span></span></code></pre></div><p>We can check if Nginx is installed by typing <code>nginx -v</code> in the terminal.</p>
+<h2 id="installing-postgres">Installing Postgres</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo apt-get install postgresql postgresql-contrib
+</span></span></code></pre></div><p>We can check if Postgres is installed by executing <code>psql --version</code> in the terminal.</p>
+<p><em>PHP makes use of the package <code>php-pgsql</code> as the database driver for Postgres.</em></p>
+<h2 id="installing-php">Installing PHP</h2>
+<p>Next thing we want to install is PHP. We need to install PHP with a few extensions that are mandatory for modern web applications.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo apt install php-cli php-fpm php-zip php-xml php-mbstring php-mcrypt php-curl php-gd php-pgsql php-bz2 php-gettext php-pear php-phpseclib php-tcpdf
+</span></span></code></pre></div><p>We may run <code>php -v</code> in the terminal to check the version of PHP installed.</p>
+<h2 id="configuring-nginx">Configuring Nginx</h2>
+<p>We don&rsquo;t need to change anything right now. But if we want to, we can change the main configuration of Nginx as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo gedit /etc/nginx/nginx.conf
+</span></span></code></pre></div><p>In the config file, notice the line with <code>user nginx</code>. This means Nginx will run as the user <strong>nginx</strong>. We should not forget to run <code>sudo systemctl restart nginx.service</code> if we make changes to any configuration file of Nginx.</p>
+<h3 id="configuring-php-to-work-with-nginx">Configuring PHP to work with Nginx</h3>
+<p>In order for PHP and Nginx to work together, we need to configure both of them. <em>We need to make sure that PHP-FPM (FastCGI Process Manager) runs as the <strong>same user</strong> as Nginx.</em> And for that we need to run <code>sudo gedit /etc/php/7.1/fpm/pool.d/www.conf</code> in the terminal and change the relevant lines as:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="na">...</span>
+</span></span><span class="line"><span class="cl"><span class="na">user</span> <span class="o">=</span> <span class="s">nginx</span>
+</span></span><span class="line"><span class="cl"><span class="na">group</span> <span class="o">=</span> <span class="s">nginx</span>
+</span></span><span class="line"><span class="cl"><span class="na">...</span>
+</span></span><span class="line"><span class="cl"><span class="na">listen.owner</span> <span class="o">=</span> <span class="s">nginx</span>
+</span></span><span class="line"><span class="cl"><span class="na">listen.group</span> <span class="o">=</span> <span class="s">nginx</span>
+</span></span><span class="line"><span class="cl"><span class="na">...</span>
+</span></span></code></pre></div><p><em>Note the command where we used &hellip; php/<strong>7.1</strong>/fpm &hellip; . We want to make sure that <strong>7.1</strong> is the version that we actually have installed in our system. Refer <a href="/blogs/tech/linux-server-setup/#installing-php">this</a> section to go back and see how we installed PHP and PHP-FPM, and how to see the version of PHP installed.</em></p>
+<p>We need to run <code>sudo systemctl restart php7.1-fpm.service</code> in the terminal to load the new configuration.</p>
+<h3 id="default-site">Default Site</h3>
+<p>Now comes the fun part where we create a default site that supports PHP. In our case, we want <code>~/www</code> as our directory of all websites. Normally, <code>/var/www</code> is used as the default one. Here we want to change it to a custom directory inside our home directory, as mentioned above.</p>
+<p>First, we want to make sure the directory exists. Let&rsquo;s create a default site directory <code>_default_</code> with command <code>mkdir -p ~/www/_default_/public</code>.</p>
+<p><em>Note that to add other sites, we can follow a similar pattern. We may create a new folder for each site, which has a <code>public</code> folder in it as the public entry point of the site.</em></p>
+<p>Now to edit the default site configuration, let&rsquo;s run the following command in the terminal</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo gedit /etc/nginx/conf.d/default.conf
+</span></span></code></pre></div><p>and replace its content with this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">server</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">listen</span> <span class="mi">80</span> <span class="s">default_server</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">listen</span> <span class="s">[::]:80</span> <span class="s">default_server</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kn">root</span> <span class="s">/home/[OUR_USERNAME]/www/_default_/public</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kn">index</span> <span class="s">index.html</span> <span class="s">index.htm</span> <span class="s">index.php</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kn">server_name</span> <span class="s">_</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">try_files</span> <span class="nv">$uri</span> <span class="nv">$uri/</span> <span class="p">=</span><span class="mi">404</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">autoindex</span> <span class="no">on</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kn">location</span> <span class="p">~</span> <span class="sr">\.php$</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">try_files</span> <span class="nv">$uri</span> <span class="p">=</span><span class="mi">404</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">fastcgi_split_path_info</span> <span class="s">^(.+\.php)(/.+)</span>$<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">fastcgi_pass</span> <span class="s">unix:/run/php/php7.1-fpm.sock</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">fastcgi_index</span> <span class="s">index.php</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">fastcgi_param</span> <span class="s">SCRIPT_FILENAME</span> <span class="nv">$document_root$fastcgi_script_name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">include</span> <span class="s">fastcgi_params</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><em>Please note that we need to change <strong>[OUR_USERNAME]</strong> from above config file to our actual username.</em></p>
+<p>Now let&rsquo;s run <code>sudo systemctl restart nginx.service</code> to reload our new configuration.</p>
+<p>Now we should be able to see on browser that <a href="http://localhost" title="Localhost">http://localhost</a> actually works, and most probably shows an empty index.</p>
+<p><strong>**Ba Dum Tis**</strong></p>
+<p>We can put any file in the <code>~/www/_default_/public</code> directory and it should be showing in the browser after a refresh.</p>
+<h2 id="configuring-postgres">Configuring Postgres</h2>
+<p>Switch over to the postgres account on your server by typing:</p>
+<pre tabindex="0"><code>user@aspire:~$ sudo -i -u postgres
+</code></pre><p>Let&rsquo;s Create a New Role</p>
+<pre tabindex="0"><code>postgres@aspire:~$ createuser --interactive -P
+Enter name of role to add: {role name}
+Enter password for new role:
+Enter it again:
+Shall the new role be a superuser? (y/n)
+</code></pre><h2 id="installing-phppgadmin">Installing phpPgAdmin</h2>
+<h3 id="setting-up-host">Setting Up Host</h3>
+<p>We want to be able to lunch phpPgAdmin by going to <a href="http://phppgadmin.app" title="phpPgAdmin">http://phppgadmin.app</a> in the address bar of the browser.</p>
+<p>So, first of all, run <code>sudo gedit /etc/hosts</code> and add an entry as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">127.1.1.1    phppgadmin.app
+</span></span></code></pre></div><h3 id="phppgadmin">phpPgAdmin</h3>
+<p>Run the following commands to install phpmyadmin:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> /usr/share
+</span></span><span class="line"><span class="cl">sudo git clone git@github.com:phppgadmin/phppgadmin.git
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> phppgadmin/config
+</span></span><span class="line"><span class="cl">sudo cp config.inc.php-dist config.inc.php
+</span></span></code></pre></div><p>If extra login security is true, then logins via phpPgAdmin with no password or certain usernames (pgsql, postgres, root, administrator) will be denied. Only set this false once you have read the FAQ and understand how to change PostgreSQL&rsquo;s pg_hba.conf to enable passworded local connections.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$conf</span><span class="p">[</span><span class="s1">&#39;servers&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;host&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$conf</span><span class="p">[</span><span class="s1">&#39;extra_login_security&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+</span></span></code></pre></div><h3 id="setting-up-server-block">Setting Up Server Block</h3>
+<p>Now, we will setup an <strong>Nginx server block</strong> (a.k.a. virtual host in Apache httpd).</p>
+<p>Let&rsquo;s run the command <code>sudo touch /etc/nginx/conf.d/phppgadmin.conf</code> to create a <strong>site</strong> (configuration file).</p>
+<p>Let&rsquo;s open it with <code>sudo gedit /etc/nginx/conf.d/phppgadmin.conf</code> and add the contents as follows.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">server</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kn">root</span> <span class="s">/usr/share/phppgadmin</span><span class="p">;</span> <span class="c1"># make sure to enter the correct location of phppgadmin here
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kn">index</span> <span class="s">index.php</span> <span class="s">index.html</span> <span class="s">index.htm</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kn">server_name</span> <span class="s">phppgadmin.app</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">try_files</span> <span class="nv">$uri</span> <span class="nv">$uri/</span> <span class="s">/index.php?</span><span class="nv">$query_string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kn">location</span> <span class="p">~</span> <span class="sr">\.php$</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">try_files</span> <span class="nv">$uri</span> <span class="s">/index.php</span> <span class="p">=</span><span class="mi">404</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">fastcgi_split_path_info</span> <span class="s">^(.+\.php)(/.+)</span>$<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">fastcgi_pass</span> <span class="s">unix:/run/php/php7.1-fpm.sock</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">fastcgi_index</span> <span class="s">index.php</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">fastcgi_param</span> <span class="s">SCRIPT_FILENAME</span> <span class="nv">$document_root$fastcgi_script_name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">include</span> <span class="s">fastcgi_params</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="activating-the-server-block">Activating the server block</h3>
+<p>Now we have to restart Nginx to activate our new site (config file) by running:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo systemctl restart nginx.service
+</span></span></code></pre></div><p>Try hitting <a href="http://phppgadmin.app" title="phpPgGAdmin">http://phppgadmin.app</a> and it should work!</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>There we have it! We should by now have a working and relatively secure LEPP server stack with Nginx running at <a href="http://localhost" title="Localhost">http://localhost</a>, as well as our phpPgAdmin app running at <a href="http://phppgadmin.app" title="phpPgAdmin">http://phppgadmin.app</a></p>
+<p><em>In this guide we didn&rsquo;t talk anything about firewall. This is because a fresh install of &ldquo;vanilla&rdquo; Ubuntu 16.04 should not have one running it automatically. We may research about it later if we wish to. Right now, that would be beyond the scope of this guide.</em></p>
+<p>So, did you find this guide helpful? Feedbacks are precious. Suggestions are highly appreciated.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Dive into Design Basics</title>
+      <link>http://localhost:1313/blogs/tech/dive-into-design-basics/</link>
+      <pubDate>Tue, 17 Oct 2017 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blogs/tech/dive-into-design-basics/</guid>
+      <description>Learn few things about design basics.</description>
+      <content:encoded><![CDATA[<h2 id="basic">Basic</h2>
+<ul>
+<li>Design is solution to problem.</li>
+<li><code>1997-2004</code> called web design.</li>
+<li><code>2005-later</code> called UI/UX.</li>
+<li>UI/UX is science.</li>
+<li><strong>UX ? Why not UE?</strong></li>
+<li>UX is responsible for secure feeling.</li>
+<li>Identify KiKi and BoBo.</li>
+<li>UI is looks and UX is usability.</li>
+<li>Design product such that it can be used without user manual.</li>
+</ul>
+<h2 id="good-vs-bad-design">Good vs Bad Design</h2>
+<ul>
+<li>Human Computer Interaction (HCI).</li>
+<li>Selection of chair. Revolving chair is not placed in meeting room.</li>
+<li>Change shape in case of different products. (e.g. Shampoo/Conditioner)</li>
+<li>Don&rsquo;t change conceptual model. <code>Affordance</code></li>
+<li>Get real time user&rsquo;s feedback.</li>
+<li><code>Aesthetics</code> of a site.</li>
+<li><strong>Less is more</strong></li>
+</ul>
+<h2 id="elements-of-design">Elements of Design</h2>
+<ul>
+<li>Line
+<ul>
+<li>link/highlights -&gt; a</li>
+<li>header -&gt; h1</li>
+<li>list/menu/table -&gt; ul/li/table</li>
+<li>Separator (different topic) -&gt; hr</li>
+<li>panel</li>
+</ul>
+</li>
+<li>Shape
+<ul>
+<li>menu, radio, checkbox, tabs, textarea, textbox, dropdown, layout</li>
+</ul>
+</li>
+<li>Direction</li>
+<li>Size</li>
+<li>Texture</li>
+<li>Color</li>
+</ul>
+<h2 id="principle-of-design">Principle of Design</h2>
+<ul>
+<li>Repetition</li>
+<li>Alignment
+<ul>
+<li>pixel perfect</li>
+</ul>
+</li>
+<li>Proximity
+<ul>
+<li>visual connection</li>
+</ul>
+</li>
+<li>Space
+<ul>
+<li>let the content breath</li>
+</ul>
+</li>
+<li>Balance</li>
+<li>Contrast
+<ul>
+<li>juxtaposition of opposing element</li>
+</ul>
+</li>
+<li>Common Fate</li>
+</ul>
+<h2 id="synesthesia-exercise">Synesthesia Exercise</h2>
+<ul>
+<li>What did you see?</li>
+<li>How it tastes like?</li>
+<li>What it smells like?</li>
+</ul>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Git Installation and Configure SSH</title>
+      <link>http://localhost:1313/blogs/tech/git-installation-and-configure-ssh/</link>
+      <pubDate>Sun, 22 Jan 2017 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blogs/tech/git-installation-and-configure-ssh/</guid>
+      <description>Guide to install and configure SSH in Windows and Linux.</description>
+      <content:encoded><![CDATA[<h2 id="installation">Installation</h2>
+<h3 id="for-linux-debianubuntu">For Linux (Debian/Ubuntu)</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install git
+</span></span></code></pre></div><p>We can check if <strong>Git</strong> is installed by typing <code>git --version</code> in your Terminal or Git Bash (Windows) respectively.</p>
+<h3 id="for-windows">For Windows</h3>
+<p>Download Git for Windows from this link <a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a></p>
+<h2 id="configuration">Configuration</h2>
+<h3 id="set-up-ssh-for-git">Set up SSH for Git</h3>
+<p>Open your Terminal or Git Bash(Windows).</p>
+<ul>
+<li><strong>Ensure we have SSH client installed:</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ssh -v
+</span></span><span class="line"><span class="cl">usage: ssh  <span class="o">[</span>-1246AaCfGgKkMNnqsTtVvXxYy<span class="o">]</span> <span class="o">[</span>-b bind_address<span class="o">]</span> <span class="o">[</span>-c cipher_spec<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>-D <span class="o">[</span>bind_address:<span class="o">]</span>port<span class="o">]</span> <span class="o">[</span>-E log_file<span class="o">]</span> <span class="o">[</span>-e escape_char<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>-F configfile<span class="o">]</span> <span class="o">[</span>-I pkcs11<span class="o">]</span> <span class="o">[</span>-i identity_file<span class="o">]</span> <span class="o">[</span>-L address<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>-l login_name<span class="o">]</span> <span class="o">[</span>-m mac_spec<span class="o">]</span> <span class="o">[</span>-O ctl_cmd<span class="o">]</span> <span class="o">[</span>-o option<span class="o">]</span> <span class="o">[</span>-p port<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>-Q query_option<span class="o">]</span> <span class="o">[</span>-R address<span class="o">]</span> <span class="o">[</span>-S ctl_path<span class="o">]</span> <span class="o">[</span>-W host:port<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>-w local_tun<span class="o">[</span>:remote_tun<span class="o">]]</span> <span class="o">[</span>user@<span class="o">]</span>hostname <span class="o">[</span>command<span class="o">]</span>
+</span></span></code></pre></div><p>List the contents of your ~/.ssh directory.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ls -a ~/.ssh
+</span></span><span class="line"><span class="cl">known_hosts
+</span></span></code></pre></div><p><em>If we have already setup default identity, we can see two id_ files</em></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ls -a ~/.ssh
+</span></span><span class="line"><span class="cl">.  ..  id_rsa  id_rsa.pub  known_hosts
+</span></span></code></pre></div><ul>
+<li><strong>Set up our default identity:</strong></li>
+</ul>
+<p>The system adds keys for all identities to the <code>/home/&lt;yourname&gt;/.ssh</code> (Linux) or <code>/c/Users/&lt;yourname&gt;/.ssh</code> (Windows) directory. The following procedure creates a default identity.</p>
+<p>Hit <code>ssh-keygen</code> command on Terminal or Git Bash.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ssh-keygen
+</span></span><span class="line"><span class="cl">Generating public/private rsa key pair.
+</span></span><span class="line"><span class="cl">Enter file in which to save the key <span class="o">(</span>/c/Users/&lt;yourname&gt;/.ssh/id_rsa<span class="o">)</span>:
+</span></span></code></pre></div><p>Press enter to accept the default key and location or we can set somewhere else.</p>
+<p>We enter and re-enter a passphrase when prompted. Unless you need a key for a process such as script, you should always provide a passphrase. The command creates your default identity with its public and private keys</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ssh-keygen
+</span></span><span class="line"><span class="cl">Generating public/private rsa key pair.
+</span></span><span class="line"><span class="cl">Enter file in which to save the key <span class="o">(</span>/c/Users/&lt;yourname&gt;/.ssh/id_rsa<span class="o">)</span>:
+</span></span><span class="line"><span class="cl">Created directory <span class="s1">&#39;/c/&lt;yourname&gt;/&lt;yourname&gt;/.ssh&#39;</span>.
+</span></span><span class="line"><span class="cl">Enter passphrase <span class="o">(</span>empty <span class="k">for</span> no passphrase<span class="o">)</span>:
+</span></span><span class="line"><span class="cl">Enter same passphrase again:
+</span></span><span class="line"><span class="cl">Your identification has been saved in /c/Users/&lt;yourname&gt;/.ssh/id_rsa.
+</span></span><span class="line"><span class="cl">Your public key has been saved in /c/Users/&lt;yourname&gt;/.ssh/id_rsa.pub.
+</span></span><span class="line"><span class="cl">The key fingerprint is:
+</span></span><span class="line"><span class="cl">SHA256:+V6cLhFWngIFC+TdHwQHxJP39lsZUWnP6TDj1/7hBVA &lt;yourname&gt;@&lt;yourname&gt;
+</span></span><span class="line"><span class="cl">The key<span class="err">&#39;</span>s randomart image is:
+</span></span><span class="line"><span class="cl">+---<span class="o">[</span>RSA 2048<span class="o">]</span>----+
+</span></span><span class="line"><span class="cl"><span class="p">|</span>     .o .<span class="o">==</span>+o E +<span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>     . o.o+oo. + <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>      . o..<span class="o">=</span>oo..+<span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>         .+.o*ooo<span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>        S. oo.*.+<span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>         ... <span class="nv">o</span> <span class="o">=</span>+<span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>          ..+ .o+<span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>         ..o  ..+<span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>          ...  .o<span class="p">|</span>
+</span></span><span class="line"><span class="cl">+----<span class="o">[</span>SHA256<span class="o">]</span>-----+
+</span></span></code></pre></div><p>List the contents of your ~/.ssh directory.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ls ~/.ssh
+</span></span><span class="line"><span class="cl">.  ..  id_rsa  id_rsa.pub  known_hosts
+</span></span></code></pre></div><ul>
+<li><strong>Adding your SSH key to the ssh-agent:</strong></li>
+</ul>
+<p>Ensure ssh-agent is enabled:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">eval</span> <span class="s2">&#34;</span><span class="k">$(</span>ssh-agent -s<span class="k">)</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Agent pid 59566</span>
+</span></span></code></pre></div><p>Add your SSH key to the ssh-agent</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ssh-add ~/.ssh/id_rsa
+</span></span></code></pre></div><ul>
+<li><strong>Find and take a note of your public key fingerprint. If you&rsquo;re using OpenSSH 6.7 or older:</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ssh-add -l
+</span></span><span class="line"><span class="cl"><span class="c1"># 2048 a0:dd:42:3c:5a:9d:e4:2a:21:52:4e:78:07:6e:c8:4d /Users/&lt;yourname&gt;/.ssh/id_rsa (RSA)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">If you are using OpenSSH 6.8 or newer:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ ssh-add -l -E md5
+</span></span><span class="line"><span class="cl"><span class="c1"># 2048 MD5:a0:dd:42:3c:5a:9d:e4:2a:21:52:4e:78:07:6e:c8:4d /Users/&lt;yourname&gt;/.ssh/id_rsa (RSA)</span>
+</span></span></code></pre></div><ul>
+<li><strong>Install the public key on your Remote GitHub/Bitbucket account:</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ cat ~/.ssh/id_rsa.pub
+</span></span><span class="line"><span class="cl">ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC2zeZVIph1tP0UZJ007AC1OWqThpYjDlao1PlQnZbrSMeS8LXkU/nMxuZdAv+2JeqhezOtb6/e8e50NOTWB9Z2O8thCMwc29cp6C+vHL2oWQYMcCOuT34/R2yDEOMQ5nkIZ1fVFJNCTIZUaKjyaHX89w0v2p9cMsZ1q36w9lEdKXs8N5fuN/6rAy3JQgMcbD+dDd0cWpP8CLiUyNCq32xwqhX+nS1P43AgOQdLpX74uljwr7rE2CmrJQkvh/m+h68tv8+mLMGJtg5cJ+doZ+9r9yPhKJYGEsW4bL+8sSRQn3gJWUib8xhOgaWrMfXj+94o1KbcI12lK772GNyP74rX &lt;yourname&gt;@&lt;yourname&gt;
+</span></span></code></pre></div><p>Copy this output to respective SSH keys setting.</p>
+<ul>
+<li>GitHub Setting &raquo; SSH and GPG keys &raquo; New SSH key</li>
+<li>Bitbucket Setting &raquo; SSH keys &raquo; Add Key</li>
+</ul>
+<h3 id="you-are-done">You are Done</h3>
+<p>You have now successfully configured SSH for Git in Windows/Linux/Mac OS.</p>
+<h3 id="first-time-git-setup">First Time Git Setup</h3>
+<p>This is my configuration.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git config --global user.name <span class="s2">&#34;Sagar Chamling&#34;</span>
+</span></span><span class="line"><span class="cl">$ git config --global user.email sgr.raee@gmail.com
+</span></span><span class="line"><span class="cl">$ git config --global core.editor vim
+</span></span><span class="line"><span class="cl">$ git config --global commit.gpgsign <span class="nb">true</span>
+</span></span><span class="line"><span class="cl">$ git config --global pull.rebose <span class="nb">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">gpg --list-secret-keys --keyid-format LONG
+</span></span><span class="line"><span class="cl">  /Users/hubot/.gnupg/secring.gpg
+</span></span><span class="line"><span class="cl">  ------------------------------------
+</span></span><span class="line"><span class="cl">  sec   4096R/3AA5C34371567BD2 2016-03-10 <span class="o">[</span>expires: 2017-03-10<span class="o">]</span>
+</span></span><span class="line"><span class="cl">  uid                          Hubot
+</span></span><span class="line"><span class="cl">  ssb   4096R/42B317FD4BA89E7A 2016-03-10
+</span></span><span class="line"><span class="cl">$  git config --global user.signingkey 3AA5C34371567BD2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Remember GPG password when signing git commits</span>
+</span></span><span class="line"><span class="cl">$ vim ~/.gnupg/gpg-agent.conf
+</span></span><span class="line"><span class="cl">$ default-cache-ttl <span class="m">3600</span>
+</span></span></code></pre></div><h2 id="references">References</h2>
+<ul>
+<li><a href="https://help.github.com/articles/connecting-to-github-with-ssh">https://help.github.com/articles/connecting-to-github-with-ssh</a></li>
+<li><a href="https://confluence.atlassian.com/bitbucket/set-up-ssh-for-git-728138079.html">https://confluence.atlassian.com/bitbucket/set-up-ssh-for-git-728138079.html</a></li>
+<li><a href="https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/telling-git-about-your-signing-key">https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/telling-git-about-your-signing-key</a></li>
+<li><a href="https://stackoverflow.com/questions/36847431/remember-gpg-password-when-signing-git-commits">https://stackoverflow.com/questions/36847431/remember-gpg-password-when-signing-git-commits</a></li>
+</ul>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Subnetting on Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+    <link>http://localhost:1313/tags/subnetting/</link>
+    <description>Recent content in Subnetting on Agus Fahmi Aji Pramana&#39;s Blogging Site</description>
+    <image>
+      <title>Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+      <url>http://localhost:1313/logo.svg</url>
+      <link>http://localhost:1313/logo.svg</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 12 Mar 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/subnetting/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Understanding Subnetting to design addressing scheme</title>
+      <link>http://localhost:1313/blogs/networking/understanding-subnetting-to-desing-addressing-scheme/</link>
+      <pubDate>Sun, 12 Mar 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blogs/networking/understanding-subnetting-to-desing-addressing-scheme/</guid>
+      <description>Solving a subnet problem of given network diagrams.</description>
+      <content:encoded><![CDATA[<h2 id="subnetting">Subnetting</h2>
+<p>Subnetting is defined as breaking down of huge network address to manageable networks. For the subnet addressing scheme to work, every host on the network must know which part of the host address will be used as the subnet address. The table gives the default subnet mask of each class.</p>
+<p>CIDR notation indicates the network mask for an address and adds on the total number of turned on bits in the entire address using slash notation.</p>
+<h3 id="default-subnet-mask">Default Subnet Mask</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Class</th>
+          <th>Format</th>
+          <th>Default Subnet Mask</th>
+          <th>CIDR</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>A</td>
+          <td>network.host.host.host</td>
+          <td>255.0.0.0</td>
+          <td>/8</td>
+      </tr>
+      <tr>
+          <td>B</td>
+          <td>network.network.host.host</td>
+          <td>255.255.0.0</td>
+          <td>/16</td>
+      </tr>
+      <tr>
+          <td>C</td>
+          <td>network.network.network.host</td>
+          <td>255.255.255.0</td>
+          <td>/24</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="subnetting-formula">Subnetting Formula</h3>
+<p>How many subnets? <strong>2<sup>x</sup></strong> = number of subnets. <strong>x</strong> is the number of masked bits or turned on network bit.</p>
+<p>How many hosts per subnet? <strong>2<sup>y</sup></strong> – 2 = number of hosts per subnet. <strong>y</strong> is the number of unmasked bits or turned off host bit.</p>
+<p>What are the valid subnets? <strong>256 – subnet mask</strong> = block size</p>
+<p>What’s the broadcast address for each subnet? <strong>The number right before the value of the next subnet.</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>Subnet</th>
+          <th>0</th>
+          <th>128</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>First host</td>
+          <td>1</td>
+          <td>129</td>
+      </tr>
+      <tr>
+          <td>Last host</td>
+          <td>126</td>
+          <td>254</td>
+      </tr>
+      <tr>
+          <td>Broadcast Address</td>
+          <td>127</td>
+          <td>255</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="real-world-problem">Real-world Problem</h2>
+<h3 id="scenario-i">Scenario I</h3>
+<p><code>192.168.1.0/24</code> network address is assigned to do subnetting for the topology seen below.</p>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-ae20a" hidden />
+  <label for="zoomCheck-ae20a">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/cpt-1.webp"
+      alt="Cisco Packet Tracer Network Diagram 1"
+       />
+  </label>
+</p>
+<h4 id="explanation-i">Explanation I</h4>
+<p>Total required networks include:</p>
+<ul>
+<li><strong>2</strong> LANs individually connected with the highest number of connected hosts, that is <strong>2</strong>.</li>
+<li><strong>1</strong> WAN between routers</li>
+<li>Given network address is <strong>192.168.1.0/24</strong> which belongs to <strong>Class C</strong> with default subnet
+mask <strong>255.255.255.0</strong></li>
+<li>If we subnet with <strong>/26</strong> i.e., <strong>255.255.255.192</strong>, then block size is: <strong>256 – 192 = 64</strong></li>
+<li>Subnetwork: <strong>2<sup>2</sup> = 4</u></strong></li>
+<li>Valid Hosts per subnetwork <strong>2<sup>6</sup> - 2 = 62</strong></li>
+</ul>
+<h4 id="answer-i">Answer I</h4>
+<ol>
+<li>How many subnetworks can be seen as requirements in the figure above? <strong><u>3</u></strong></li>
+<li>How many maximum hosts are required in any subnetwork? <strong><u>3</u></strong></li>
+<li>How many bits will be borrowed from hosts portion in order to accommodate the required
+number of subnets? <strong><u>2</u></strong></li>
+<li>How many subnetworks will be created by borrowing the bits as mentioned above? <strong><u>2<sup>2</sup> = 4</u></strong></li>
+<li>How many subnetworks will remain unused for future use? <strong><u>4 – 3 = 1</u></strong></li>
+<li>How many valid host addresses will be available per subnetwork? <strong><u>2<sup>6</sup> - 2 = 62</u></strong></li>
+<li>After changing the length/CIDR of original network, what is the new subnet mask? <strong><u>255.255.255.192</u></strong></li>
+<li>Fill in the following table with the subnetwork’s information.</li>
+</ol>
+<table>
+  <thead>
+      <tr>
+          <th>Subnetwork #</th>
+          <th>Subnetwork Address</th>
+          <th>First Valid Host</th>
+          <th>Last Valid Host</th>
+          <th>Broadcast Address</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>192.168.1.0</td>
+          <td>192.168.1.1</td>
+          <td>192.168.1.62</td>
+          <td>192.168.1.63</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>192.168.1.64</td>
+          <td>192.168.1.65</td>
+          <td>192.168.1.126</td>
+          <td>192.168.1.127</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>192.168.1.128</td>
+          <td>192.168.1.129</td>
+          <td>192.168.1.190</td>
+          <td>192.168.1.191</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>192.168.1.192</td>
+          <td>192.168.1.193</td>
+          <td>192.168.1.254</td>
+          <td>192.168.1.255</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="scenario-ii">Scenario II</h3>
+<p>192.168.20.0/24 network address is assigned to you to do subnetting for the topology seen below.</p>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-cb302" hidden />
+  <label for="zoomCheck-cb302">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/cpt-2.webp"
+      alt="Cisco Packet Tracer Network Diagram 2"
+       />
+  </label>
+</p>
+<h4 id="explanation-ii">Explanation II</h4>
+<p>Total required networks include:</p>
+<ul>
+<li><strong>4</strong> LANs individually connected with the highest number of connected hosts, that is <strong>3</strong>.</li>
+<li><strong>4</strong> WAN between routers</li>
+<li>Given network address is <strong>192.168.20.0/24</strong> which belongs to <strong>Class C</strong> with default subnet mask <strong>255.255.255.0</strong></li>
+<li>If we subnet with <strong>/27</strong> i.e., <strong>255.255.255.224</strong>, then block size: <strong>256 – 192 = 64</strong></li>
+<li>Subnetwork: <strong>2<sup>3</sup> = 8</strong></li>
+<li>Valid Hosts per subnetwork <strong>25 - 2 = 30</strong></li>
+</ul>
+<h4 id="answer-ii">Answer II</h4>
+<ol>
+<li>How many subnetworks can be seen as requirements in the figure seen above? <strong><u>8</u></strong></li>
+<li>How many maximum hosts are required in any subnetwork? <strong><u>3</u></strong></li>
+<li>How many bits will be borrowed from hosts portion in order to accommodate the required number of subnets? <strong><u>3</u></strong></li>
+<li>How many subnetworks will be created by borrowing the bits as mentioned above? <strong><u>2<sup>3</sup> = 8</u></strong></li>
+<li>How many subnetworks will remain unused for future use? <strong><u>8 – 8 = 0</u></strong></li>
+<li>How many valid host addresses will be available per subnetwork? <strong><u>2<sup>5</sup> - 2 = 30</u></strong></li>
+<li>After changing the length/CIDR of original network, what is the new subnet mask? <strong><u>255.255.255.224</u></strong></li>
+<li>Fill in the following table with the subnetwork’s information.</li>
+</ol>
+<table>
+  <thead>
+      <tr>
+          <th>Subnetwork #</th>
+          <th>Subnetwork Address</th>
+          <th>First Valid Host</th>
+          <th>Last Valid Host</th>
+          <th>Broadcast Address</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>192.168.20.0</td>
+          <td>192.168.20.1</td>
+          <td>192.168.20.30</td>
+          <td>192.168.20.31</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>192.168.20.32</td>
+          <td>192.168.20.33</td>
+          <td>192.168.20.62</td>
+          <td>192.168.20.63</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>192.168.20.64</td>
+          <td>192.168.20.65</td>
+          <td>192.168.20.94</td>
+          <td>192.168.20.95</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>192.168.20.96</td>
+          <td>192.168.20.97</td>
+          <td>192.168.20.126</td>
+          <td>192.168.20.127</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>192.168.20.128</td>
+          <td>192.168.20.129</td>
+          <td>192.168.20.158</td>
+          <td>192.168.20.159</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td>192.168.20.160</td>
+          <td>192.168.20.161</td>
+          <td>192.168.20.190</td>
+          <td>192.168.20.191</td>
+      </tr>
+      <tr>
+          <td>7</td>
+          <td>192.168.20.192</td>
+          <td>192.168.20.193</td>
+          <td>192.168.20.222</td>
+          <td>192.168.20.223</td>
+      </tr>
+      <tr>
+          <td>8</td>
+          <td>192.168.20.224</td>
+          <td>192.168.20.225</td>
+          <td>192.168.20.254</td>
+          <td>192.168.20.255</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="scenario-iii">Scenario III</h3>
+<p><code>172.16.0.0/16</code> network address is assigned to you to do subnetting for the topology seen below.</p>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-1be78" hidden />
+  <label for="zoomCheck-1be78">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/cpt-3.webp"
+      alt="Cisco Packet Tracer Network Diagram 3"
+       />
+  </label>
+</p>
+<h4 id="explanation-iii">Explanation III</h4>
+<p>Total required networks include:</p>
+<ul>
+<li><strong>9</strong> LANs individually connected with the highest number of connected hosts, that is <strong>3900</strong>.</li>
+<li><strong>6</strong> WANs between routers. <strong>4</strong></li>
+<li>Given network address is <strong>172.16.0.0/16</strong> which belongs to Class B with default subnet mask <strong>255.255.0.0</strong></li>
+<li>If we subnet with <strong>/20</strong> i.e., <strong>255.255.240.0</strong>, then the block size: <strong>256 – 240 = 16</strong></li>
+<li>Subnetwork: <strong>2<sup>4</sup> = 16</strong></li>
+<li>Valid hosts per subnetwork <strong>2<sup>12</sup> - 2 = 4094</strong></li>
+</ul>
+<h4 id="answer-iii">Answer III</h4>
+<ol>
+<li>How many subnetworks can be seen as requirements in the figure seen above? <strong><u>15</u></strong></li>
+<li>How many maximum hosts are required in any subnetwork? <strong><u>3900</u></strong></li>
+<li>How many bits will be borrowed from the host portion in order to accommodate the required number of subnets? <strong><u>4</u></strong></li>
+<li>How many subnetworks will be created by borrowing the bits as mentioned above? <strong><u>2<sup>4</sup> = 16</u></strong></li>
+<li>How many subnetworks will remain unused for future use? <strong><u>16 – 15 = 1</u></strong></li>
+<li>How many valid host addresses will be available per subnetwork? <strong><u>2<sup>12</sup> - 2 = 4094</u></strong></li>
+<li>After changing the length/CIDR of original network, what is the new subnet mask? <strong><u>255.255.240.0</u></strong></li>
+<li>Fill in the following table with the subnetwork’s information.</li>
+</ol>
+<table>
+  <thead>
+      <tr>
+          <th>Subnetwork #</th>
+          <th>Subnetwork Address</th>
+          <th>First Valid Host</th>
+          <th>Last Valid Host</th>
+          <th>Broadcast Address</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>172.16.0.0</td>
+          <td>172.16.0.1</td>
+          <td>172.16.15.254</td>
+          <td>172.16.15.255</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>172.16.16.0</td>
+          <td>172.16.16.1</td>
+          <td>172.16.31.254</td>
+          <td>172.16.31.255</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>172.16.32.0</td>
+          <td>172.16.32.1</td>
+          <td>172.16.47.254</td>
+          <td>172.16.47.255</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>172.16.48.0</td>
+          <td>172.16.48.1</td>
+          <td>172.16.63.254</td>
+          <td>172.16.63.255</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>172.16.64.0</td>
+          <td>172.16.64.1</td>
+          <td>172.16.79.254</td>
+          <td>172.16.79.255</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td>172.16.80.0</td>
+          <td>172.16.80.1</td>
+          <td>172.16.95.254</td>
+          <td>172.16.95.255</td>
+      </tr>
+      <tr>
+          <td>7</td>
+          <td>172.16.96.0</td>
+          <td>172.16.96.1</td>
+          <td>172.16.111.254</td>
+          <td>172.16.111.255</td>
+      </tr>
+      <tr>
+          <td>8</td>
+          <td>172.16.112.0</td>
+          <td>172.16.112.1</td>
+          <td>172.16.127.254</td>
+          <td>172.16.127.255</td>
+      </tr>
+      <tr>
+          <td>9</td>
+          <td>172.16.128.0</td>
+          <td>172.16.128.1</td>
+          <td>172.16.143.254</td>
+          <td>172.16.143.255</td>
+      </tr>
+      <tr>
+          <td>10</td>
+          <td>172.16.144.0</td>
+          <td>172.16.144.1</td>
+          <td>172.16.159.254</td>
+          <td>172.16.159.255</td>
+      </tr>
+      <tr>
+          <td>11</td>
+          <td>172.16.160.0</td>
+          <td>172.16.160.1</td>
+          <td>172.16.175.254</td>
+          <td>172.16.175.255</td>
+      </tr>
+      <tr>
+          <td>12</td>
+          <td>172.16.176.0</td>
+          <td>172.16.176.1</td>
+          <td>172.16.191.254</td>
+          <td>172.16.191.255</td>
+      </tr>
+      <tr>
+          <td>13</td>
+          <td>172.16.192.0</td>
+          <td>172.16.192.1</td>
+          <td>172.16.207.254</td>
+          <td>172.16.207.255</td>
+      </tr>
+      <tr>
+          <td>14</td>
+          <td>172.16.208.0</td>
+          <td>172.16.208.1</td>
+          <td>172.16.223.254</td>
+          <td>172.16.223.255</td>
+      </tr>
+      <tr>
+          <td>15</td>
+          <td>172.16.224.0</td>
+          <td>172.16.224.1</td>
+          <td>172.16.239.254</td>
+          <td>172.16.239.255</td>
+      </tr>
+      <tr>
+          <td>16</td>
+          <td>172.16.240.0</td>
+          <td>172.16.240.1</td>
+          <td>172.16.255.254</td>
+          <td>172.16.255.255</td>
+      </tr>
+  </tbody>
+</table>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

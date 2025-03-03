@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Windows on Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+    <link>http://localhost:1313/tags/windows/</link>
+    <description>Recent content in Windows on Agus Fahmi Aji Pramana&#39;s Blogging Site</description>
+    <image>
+      <title>Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+      <url>http://localhost:1313/logo.svg</url>
+      <link>http://localhost:1313/logo.svg</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 22 Jan 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/windows/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git Installation and Configure SSH</title>
+      <link>http://localhost:1313/blogs/tech/git-installation-and-configure-ssh/</link>
+      <pubDate>Sun, 22 Jan 2017 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blogs/tech/git-installation-and-configure-ssh/</guid>
+      <description>Guide to install and configure SSH in Windows and Linux.</description>
+      <content:encoded><![CDATA[<h2 id="installation">Installation</h2>
+<h3 id="for-linux-debianubuntu">For Linux (Debian/Ubuntu)</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install git
+</span></span></code></pre></div><p>We can check if <strong>Git</strong> is installed by typing <code>git --version</code> in your Terminal or Git Bash (Windows) respectively.</p>
+<h3 id="for-windows">For Windows</h3>
+<p>Download Git for Windows from this link <a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a></p>
+<h2 id="configuration">Configuration</h2>
+<h3 id="set-up-ssh-for-git">Set up SSH for Git</h3>
+<p>Open your Terminal or Git Bash(Windows).</p>
+<ul>
+<li><strong>Ensure we have SSH client installed:</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ssh -v
+</span></span><span class="line"><span class="cl">usage: ssh  <span class="o">[</span>-1246AaCfGgKkMNnqsTtVvXxYy<span class="o">]</span> <span class="o">[</span>-b bind_address<span class="o">]</span> <span class="o">[</span>-c cipher_spec<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>-D <span class="o">[</span>bind_address:<span class="o">]</span>port<span class="o">]</span> <span class="o">[</span>-E log_file<span class="o">]</span> <span class="o">[</span>-e escape_char<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>-F configfile<span class="o">]</span> <span class="o">[</span>-I pkcs11<span class="o">]</span> <span class="o">[</span>-i identity_file<span class="o">]</span> <span class="o">[</span>-L address<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>-l login_name<span class="o">]</span> <span class="o">[</span>-m mac_spec<span class="o">]</span> <span class="o">[</span>-O ctl_cmd<span class="o">]</span> <span class="o">[</span>-o option<span class="o">]</span> <span class="o">[</span>-p port<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>-Q query_option<span class="o">]</span> <span class="o">[</span>-R address<span class="o">]</span> <span class="o">[</span>-S ctl_path<span class="o">]</span> <span class="o">[</span>-W host:port<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>-w local_tun<span class="o">[</span>:remote_tun<span class="o">]]</span> <span class="o">[</span>user@<span class="o">]</span>hostname <span class="o">[</span>command<span class="o">]</span>
+</span></span></code></pre></div><p>List the contents of your ~/.ssh directory.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ls -a ~/.ssh
+</span></span><span class="line"><span class="cl">known_hosts
+</span></span></code></pre></div><p><em>If we have already setup default identity, we can see two id_ files</em></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ls -a ~/.ssh
+</span></span><span class="line"><span class="cl">.  ..  id_rsa  id_rsa.pub  known_hosts
+</span></span></code></pre></div><ul>
+<li><strong>Set up our default identity:</strong></li>
+</ul>
+<p>The system adds keys for all identities to the <code>/home/&lt;yourname&gt;/.ssh</code> (Linux) or <code>/c/Users/&lt;yourname&gt;/.ssh</code> (Windows) directory. The following procedure creates a default identity.</p>
+<p>Hit <code>ssh-keygen</code> command on Terminal or Git Bash.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ssh-keygen
+</span></span><span class="line"><span class="cl">Generating public/private rsa key pair.
+</span></span><span class="line"><span class="cl">Enter file in which to save the key <span class="o">(</span>/c/Users/&lt;yourname&gt;/.ssh/id_rsa<span class="o">)</span>:
+</span></span></code></pre></div><p>Press enter to accept the default key and location or we can set somewhere else.</p>
+<p>We enter and re-enter a passphrase when prompted. Unless you need a key for a process such as script, you should always provide a passphrase. The command creates your default identity with its public and private keys</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ssh-keygen
+</span></span><span class="line"><span class="cl">Generating public/private rsa key pair.
+</span></span><span class="line"><span class="cl">Enter file in which to save the key <span class="o">(</span>/c/Users/&lt;yourname&gt;/.ssh/id_rsa<span class="o">)</span>:
+</span></span><span class="line"><span class="cl">Created directory <span class="s1">&#39;/c/&lt;yourname&gt;/&lt;yourname&gt;/.ssh&#39;</span>.
+</span></span><span class="line"><span class="cl">Enter passphrase <span class="o">(</span>empty <span class="k">for</span> no passphrase<span class="o">)</span>:
+</span></span><span class="line"><span class="cl">Enter same passphrase again:
+</span></span><span class="line"><span class="cl">Your identification has been saved in /c/Users/&lt;yourname&gt;/.ssh/id_rsa.
+</span></span><span class="line"><span class="cl">Your public key has been saved in /c/Users/&lt;yourname&gt;/.ssh/id_rsa.pub.
+</span></span><span class="line"><span class="cl">The key fingerprint is:
+</span></span><span class="line"><span class="cl">SHA256:+V6cLhFWngIFC+TdHwQHxJP39lsZUWnP6TDj1/7hBVA &lt;yourname&gt;@&lt;yourname&gt;
+</span></span><span class="line"><span class="cl">The key<span class="err">&#39;</span>s randomart image is:
+</span></span><span class="line"><span class="cl">+---<span class="o">[</span>RSA 2048<span class="o">]</span>----+
+</span></span><span class="line"><span class="cl"><span class="p">|</span>     .o .<span class="o">==</span>+o E +<span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>     . o.o+oo. + <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>      . o..<span class="o">=</span>oo..+<span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>         .+.o*ooo<span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>        S. oo.*.+<span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>         ... <span class="nv">o</span> <span class="o">=</span>+<span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>          ..+ .o+<span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>         ..o  ..+<span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>          ...  .o<span class="p">|</span>
+</span></span><span class="line"><span class="cl">+----<span class="o">[</span>SHA256<span class="o">]</span>-----+
+</span></span></code></pre></div><p>List the contents of your ~/.ssh directory.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ls ~/.ssh
+</span></span><span class="line"><span class="cl">.  ..  id_rsa  id_rsa.pub  known_hosts
+</span></span></code></pre></div><ul>
+<li><strong>Adding your SSH key to the ssh-agent:</strong></li>
+</ul>
+<p>Ensure ssh-agent is enabled:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">eval</span> <span class="s2">&#34;</span><span class="k">$(</span>ssh-agent -s<span class="k">)</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Agent pid 59566</span>
+</span></span></code></pre></div><p>Add your SSH key to the ssh-agent</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ssh-add ~/.ssh/id_rsa
+</span></span></code></pre></div><ul>
+<li><strong>Find and take a note of your public key fingerprint. If you&rsquo;re using OpenSSH 6.7 or older:</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ssh-add -l
+</span></span><span class="line"><span class="cl"><span class="c1"># 2048 a0:dd:42:3c:5a:9d:e4:2a:21:52:4e:78:07:6e:c8:4d /Users/&lt;yourname&gt;/.ssh/id_rsa (RSA)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">If you are using OpenSSH 6.8 or newer:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ ssh-add -l -E md5
+</span></span><span class="line"><span class="cl"><span class="c1"># 2048 MD5:a0:dd:42:3c:5a:9d:e4:2a:21:52:4e:78:07:6e:c8:4d /Users/&lt;yourname&gt;/.ssh/id_rsa (RSA)</span>
+</span></span></code></pre></div><ul>
+<li><strong>Install the public key on your Remote GitHub/Bitbucket account:</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ cat ~/.ssh/id_rsa.pub
+</span></span><span class="line"><span class="cl">ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC2zeZVIph1tP0UZJ007AC1OWqThpYjDlao1PlQnZbrSMeS8LXkU/nMxuZdAv+2JeqhezOtb6/e8e50NOTWB9Z2O8thCMwc29cp6C+vHL2oWQYMcCOuT34/R2yDEOMQ5nkIZ1fVFJNCTIZUaKjyaHX89w0v2p9cMsZ1q36w9lEdKXs8N5fuN/6rAy3JQgMcbD+dDd0cWpP8CLiUyNCq32xwqhX+nS1P43AgOQdLpX74uljwr7rE2CmrJQkvh/m+h68tv8+mLMGJtg5cJ+doZ+9r9yPhKJYGEsW4bL+8sSRQn3gJWUib8xhOgaWrMfXj+94o1KbcI12lK772GNyP74rX &lt;yourname&gt;@&lt;yourname&gt;
+</span></span></code></pre></div><p>Copy this output to respective SSH keys setting.</p>
+<ul>
+<li>GitHub Setting &raquo; SSH and GPG keys &raquo; New SSH key</li>
+<li>Bitbucket Setting &raquo; SSH keys &raquo; Add Key</li>
+</ul>
+<h3 id="you-are-done">You are Done</h3>
+<p>You have now successfully configured SSH for Git in Windows/Linux/Mac OS.</p>
+<h3 id="first-time-git-setup">First Time Git Setup</h3>
+<p>This is my configuration.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git config --global user.name <span class="s2">&#34;Sagar Chamling&#34;</span>
+</span></span><span class="line"><span class="cl">$ git config --global user.email sgr.raee@gmail.com
+</span></span><span class="line"><span class="cl">$ git config --global core.editor vim
+</span></span><span class="line"><span class="cl">$ git config --global commit.gpgsign <span class="nb">true</span>
+</span></span><span class="line"><span class="cl">$ git config --global pull.rebose <span class="nb">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">gpg --list-secret-keys --keyid-format LONG
+</span></span><span class="line"><span class="cl">  /Users/hubot/.gnupg/secring.gpg
+</span></span><span class="line"><span class="cl">  ------------------------------------
+</span></span><span class="line"><span class="cl">  sec   4096R/3AA5C34371567BD2 2016-03-10 <span class="o">[</span>expires: 2017-03-10<span class="o">]</span>
+</span></span><span class="line"><span class="cl">  uid                          Hubot
+</span></span><span class="line"><span class="cl">  ssb   4096R/42B317FD4BA89E7A 2016-03-10
+</span></span><span class="line"><span class="cl">$  git config --global user.signingkey 3AA5C34371567BD2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Remember GPG password when signing git commits</span>
+</span></span><span class="line"><span class="cl">$ vim ~/.gnupg/gpg-agent.conf
+</span></span><span class="line"><span class="cl">$ default-cache-ttl <span class="m">3600</span>
+</span></span></code></pre></div><h2 id="references">References</h2>
+<ul>
+<li><a href="https://help.github.com/articles/connecting-to-github-with-ssh">https://help.github.com/articles/connecting-to-github-with-ssh</a></li>
+<li><a href="https://confluence.atlassian.com/bitbucket/set-up-ssh-for-git-728138079.html">https://confluence.atlassian.com/bitbucket/set-up-ssh-for-git-728138079.html</a></li>
+<li><a href="https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/telling-git-about-your-signing-key">https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/telling-git-about-your-signing-key</a></li>
+<li><a href="https://stackoverflow.com/questions/36847431/remember-gpg-password-when-signing-git-commits">https://stackoverflow.com/questions/36847431/remember-gpg-password-when-signing-git-commits</a></li>
+</ul>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

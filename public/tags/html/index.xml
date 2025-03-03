@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Html on Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+    <link>http://localhost:1313/tags/html/</link>
+    <description>Recent content in Html on Agus Fahmi Aji Pramana&#39;s Blogging Site</description>
+    <image>
+      <title>Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+      <url>http://localhost:1313/logo.svg</url>
+      <link>http://localhost:1313/logo.svg</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 02 Mar 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/html/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HTTP Security with Content-Security-Policy headers</title>
+      <link>http://localhost:1313/blogs/tech/http-security-with-csp-headers/</link>
+      <pubDate>Wed, 02 Mar 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blogs/tech/http-security-with-csp-headers/</guid>
+      <description>Key notes of CSP response headers and troubleshooting guide</description>
+      <content:encoded><![CDATA[<h2 id="introduction">Introduction</h2>
+<p>The Content-Security-Policy header adds the layer of security that facilitates web application administrators to control resources the user agent is allowed to load for a given page. This helps guard against cross-site scripting attacks (XSS), packet sniffing and data injection attacks.</p>
+<h3 id="syntax">Syntax</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">Content-Security-Policy: {policy-directive}; {policy-directive}
+</span></span></code></pre></div><h3 id="example">Example</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">Content-Security-Policy: default-src https: &#39;unsafe-eval&#39; &#39;unsafe-inline&#39;;
+</span></span><span class="line"><span class="cl">object-src &#39;none&#39;
+</span></span></code></pre></div><h2 id="directive-terms">Directive Terms</h2>
+<h3 id="fetch-directive">Fetch directive</h3>
+<p>Fetch directives control the locations from which certain resource types may be loaded. All fetch directives fall back to <code>default-src</code>.</p>
+<h3 id="script-src">script-src</h3>
+<p>Directive specifies valid sources for JavaScript.</p>
+<h3 id="nonce">Nonce</h3>
+<ul>
+<li>Usage for script elements <a href="https://www.w3.org/TR/CSP2/#script-src-nonce-usage">Content Security Policy Level 2 </a></li>
+<li>Ideally, developers would avoid inline scripts entirely and whitelist scripts by URL.</li>
+<li>However, in some cases, removing inline scripts can be difficult or impossible</li>
+<li>For those cases, developers can whitelist scripts using a randomly generated nonce.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">Content-Security-Policy: default-src &#39;self&#39;; script-src &#39;self&#39;
+</span></span><span class="line"><span class="cl">https://example.com &#39;nonce-EDNnf03nceIOfn39fn3e9h3sdfa&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">nonce</span><span class="o">=</span><span class="s">&#34;EDNnf03nceIOfn39fn3e9h3sdfa&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Still blocked because nonce is wrong.&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></div><h3 id="default-src">default-src</h3>
+<p>Directive serves as a fallback for the other CSP fetch directives.</p>
+<h3 id="style-src">style-src</h3>
+<p>Directive specifies valid sources for stylesheets.</p>
+<h3 id="frame-ancestors">frame-ancestors</h3>
+<p>Directive specifies valid parents that may embed a page using <code>&lt;frame&gt;</code>, <code>&lt;iframe&gt;</code>, <code>&lt;object&gt;</code>, <code>&lt;embed&gt;</code>, or <code>&lt;applet&gt;</code>.</p>
+<h3 id="object-src">object-src</h3>
+<p>Directive specifies valid sources for the <code>&lt;object&gt;</code>, <code>&lt;embed&gt;</code>, and <code>&lt;applet&gt;</code> elements.</p>
+<h3 id="report-to">report-to</h3>
+<p>Directive instructs the user agent to store reporting endpoints for an origin.</p>
+<h2 id="implementing-in-aws-amplify">Implementing in AWS Amplify</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="c"># customHTTP.yml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">customHeaders</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">pattern</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;**/*&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">headers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Strict-Transport-Security&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;max-age=31536000; includeSubDomains&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;X-Frame-Options&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;SAMEORIGIN&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;X-XSS-Protection&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;1; mode=block&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;X-Content-Type-Options&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;nosniff&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Content-Security-Policy&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;default-src &#39;self&#39;; style-src &#39;self&#39;; img-src &#39;self&#39; data:;&#34;</span><span class="w">
+</span></span></span></code></pre></div><h2 id="troubleshooting">Troubleshooting</h2>
+<p>Mitigating with CSP policy directive for corresponding errors:</p>
+<h3 id="directive-1-img-src-self-data">Directive 1: img-src &lsquo;self&rsquo; data:</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Refused to load the image &#39;data:image/png;base64,somerandomnumber&#39; because it
+</span></span><span class="line"><span class="cl">violates the following Content Security Policy directive: &#34;img-src &#39;self&#39; data&#34;
+</span></span></code></pre></div><h3 id="directive-2-connect-src-httpsexample1com">Directive 2: connect-src https://*.example1.com</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">Refused to connect to &#39;https://hello.example1.com/&#39; because it violates the
+</span></span><span class="line"><span class="cl">following Content Security Policy directive: &#34;default-src &#39;self&#39;&#34;. Note that
+</span></span><span class="line"><span class="cl">&#39;connect-src&#39; was not explicitly set, so &#39;default-src&#39; is used as a fallback.
+</span></span></code></pre></div><h3 id="directive-3-connect-src-wssexamplenet">Directive 3: connect-src wss://example.net</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">Refused to connect to &#39;wss://example.net&#39; because it violates the following
+</span></span><span class="line"><span class="cl">Content Security Policy directive.
+</span></span></code></pre></div><h3 id="directive-4-style-src-elem-self-unsafe-inline">Directive 4: style-src-elem &lsquo;self&rsquo; &lsquo;unsafe-inline&rsquo; <a href="https://example.com">https://example.com</a></h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">Refused to load the stylesheet &#39;https://example.com/custom.css&#39; because it
+</span></span><span class="line"><span class="cl">violates the following Content Security Policy directive: &#34;style-src &#39;self&#39;
+</span></span><span class="line"><span class="cl">&#39;unsafe-inline&#39;&#34;. Note that &#39;style-src-elem&#39; was not explicitly set, so
+</span></span><span class="line"><span class="cl">&#39;style-src&#39; is used as a fallback.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/css&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://example.com/custom.css&#34;</span> <span class="p">/&gt;</span>
+</span></span></code></pre></div><h3 id="directive-5-font-src-self-data">Directive 5: font-src &lsquo;self&rsquo; data:;</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">Refused specific: data:font/woff;base64,&#34;someBase64encoded font&#34;,
+</span></span></code></pre></div><h2 id="validation-tools">Validation Tools</h2>
+<ul>
+<li>
+<p>CSP Validator (<a href="https://csp-evaluator.withgoogle.com/">https://csp-evaluator.withgoogle.com/</a>)</p>
+</li>
+<li>
+<p>CSP Scanner (<a href="https://csper.io/evaluator">https://csper.io/evaluator</a>)</p>
+</li>
+</ul>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

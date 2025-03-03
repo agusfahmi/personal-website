@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Slides on Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+    <link>http://localhost:1313/slides/</link>
+    <description>Recent content in Slides on Agus Fahmi Aji Pramana&#39;s Blogging Site</description>
+    <image>
+      <title>Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+      <url>http://localhost:1313/logo.svg</url>
+      <link>http://localhost:1313/logo.svg</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 23 Apr 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/slides/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Card Skimming</title>
+      <link>http://localhost:1313/slides/card-skimming/</link>
+      <pubDate>Tue, 23 Apr 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/slides/card-skimming/</guid>
+      <description>Card Skimming</description>
+      <content:encoded><![CDATA[<h2 id="case-study-presentation">Case Study Presentation</h2>
+<div
+  style="padding-bottom:56.25%; position:relative; display:block; width: 100%">
+  <iframe
+    width="100%"
+    height="100%"
+    src="https://docs.google.com/presentation/d/e/2PACX-1vQN8GbQS70On-jFBa6hZgyl0olKliTRvT3ilwaUdmjfxVx1lda4tDPzBGIDb3WrEQ/embed?start=false"
+    frameborder="0"
+    scrolling="no"
+    allowfullscreen="true"
+    mozallowfullscreen="true"
+    webkitallowfullscreen="true"
+    style="position:absolute; top:0; left: 0"></iframe>
+</div>
+
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Phishing - A Social Engineering Attack</title>
+      <link>http://localhost:1313/slides/phishing-cybersecurity-awareness-2023/</link>
+      <pubDate>Tue, 10 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/slides/phishing-cybersecurity-awareness-2023/</guid>
+      <description>Presentation on Phishing during Cybersecurity Awareness 2023</description>
+      <content:encoded><![CDATA[<h2 id="20th-years-of-cybersecurity-awareness-program">20th Years of Cybersecurity Awareness Program</h2>
+<div
+  style="padding-bottom:56.25%; position:relative; display:block; width: 100%">
+  <iframe
+    width="100%"
+    height="100%"
+    src="https://docs.google.com/presentation/d/e/2PACX-1vRnDM2z2K2Uvhe1T4z2UgvW9-c_DIoE7eH3TcqsN-PO7w0rtG0Gfl3pvNwLjpNGbjfUnAhNHVDFFxJN/embed?start=false"
+    frameborder="0"
+    scrolling="no"
+    allowfullscreen="true"
+    mozallowfullscreen="true"
+    webkitallowfullscreen="true"
+    style="position:absolute; top:0; left: 0"></iframe>
+</div>
+
+<h2 id="participation-certificate">Participation Certificate</h2>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-5d992" hidden />
+  <label for="zoomCheck-5d992">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="/img/slides/participation2023.webp"
+      alt="Participation Certificate 2023"
+       />
+  </label>
+</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Linux Essentials Commands Used by System Administrator</title>
+      <link>http://localhost:1313/slides/linux-essentials-commands-used-by-system-administrator/</link>
+      <pubDate>Fri, 19 May 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/slides/linux-essentials-commands-used-by-system-administrator/</guid>
+      <description>Presentation on Linux System Administrator commands</description>
+      <content:encoded><![CDATA[<h2 id="linux-final-presentation">Linux Final Presentation</h2>
+<div
+  style="padding-bottom:56.25%; position:relative; display:block; width: 100%">
+  <iframe
+    width="100%"
+    height="100%"
+    src="https://docs.google.com/presentation/d/e/2PACX-1vSF5qoNhYgLSMb-CtlSFq1XYu_NmsaYFjjipfSH_H9DIxfCTs0Zu7poPyHfJjc2kfIhoF1TPkflw1Zv/embed?start=false"
+    frameborder="0"
+    scrolling="no"
+    allowfullscreen="true"
+    mozallowfullscreen="true"
+    webkitallowfullscreen="true"
+    style="position:absolute; top:0; left: 0"></iframe>
+</div>
+
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Decorators and Mixin Classes in Python</title>
+      <link>http://localhost:1313/slides/decorators-and-mixin-classes-in-python/</link>
+      <pubDate>Fri, 08 Feb 2019 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/slides/decorators-and-mixin-classes-in-python/</guid>
+      <description>Leaptalk on understanding decorators, mixin classes and real-world implementation</description>
+      <content:encoded><![CDATA[<h2 id="leaptalk">Leaptalk</h2>
+<div
+  style="padding-bottom:56.25%; position:relative; display:block; width: 100%">
+  <iframe
+    width="100%"
+    height="100%"
+    src="https://slides.com/cham11ng/decorators-and-mixin-classes-in-python/embed"
+    frameborder="0"
+    scrolling="no"
+    allowfullscreen="true"
+    mozallowfullscreen="true"
+    webkitallowfullscreen="true"
+    style="position:absolute; top:0; left: 0"></iframe>
+</div>
+
+<h2 id="resources">Resources</h2>
+<ul>
+<li><a href="https://github.com/cham11ng/decorators-and-mixin-classes">https://github.com/cham11ng/decorators-and-mixin-classes</a></li>
+<li><a href="https://github.com/RobusGauli/jsonvalidate">https://github.com/RobusGauli/jsonvalidate</a></li>
+</ul>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Face Recognition with Local Binary Patterns</title>
+      <link>http://localhost:1313/slides/face-recognition-with-local-binary-patterns/</link>
+      <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/slides/face-recognition-with-local-binary-patterns/</guid>
+      <description>Final Internship Presentation on Face Recognition</description>
+      <content:encoded><![CDATA[<h2 id="final-presentation">Final Presentation</h2>
+<div
+  style="padding-bottom:56.25%; position:relative; display:block; width: 100%">
+  <iframe
+    width="100%"
+    height="100%"
+    src="https://docs.google.com/presentation/d/e/2PACX-1vRZtiEc3rShTvN7Giuz_dl4jyCGa6VdcK0wptwp6K3f_pNUqtASJs8Bd-FTOxgf8qAi3-LK2cLRndwV/embed?start=false"
+    frameborder="0"
+    scrolling="no"
+    allowfullscreen="true"
+    mozallowfullscreen="true"
+    webkitallowfullscreen="true"
+    style="position:absolute; top:0; left: 0"></iframe>
+</div>
+
+<h2 id="project-demo">Project Demo</h2>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/x_G2NKEcz2E?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
+
+<h2 id="github-link">GitHub Link</h2>
+<ul>
+<li><a href="https://github.com/cham11ng/face-recognition">https://github.com/cham11ng/face-recognition</a></li>
+</ul>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

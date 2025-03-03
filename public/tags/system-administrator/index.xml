@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>System Administrator on Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+    <link>http://localhost:1313/tags/system-administrator/</link>
+    <description>Recent content in System Administrator on Agus Fahmi Aji Pramana&#39;s Blogging Site</description>
+    <image>
+      <title>Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+      <url>http://localhost:1313/logo.svg</url>
+      <link>http://localhost:1313/logo.svg</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 19 May 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/system-administrator/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux Essentials Commands Used by System Administrator</title>
+      <link>http://localhost:1313/slides/linux-essentials-commands-used-by-system-administrator/</link>
+      <pubDate>Fri, 19 May 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/slides/linux-essentials-commands-used-by-system-administrator/</guid>
+      <description>Presentation on Linux System Administrator commands</description>
+      <content:encoded><![CDATA[<h2 id="linux-final-presentation">Linux Final Presentation</h2>
+<div
+  style="padding-bottom:56.25%; position:relative; display:block; width: 100%">
+  <iframe
+    width="100%"
+    height="100%"
+    src="https://docs.google.com/presentation/d/e/2PACX-1vSF5qoNhYgLSMb-CtlSFq1XYu_NmsaYFjjipfSH_H9DIxfCTs0Zu7poPyHfJjc2kfIhoF1TPkflw1Zv/embed?start=false"
+    frameborder="0"
+    scrolling="no"
+    allowfullscreen="true"
+    mozallowfullscreen="true"
+    webkitallowfullscreen="true"
+    style="position:absolute; top:0; left: 0"></iframe>
+</div>
+
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

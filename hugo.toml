@@ -1,0 +1,6 @@
+baseURL = 'https://sagarchamling.com/'
+languageCode = 'en-us'
+title = 'Sagar Chamling'
+
+[params]
+	social = true

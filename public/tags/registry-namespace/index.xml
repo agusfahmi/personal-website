@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Registry Namespace on Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+    <link>http://localhost:1313/tags/registry-namespace/</link>
+    <description>Recent content in Registry Namespace on Agus Fahmi Aji Pramana&#39;s Blogging Site</description>
+    <image>
+      <title>Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+      <url>http://localhost:1313/logo.svg</url>
+      <link>http://localhost:1313/logo.svg</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 12 Feb 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/registry-namespace/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Setup IBM Cloud Container Registry Namespace Lab</title>
+      <link>http://localhost:1313/blogs/training/introduction-to-containers/setup-ibm-cloud-container-registry-namespace-lab/</link>
+      <pubDate>Sun, 11 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blogs/training/introduction-to-containers/setup-ibm-cloud-container-registry-namespace-lab/</guid>
+      <description>Explore and work on a hand-on IBM Cloud Container Registry Namespace</description>
+      <content:encoded><![CDATA[<h2 id="lab-overview">Lab Overview</h2>
+<p>This lab is part of a course named <strong>&ldquo;Introduction to Containers w/ Docker, Kubernetes &amp; OpenShift&rdquo;</strong>. In this lab, I will create an IBM Cloud Container Registry. After completing this lab, we will be able to:</p>
+<ul>
+<li>Describe the IBM Cloud Container Registry service</li>
+<li>Create a Container Registry namespace</li>
+</ul>
+<p>To perform this lab, we need IBM Cloud which can be activated without the credit card detail instead with the feature code that&rsquo;s included in this course.</p>
+<h3 id="activate-ibm-cloud-using-feature-code">Activate IBM Cloud using Feature Code</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-2e8ed" hidden />
+  <label for="zoomCheck-2e8ed">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/verifying-trial-code.webp"
+      alt="IBM Cloud Verify Trial Code"
+       />
+  </label>
+</p>
+<h3 id="navigating-ibm-cloud-dashboard">Navigating IBM Cloud Dashboard</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-62e30" hidden />
+  <label for="zoomCheck-62e30">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/dashboard.webp"
+      alt="Navigating IBM Cloud Dashboard"
+       />
+  </label>
+</p>
+<h3 id="navigating-to-container-registry">Navigating to Container Registry</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-aa904" hidden />
+  <label for="zoomCheck-aa904">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/container-registry.webp"
+      alt="Container Registry"
+       />
+  </label>
+</p>
+<h3 id="created-namespaces">Created Namespaces</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-789b7" hidden />
+  <label for="zoomCheck-789b7">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/created-namespace.webp"
+      alt="Namespaces"
+       />
+  </label>
+</p>
+<h3 id="browsing-namespace">Browsing Namespace</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-a3b67" hidden />
+  <label for="zoomCheck-a3b67">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/browsing-namepspace.webp"
+      alt="Browsing Namespace"
+       />
+  </label>
+</p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.coursera.org/learn/ibm-containers-docker-kubernetes-openshift">https://www.coursera.org/learn/ibm-containers-docker-kubernetes-openshift</a></li>
+</ul>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Scaling and Updating Applications</title>
+      <link>http://localhost:1313/blogs/training/introduction-to-containers/scaling-and-updating-applications/</link>
+      <pubDate>Mon, 12 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blogs/training/introduction-to-containers/scaling-and-updating-applications/</guid>
+      <description>Hands-on lab on scaling, applying rolling updates, ConfigMap and Horizontal Pod Autoscaler</description>
+      <content:encoded><![CDATA[<h2 id="objectives">Objectives</h2>
+<p>In this lab, I will:</p>
+<ul>
+<li>Scale an application with a ReplicaSet</li>
+<li>Apply rolling updates to an application</li>
+<li>Use a ConfigMap to store application configuration</li>
+<li>Autoscale the application using Horizontal Pod Autoscaler</li>
+</ul>
+<h2 id="verify-the-environment-and-command-line-tools">Verify the environment and command line tools</h2>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-c64aa" hidden />
+  <label for="zoomCheck-c64aa">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/browsing-codebase.webp"
+      alt="Browsing Codebase"
+       />
+  </label>
+</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># browse to the given path</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> CC201/labs/3_K8sScaleAndUpdate/
+</span></span></code></pre></div><h2 id="build-and-push-application-image-to-ibm-cloud-container-registry">Build and push application image to IBM Cloud Container Registry</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># export namespace to an environment variable to be used later</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">MY_NAMESPACE</span><span class="o">=</span>sn-labs-<span class="nv">$USERNAME</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># build and push the image to the IBM Cloud Container Registry</span>
+</span></span><span class="line"><span class="cl">docker build -t us.icr.io/<span class="nv">$MY_NAMESPACE</span>/hello-world:1 .
+</span></span><span class="line"><span class="cl">docker push us.icr.io/<span class="nv">$MY_NAMESPACE</span>/hello-world:1
+</span></span></code></pre></div><h2 id="deploy-the-application-to-kubernetes">Deploy the application to Kubernetes</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">apps/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Deployment</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">hello-world</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l">hello-world</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l">hello-world</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">hello-world</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">us.icr.io/sn-labs-x/hello-world:1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="m">8080</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">limits</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l">2m</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l">30Mi</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">requests</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l">1m</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l">10Mi</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">imagePullSecrets</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">icr</span><span class="w">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Running image as a deployment</span>
+</span></span><span class="line"><span class="cl">$ kubectl apply -f deployment.yaml
+</span></span><span class="line"><span class="cl">  deployment.apps/hello-world created
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Listing pods until the status is &#34;Running&#34;</span>
+</span></span><span class="line"><span class="cl">$ kubectl get pods
+</span></span><span class="line"><span class="cl">  NAME                          READY   STATUS    RESTARTS   AGE
+</span></span><span class="line"><span class="cl">  hello-world-55f8cdd55-hn7v8   1/1     Running   <span class="m">0</span>          17s
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># to expose it to internet via a Kubernetes Service</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># create a service of type ClusterIP</span>
+</span></span><span class="line"><span class="cl">$ kubectl expose deployment/hello-world
+</span></span><span class="line"><span class="cl">  service/hello-world exposed
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># to make this externally accessible</span>
+</span></span><span class="line"><span class="cl">$ kubectl proxy
+</span></span><span class="line"><span class="cl">  Starting to serve on 127.0.0.1:8001
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ping the application to get a response</span>
+</span></span><span class="line"><span class="cl">$ curl -L localhost:8001/api/v1/namespaces/sn-labs-<span class="nv">$USERNAME</span>/services/hello-world/proxy
+</span></span><span class="line"><span class="cl">  Hello world from hello-world-55f8cdd55-hn7v8! Your app is up and running!
+</span></span></code></pre></div><h2 id="scaling-the-application-using-a-replicaset">Scaling the application using a ReplicaSet</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># to scale up Deployment</span>
+</span></span><span class="line"><span class="cl">$ kubectl scale deployment hello-world --replicas<span class="o">=</span><span class="m">3</span>
+</span></span><span class="line"><span class="cl">  deployment.apps/hello-world scaled
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># to make sure the three pods created instead of just one</span>
+</span></span><span class="line"><span class="cl">$ kubectl get pods
+</span></span><span class="line"><span class="cl">  NAME                          READY   STATUS    RESTARTS   AGE
+</span></span><span class="line"><span class="cl">  hello-world-55f8cdd55-hn7v8   1/1     Running   <span class="m">0</span>          8m51s
+</span></span><span class="line"><span class="cl">  hello-world-55f8cdd55-l2dqr   1/1     Running   <span class="m">0</span>          9s
+</span></span><span class="line"><span class="cl">  hello-world-55f8cdd55-n9rkd   1/1     Running   <span class="m">0</span>          9s
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ping application multiple times to ensure load-balancing across replicas</span>
+</span></span><span class="line"><span class="cl">$ <span class="k">for</span> i in <span class="sb">`</span>seq 10<span class="sb">`</span><span class="p">;</span> <span class="k">do</span> curl -L localhost:8001/api/v1/namespaces/sn-labs-<span class="nv">$USERNAME</span>/services/hello-world/proxy<span class="p">;</span> <span class="k">done</span>
+</span></span><span class="line"><span class="cl">Hello world from hello-world-55f8cdd55-l2dqr! Your app is up and running!
+</span></span><span class="line"><span class="cl">Hello world from hello-world-55f8cdd55-hn7v8! Your app is up and running!
+</span></span><span class="line"><span class="cl">Hello world from hello-world-55f8cdd55-n9rkd! Your app is up and running!
+</span></span><span class="line"><span class="cl">Hello world from hello-world-55f8cdd55-l2dqr! Your app is up and running!
+</span></span><span class="line"><span class="cl">Hello world from hello-world-55f8cdd55-l2dqr! Your app is up and running!
+</span></span><span class="line"><span class="cl">Hello world from hello-world-55f8cdd55-n9rkd! Your app is up and running!
+</span></span><span class="line"><span class="cl">Hello world from hello-world-55f8cdd55-l2dqr! Your app is up and running!
+</span></span><span class="line"><span class="cl">Hello world from hello-world-55f8cdd55-n9rkd! Your app is up and running!
+</span></span><span class="line"><span class="cl">Hello world from hello-world-55f8cdd55-l2dqr! Your app is up and running!
+</span></span><span class="line"><span class="cl">Hello world from hello-world-55f8cdd55-l2dqr! Your app is up and running!
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># to scale down Deployment</span>
+</span></span><span class="line"><span class="cl">$ kubectl scale deployment hello-world --replicas<span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">  deployment.apps/hello-world scaled
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># check the pods to see that two are deleted or being deleted</span>
+</span></span><span class="line"><span class="cl">$ kubectl get pods
+</span></span><span class="line"><span class="cl">  NAME                          READY   STATUS        RESTARTS   AGE
+</span></span><span class="line"><span class="cl">  hello-world-55f8cdd55-hn7v8   1/1     Running       <span class="m">0</span>          13m
+</span></span><span class="line"><span class="cl">  hello-world-55f8cdd55-pn4vr   1/1     Terminating   <span class="m">0</span>          14s
+</span></span><span class="line"><span class="cl">  hello-world-55f8cdd55-rgvfp   1/1     Terminating   <span class="m">0</span>          14s
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># to ensure only one pod exists</span>
+</span></span><span class="line"><span class="cl">$ kubectl get pods
+</span></span><span class="line"><span class="cl">  NAME                          READY   STATUS    RESTARTS   AGE
+</span></span><span class="line"><span class="cl">  hello-world-55f8cdd55-hn7v8   1/1     Running   <span class="m">0</span>          13m
+</span></span></code></pre></div><h2 id="perform-rolling-updates">Perform rolling updates</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// Change &#34;Hello world from&#34; to &#34;Welcome to&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">os</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;os&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">hostname</span> <span class="o">=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">hostname</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;Welcome from &#39;</span> <span class="o">+</span> <span class="nx">hostname</span> <span class="o">+</span> <span class="s1">&#39;! Your app is up and running!\n&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Sample app is listening on port 8080.&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Rebuild the version 2 and push to ICR.</span>
+</span></span><span class="line"><span class="cl">$ docker build -t us.icr.io/<span class="nv">$MY_NAMESPACE</span>/hello-world:2 . <span class="o">&amp;&amp;</span> docker push us.icr.io/<span class="nv">$MY_NAMESPACE</span>/hello-world:2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># List images in Container Registry that is pushed.</span>
+</span></span><span class="line"><span class="cl">$ ibmcloud cr images
+</span></span><span class="line"><span class="cl">Listing images...
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Repository                          Tag Digest      Namespace   Created         Size    Security status
+</span></span><span class="line"><span class="cl">us.icr.io/sn-labs-x/hello-world <span class="m">1</span>   5cf5e32e9f03    sn-labs-x   <span class="m">30</span> minutes ago  <span class="m">28</span> MB   -
+</span></span><span class="line"><span class="cl">us.icr.io/sn-labs-x/hello-world <span class="m">2</span>   2e591de8e071    sn-labs-x   <span class="m">1</span> minute ago    <span class="m">28</span> MB   -
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># update the deployment to use the version instead</span>
+</span></span><span class="line"><span class="cl">$ kubectl <span class="nb">set</span> image deployment/hello-world hello-world<span class="o">=</span>us.icr.io/<span class="nv">$MY_NAMESPACE</span>/hello-world:2
+</span></span><span class="line"><span class="cl">  deployment.apps/hello-world image updated
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># get a status of the rolling update by using the following command</span>
+</span></span><span class="line"><span class="cl">$ kubectl rollout status deployment/hello-world
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># get the deployment with the `wide` option to see the new tag used</span>
+</span></span><span class="line"><span class="cl">$ kubectl get deployments -o wide
+</span></span><span class="line"><span class="cl">  NAME          READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS    IMAGES                              SELECTOR
+</span></span><span class="line"><span class="cl">  hello-world   1/1     <span class="m">1</span>            <span class="m">1</span>           20m   hello-world   us.icr.io/sn-labs-x/hello-world:2   <span class="nv">run</span><span class="o">=</span>hello-world
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ping the application to ensure that the new welcome message is displayed</span>
+</span></span><span class="line"><span class="cl">$ curl -L localhost:8001/api/v1/namespaces/sn-labs-<span class="nv">$USERNAME</span>/services/hello-world/proxy
+</span></span><span class="line"><span class="cl">  Welcome to hello-world-55df49f45b-zjjf8! Your app is up and running!
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># can rollback the deployment</span>
+</span></span><span class="line"><span class="cl">$ kubectl rollout undo deployment/hello-world
+</span></span><span class="line"><span class="cl">  deployment.apps/hello-world rolled back
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># get a status of the rolling update</span>
+</span></span><span class="line"><span class="cl">$ kubectl rollout status deployment/hello-world
+</span></span><span class="line"><span class="cl">  deployment <span class="s2">&#34;hello-world&#34;</span> successfully rolled out
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># get the deployment with the `wide` option to see that the old tag is used</span>
+</span></span><span class="line"><span class="cl">$ kubectl get deployments -o wide
+</span></span><span class="line"><span class="cl">  NAME          READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS    IMAGES                              SELECTOR
+</span></span><span class="line"><span class="cl">  hello-world   1/1     <span class="m">1</span>            <span class="m">1</span>           31m   hello-world   us.icr.io/sn-labs-x/hello-world:1   <span class="nv">run</span><span class="o">=</span>hello-world
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ping application to ensure that the earlier &#34;Hello World...app is running&#34;</span>
+</span></span><span class="line"><span class="cl">curl -L localhost:8001/api/v1/namespaces/sn-labs-<span class="nv">$USERNAME</span>/services/hello-world/proxy
+</span></span><span class="line"><span class="cl">  Hello world from hello-world-55f8cdd55-wslb7! Your app is up and running!
+</span></span></code></pre></div><h2 id="using-a-configmap-to-store-configuration">Using a ConfigMap to store configuration</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">apps/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Deployment</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">hello-world</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l">hello-world</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l">hello-world</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">hello-world</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">us.icr.io/sn-labs-x/hello-world:3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="m">8080</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">envFrom</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="nt">configMapRef</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">app-config</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">imagePullSecrets</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">icr</span><span class="w">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// app.js
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">MESSAGE</span> <span class="o">+</span> <span class="s1">&#39;\n&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Sample app is listening on port 8080.&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># create a ConfigMap that contains a new message.</span>
+</span></span><span class="line"><span class="cl">$ kubectl create configmap app-config --from-literal<span class="o">=</span><span class="nv">MESSAGE</span><span class="o">=</span><span class="s2">&#34;This message came from a ConfigMap!&#34;</span>
+</span></span><span class="line"><span class="cl">  configmap/app-config created
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># build version 3 and push a new image</span>
+</span></span><span class="line"><span class="cl">$ docker build -t us.icr.io/<span class="nv">$MY_NAMESPACE</span>/hello-world:3 . <span class="o">&amp;&amp;</span> docker push us.icr.io/<span class="nv">$MY_NAMESPACE</span>/hello-world:3
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># apply the new deployment</span>
+</span></span><span class="line"><span class="cl">$ kubectl apply -f deployment-configmap-env-var.yaml
+</span></span><span class="line"><span class="cl">  deployment.apps/hello-world configured
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ping application, message should come from ConfigMap!</span>
+</span></span><span class="line"><span class="cl">$ curl -L localhost:8001/api/v1/namespaces/sn-labs-<span class="nv">$USERNAME</span>/services/hello-world/proxy
+</span></span><span class="line"><span class="cl">  This message came from a ConfigMap!
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># change message without rebuilding the image</span>
+</span></span><span class="line"><span class="cl">$ kubectl delete configmap app-config
+</span></span><span class="line"><span class="cl">  configmap <span class="s2">&#34;app-config&#34;</span> deleted
+</span></span><span class="line"><span class="cl">$ kubectl create configmap app-config --from-literal<span class="o">=</span><span class="nv">MESSAGE</span><span class="o">=</span><span class="s2">&#34;This message is different, and you didn&#39;t have to rebuild the image!&#34;</span>
+</span></span><span class="line"><span class="cl">  configmap/app-config created
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># restart the deployment so the container restart</span>
+</span></span><span class="line"><span class="cl">$ kubectl rollout restart deployment hello-world
+</span></span><span class="line"><span class="cl">  deployment.apps/hello-world restarted
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ping application if the new message is from environment variable</span>
+</span></span><span class="line"><span class="cl">$ curl -L localhost:8001/api/v1/namespaces/sn-labs-<span class="nv">$USERNAME</span>/services/hello-world/proxy
+</span></span><span class="line"><span class="cl">  This message is different, and you didn<span class="err">&#39;</span>t have to rebuild the image!
+</span></span></code></pre></div><h2 id="autoscale-the-hello-world-application-using-horizontal-pod-autoscaler">Autoscale the <code>hello-world</code> application using Horizontal Pod Autoscaler</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">apps/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Deployment</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">hello-world</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l">hello-world</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l">hello-world</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">hello-world</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">us.icr.io/sn-labs-x/hello-world:1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="m">8080</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">http</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">limits</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l">50m</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">requests</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l">20m</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">imagePullSecrets</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">icr</span><span class="w">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># apply the deployment</span>
+</span></span><span class="line"><span class="cl">$ kubectl apply -f deployment.yaml
+</span></span><span class="line"><span class="cl">  deployment.apps/hello-world configured
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># autoscale `hello-world` deployment</span>
+</span></span><span class="line"><span class="cl">$ kubectl autoscale deployment hello-world --cpu-percent<span class="o">=</span><span class="m">5</span> --min<span class="o">=</span><span class="m">1</span> --max<span class="o">=</span><span class="m">10</span>
+</span></span><span class="line"><span class="cl">  horizontalpodautoscaler.autoscaling/hello-world autoscaled
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># initial observation the replicas increase in accordance with the autoscaling</span>
+</span></span><span class="line"><span class="cl">$ kubectl get hpa hello-world --watch
+</span></span><span class="line"><span class="cl">  NAME          REFERENCE                TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
+</span></span><span class="line"><span class="cl">  hello-world   Deployment/hello-world   0%/5%     <span class="m">1</span>         <span class="m">10</span>        <span class="m">1</span>          114s
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># spam the app with multiple requests for increasing the load</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># in separate command</span>
+</span></span><span class="line"><span class="cl">$ <span class="k">for</span> i in <span class="sb">`</span>seq 100000<span class="sb">`</span><span class="p">;</span> <span class="k">do</span> curl -L localhost:8001/api/v1/namespaces/sn-labs-<span class="nv">$USERNAME</span>/services/hello-world/proxy<span class="p">;</span> <span class="k">done</span>
+</span></span><span class="line"><span class="cl">  Hello world from hello-world-6c59687774-l26sv! Your app is up and running!
+</span></span><span class="line"><span class="cl">  Hello world from hello-world-6c59687774-7t8kd! Your app is up and running!
+</span></span><span class="line"><span class="cl">  dial tcp 172.17.153.203:8080: connect: connection refusedHello world from hello-world-6c59687774-sd5px! Your app is up and running!
+</span></span><span class="line"><span class="cl">  Hello world from hello-world-6c59687774-4h4zr! Your app is up and running!
+</span></span><span class="line"><span class="cl">  Hello world from hello-world-6c59687774-hxhq8! Your app is up and running!
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># observe again the replicas increase in accordance with the autoscaling</span>
+</span></span><span class="line"><span class="cl">$ kubectl get hpa hello-world --watch
+</span></span><span class="line"><span class="cl">  NAME          REFERENCE                TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
+</span></span><span class="line"><span class="cl">  hello-world   Deployment/hello-world   0%/5%     <span class="m">1</span>         <span class="m">10</span>        <span class="m">1</span>          9m41s
+</span></span><span class="line"><span class="cl">  hello-world   Deployment/hello-world   0%/5%     <span class="m">1</span>         <span class="m">10</span>        <span class="m">1</span>          10m
+</span></span><span class="line"><span class="cl">  hello-world   Deployment/hello-world   105%/5%   <span class="m">1</span>         <span class="m">10</span>        <span class="m">1</span>          10m
+</span></span><span class="line"><span class="cl">  hello-world   Deployment/hello-world   105%/5%   <span class="m">1</span>         <span class="m">10</span>        <span class="m">4</span>          11m
+</span></span><span class="line"><span class="cl">  hello-world   Deployment/hello-world   105%/5%   <span class="m">1</span>         <span class="m">10</span>        <span class="m">8</span>          11m
+</span></span><span class="line"><span class="cl">  hello-world   Deployment/hello-world   30%/5%    <span class="m">1</span>         <span class="m">10</span>        <span class="m">10</span>         11m
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># observe the details of horizontal pod autoscaler</span>
+</span></span><span class="line"><span class="cl">$ kubectl get hpa hello-world
+</span></span><span class="line"><span class="cl">  NAME          REFERENCE                TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
+</span></span><span class="line"><span class="cl">  hello-world   Deployment/hello-world   4%/5%     <span class="m">1</span>         <span class="m">10</span>        <span class="m">10</span>         14m
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># delete the deployment</span>
+</span></span><span class="line"><span class="cl">$ kubectl delete deployment hello-world
+</span></span><span class="line"><span class="cl">  deployment.apps <span class="s2">&#34;hello-world&#34;</span> deleted
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># delete the service</span>
+</span></span><span class="line"><span class="cl">$ kubectl delete service hello-world
+</span></span><span class="line"><span class="cl">  service <span class="s2">&#34;hello-world&#34;</span> deleted
+</span></span></code></pre></div><h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.coursera.org/learn/ibm-containers-docker-kubernetes-openshift">https://www.coursera.org/learn/ibm-containers-docker-kubernetes-openshift</a></li>
+<li><a href="https://github.com/ibm-developer-skills-network/CC201">https://github.com/ibm-developer-skills-network/CC201</a></li>
+</ul>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

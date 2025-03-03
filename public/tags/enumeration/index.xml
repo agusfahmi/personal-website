@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Enumeration on Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+    <link>http://localhost:1313/tags/enumeration/</link>
+    <description>Recent content in Enumeration on Agus Fahmi Aji Pramana&#39;s Blogging Site</description>
+    <image>
+      <title>Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+      <url>http://localhost:1313/logo.svg</url>
+      <link>http://localhost:1313/logo.svg</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <atom:link href="http://localhost:1313/tags/enumeration/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Enumeration to detect misconfigurations</title>
+      <link>http://localhost:1313/notes/enumeration-to-detect-misconfigurations/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/notes/enumeration-to-detect-misconfigurations/</guid>
+      <description>Key notes about Enumeration and Hack The Box Tier 0 Challenges</description>
+      <content:encoded><![CDATA[<h2 id="basics">Basics</h2>
+<p>When first starting a penetration test or any security evaluation on a target, a primary step is known as <strong>Enumeration</strong> which involves scanning of the open ports.</p>
+<h3 id="tools">Tools</h3>
+<h4 id="ping---packet-internet-or-internet-groper"><code>ping</code> - Packet Internet or InterNet Groper</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ping &lt;target-ip-addr&gt; -c <span class="m">4</span>
+</span></span></code></pre></div><h4 id="nmap---network-mapper"><code>nmap</code> - Network Mapper</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo nmap -p- &lt;target-ip-addr&gt; <span class="c1"># Scan all ports, takes longer.</span>
+</span></span><span class="line"><span class="cl">sudo nmap -sV &lt;target-ip-addr&gt; <span class="c1"># Name and description of identified services.</span>
+</span></span></code></pre></div><h3 id="showmount---mount-info-for-nfs-server"><code>showmount</code> - mount info for NFS server</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">showmount -e &lt;target-ip-addr&gt;
+</span></span><span class="line"><span class="cl">/SomeDir <span class="o">(</span>everyone<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo mkdir nfs
+</span></span><span class="line"><span class="cl">sudo mount -t nfs &lt;target-ip-addr&gt;/SomeDir nfs
+</span></span></code></pre></div><h3 id="hash-id---hash-identifier"><code>hash-id</code> - Hash Identifier</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hash-id -h &lt;hash&gt;
+</span></span><span class="line"><span class="cl">hash-id -f &lt;file-name-path&gt;
+</span></span></code></pre></div><h3 id="smbmap---smb-share-drives"><code>smbmap</code> - SMB share drives</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">smbmap -H &lt;target-ip-addr&gt; -u <span class="s1">&#39;user&#39;</span> -p <span class="s1">&#39;pass&#39;</span>
+</span></span></code></pre></div><h3 id="enum4linux---windows-and-samba-system"><code>enum4linux</code> - Windows and Samba system</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">enum4linux &lt;target-windows-ip-addr&gt;
+</span></span></code></pre></div><h3 id="netdiscover---ip-addresses-on-the-network"><code>netdiscover</code> - IP addresses on the network</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">netdiscover -r &lt;network-addr&gt;/&lt;cidr&gt;
+</span></span></code></pre></div><h3 id="netcat--whatweb--curl--dmitry---banner-grabbing"><code>netcat</code> / <code>whatweb</code> / <code>curl</code> / <code>dmitry</code> - Banner Grabbing</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">netcat &lt;target-ip-addr&gt; &lt;port&gt;
+</span></span><span class="line"><span class="cl"><span class="m">220</span> <span class="o">(</span>vsFTPd 2.3.4<span class="o">)</span> <span class="c1"># FTP</span>
+</span></span><span class="line"><span class="cl">quit
+</span></span><span class="line"><span class="cl"><span class="m">221</span> Goodbye
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">whatweb http://&lt;target-ip-addr&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">dmitry -p &lt;target-ip-addr&gt; <span class="c1"># -p port scan on 150 most used services</span>
+</span></span><span class="line"><span class="cl">dmitry -pb &lt;target-ip-addr&gt; <span class="c1"># -b switch version of the program running.</span>
+</span></span></code></pre></div><h4 id="port-numbers">Port numbers</h4>
+<table>
+  <thead>
+      <tr>
+          <th><strong>Number</strong></th>
+          <th><strong>Assignment</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>20</td>
+          <td>File Transfer Protocol (FTP) Data Transfer</td>
+      </tr>
+      <tr>
+          <td>21</td>
+          <td>File Transfer Protocol (FTP) Command Control</td>
+      </tr>
+      <tr>
+          <td>22</td>
+          <td>Secure Shell (SSH) Secure Login</td>
+      </tr>
+      <tr>
+          <td>23</td>
+          <td>Telnet remote login service, unencrypted text messages</td>
+      </tr>
+      <tr>
+          <td>25</td>
+          <td>Simple Mail Transfer Protocol (SMTP) email delivery</td>
+      </tr>
+      <tr>
+          <td>53</td>
+          <td>Domain Name System (DNS) service</td>
+      </tr>
+      <tr>
+          <td>67, 68</td>
+          <td>Dynamic Host Configuration Protocol (DHCP)</td>
+      </tr>
+      <tr>
+          <td>80</td>
+          <td>Hypertext Transfer Protocol (HTTP) used in the World Wide Web</td>
+      </tr>
+      <tr>
+          <td>110</td>
+          <td>Post Office Protocol (POP3)</td>
+      </tr>
+      <tr>
+          <td>119</td>
+          <td>Network News Transfer Protocol (NNTP)</td>
+      </tr>
+      <tr>
+          <td>123</td>
+          <td>Network Time Protocol (NTP)</td>
+      </tr>
+      <tr>
+          <td>143</td>
+          <td>Internet Message Access Protocol (IMAP) Management of digital mail</td>
+      </tr>
+      <tr>
+          <td>161</td>
+          <td>Simple Network Management Protocol (SNMP)</td>
+      </tr>
+      <tr>
+          <td>194</td>
+          <td>Internet Relay Chat (IRC)</td>
+      </tr>
+      <tr>
+          <td>443</td>
+          <td>HTTP Secure (HTTPS) HTTP over TLS/SSL</td>
+      </tr>
+      <tr>
+          <td>546, 547</td>
+          <td>DHCPv6 IPv6 version of DHCP</td>
+      </tr>
+      <tr>
+          <td>6379</td>
+          <td>Redis</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="challenges">Challenges</h2>
+<h3 id="telnetport-23tcp-linux-telnetd">telnet(port 23/tcp Linux telnetd)</h3>
+<p>Telnet is an old service used for remote management of other hosts on the network. Usually, connection requests through telnet are configured with username/password combinations for increased security.</p>
+<blockquote>
+<p>Note: Due to configuration mistakes, some important accounts can be left with blank passwords for the sake of accessibility. Some typical important accounts have self-explanatory names, such as: <code>admin</code>, <code>administrator</code> and <code>root</code> leaving open to simple brute-forcing attacks.</p></blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ telnet <span class="o">{</span>target-ip-addr<span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Meow login: root
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">cat flag.txt
+</span></span></code></pre></div><h3 id="ftpport-21tcp-vsftpd-303">FTP(port 21/tcp vsftpd 3.0.3)</h3>
+<p>File transfer services that may have high chances to be poorly configured, it can be easily misconfigured if not correctly understood. For secure transmission that protects the username and password and encrypts the content, FTP is often secured with SSL/TLS (FTPS) or replaced with SSH File Transfer Protocol (SFTP).</p>
+<blockquote>
+<p>Note: FTP users may authenticate themselves with a clear-text sign-in protocol, generally in the form of a username and password. A typical misconfiguration for running FTP services allows the <code>anonymous</code> username, followed by any password whatsoever since the service will disregard the password for this specific account.</p></blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ftp <span class="o">{</span>target-ip-addr<span class="o">}</span>
+</span></span><span class="line"><span class="cl">Name: anonymous
+</span></span><span class="line"><span class="cl"><span class="m">331</span> Please specify the password.
+</span></span><span class="line"><span class="cl">Password: anon123
+</span></span><span class="line"><span class="cl">ftp&gt; ls
+</span></span><span class="line"><span class="cl"><span class="m">200</span> : PORT <span class="nb">command</span> successful. Consider using PASV.
+</span></span><span class="line"><span class="cl"><span class="m">150</span> : Here comes the directory listing.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="m">226</span> : Directory send OK.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&gt; get flag.txt <span class="c1"># Download the file to the same directory.</span>
+</span></span><span class="line"><span class="cl"><span class="m">226</span> : Transfer complete.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&gt; bye
+</span></span><span class="line"><span class="cl"><span class="m">421</span> Timeout
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Other options: Make sure from are in right path where the file exists.</span>
+</span></span><span class="line"><span class="cl">&gt; put exploit.php <span class="c1"># Upload a file</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&gt; mdelete exploit.php <span class="c1"># Delete a file</span>
+</span></span></code></pre></div><h3 id="smb445tcp-microsoft-ds">SMB(445/tcp microsoft-ds?)</h3>
+<p>SMB (Server Message Block) is communication protocol provides shared access to files, printers, and serial ports between endpoints on a network. We mostly see SMB services running on Windows machines. SMB runs at the Application or Presentation layers of the OSI model. Due to this, it
+relies on lower-level protocols for transport. The Transport layer protocol that Microsoft SMB Protocol is most often used with is NetBIOS over TCP/IP (NBT).</p>
+<blockquote>
+<p>Note. An SMB-enabled storage on the network is called a share . SMB clients are required to provide a username/password combination to see or interact with the contents of the SMB share. A network administrator can sometimes make mistakes and accidentally allow logins without any valid credentials or using either <code>guest_accounts</code> or <code>anonymous</code> log-ons.</p></blockquote>
+<p>Four separate shares:</p>
+<ul>
+<li><code>ADMIN$</code> - Administrative shares are hidden network shares created by the Windows NT family of operating systems that allow system administrators to have remote access to every disk volume on a network-connected system. These shares may not be permanently deleted but may be disabled.</li>
+<li><code>C$</code> - Administrative share for the C:\ disk volume. This is where the operating system is hosted.</li>
+<li><code>IPC$</code> - The inter-process communication share. Used for inter-process communication via named pipes and is not part of the file system.</li>
+<li><code>WorkShares</code> - Custom share.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ smbclient -L <span class="o">{</span>target-ip-addr<span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ smbclient <span class="se">\\\\</span><span class="o">{</span>target-ip-addr<span class="o">}</span><span class="se">\\</span>ADMIN$
+</span></span><span class="line"><span class="cl">    or
+</span></span><span class="line"><span class="cl">$ smbclient <span class="se">\\\\</span><span class="o">{</span>target-ip-addr<span class="o">}</span><span class="se">\\</span>C$
+</span></span><span class="line"><span class="cl">NT_STATUS_ACCESS_DENIED
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Seems to be human made, prone to misconfiguration.</span>
+</span></span><span class="line"><span class="cl">$ smbclient <span class="se">\\\\</span><span class="o">{</span>target-ip-addr<span class="o">}</span><span class="se">\\</span>WorkShares
+</span></span><span class="line"><span class="cl">smb: <span class="se">\&gt;</span>
+</span></span></code></pre></div><pre tabindex="0"><code>ls : listing contents of the directories within the share
+cd : changing current directories within the share
+get : downloading the contents of the directories within the share
+exit : exiting the smb shell
+</code></pre><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Passing username and password.</span>
+</span></span><span class="line"><span class="cl">$ smbclient -U <span class="s1">&#39;user&#39;</span> <span class="se">\\\\</span><span class="o">{</span>target-ip-addr<span class="o">}</span><span class="se">\\</span>Administrator
+</span></span></code></pre></div><h3 id="redis6379tcp-key-value-store-507">Redis(6379/tcp key-value store 5.0.7)</h3>
+<p>Redis (<strong>RE</strong>mote <strong>DI</strong>ctionary <strong>S</strong>erver), which is an &lsquo;in-memory&rsquo; database are the ones that rely essentially on the primary memory for data storage (meaning that the database is managed in the RAM of the system); in contrast to databases that store data on the disk or SSDs. Primary memory is significantly faster than the secondary memory, the data retrieval time in the case of &lsquo;in-memory&rsquo; databases is very small, thus offering very efficient &amp; minimal response times.</p>
+<blockquote>
+<p>Note: In-memory databases like Redis are typically used to cache data that is frequently requested for quick retrieval. The <code>Keyspace</code> section provides statistics on the main dictionary of each database. The statistics include the number of keys, and the number of keys with an expiration.</p></blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ redis-cli -h <span class="o">{</span>target-ip-addr<span class="o">}</span>
+</span></span><span class="line"><span class="cl">&gt; info
+</span></span><span class="line"><span class="cl"><span class="c1"># Keyspace</span>
+</span></span><span class="line"><span class="cl">db0:keys<span class="o">=</span><span class="m">4</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&gt; <span class="k">select</span> <span class="m">0</span> <span class="c1"># Select Redis logical database followed by index number.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&gt; keys * <span class="c1"># List all the keys present.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&gt; get flag
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ redis-cli -h <span class="o">{</span>target-ip-addr<span class="o">}</span>
+</span></span><span class="line"><span class="cl">&gt; AUTH &lt;passkey&gt;
+</span></span></code></pre></div><h2 id="source">Source</h2>
+<ul>
+<li><a href="https://www.hackthebox.com/">Hack The Box</a></li>
+</ul>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Nmap Basics for Capture The Flag (CTF)</title>
+      <link>http://localhost:1313/notes/nmap-basic-for-capture-the-flag-ctf/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/notes/nmap-basic-for-capture-the-flag-ctf/</guid>
+      <description>Understand different options used in Nmap to scan targets</description>
+      <content:encoded><![CDATA[<h2 id="intro">Intro</h2>
+<p><code>nmap</code> is Network Mapper used for network discovery and security auditing. Nmap can be used for enumeration to identify open ports and services. <strong>Enumeration</strong> in Cybersecurity is information gathering technique.</p>
+<blockquote>
+<p>Some of the scripts in this category are considered intrusive and should not be run against a target network without permission.</p></blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Active host, network discovery</span>
+</span></span><span class="line"><span class="cl">sudo nmap -sn 10.10.0.0/24
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Scan all ports, takes longer.</span>
+</span></span><span class="line"><span class="cl">sudo nmap -p- &lt;target-ip-addr&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Enable version detection, name and description of identified services.</span>
+</span></span><span class="line"><span class="cl">sudo nmap -sV &lt;target-ip-addr&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Performs a script scan using the default set of scripts</span>
+</span></span><span class="line"><span class="cl">sudo nmap -sC &lt;target-ip-addr&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Aggressive scan.</span>
+</span></span><span class="line"><span class="cl">nmap -A &lt;target-ip-addr&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Aggressive, OS detection, Time Template Aggressive, Scan for vulnerability.</span>
+</span></span><span class="line"><span class="cl">nmap -A -O -T4 --script<span class="o">=</span>vuln &lt;target-ip-addr&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Version, perform script, 5000 packets per second, all ports</span>
+</span></span><span class="line"><span class="cl">nmap -sV -sC -T4 –min-rate <span class="m">5000</span> -p- &lt;target-ip-addr&gt;
+</span></span></code></pre></div><blockquote>
+<p>RFC 9293 states that: &ldquo;If the connection is CLOSED or doesn&rsquo;t exists, then a RST is sent in response.&rdquo;</p></blockquote>
+<h3 id="ping-sweep">ping sweep</h3>
+<p>For black box penetration testing, &ldquo;ping sweep&rdquo; become very handy to map network structure with active IP address of hosts. Nmap provides <code>-sn</code> switch followed by IP range or CIDR notation to perform it.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nmap -sn 10.0.0.1-254
+</span></span><span class="line"><span class="cl">or
+</span></span><span class="line"><span class="cl">nmap -sn 10.10.0.0/24
+</span></span></code></pre></div><h3 id="nmap-options">Nmap Options</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Options</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>-sS</td>
+          <td>TCP SYN scan</td>
+      </tr>
+      <tr>
+          <td>-sT</td>
+          <td>TCP connect scan</td>
+      </tr>
+      <tr>
+          <td>-sU</td>
+          <td>UDP scans</td>
+      </tr>
+      <tr>
+          <td>-sN; -sF; -sX</td>
+          <td>TCP NULL, FIN, and Xmas scans, used for firewall evasion. Microsoft Windows/Cisco devices respond with a RST to any malformed TCP packet</td>
+      </tr>
+      <tr>
+          <td>-sC</td>
+          <td>Performs a script scan using the default set of scripts. It is equivalent to &ndash;script=default.</td>
+      </tr>
+      <tr>
+          <td>-sV</td>
+          <td>Enables version detection, which will detect what versions are running on what port.</td>
+      </tr>
+      <tr>
+          <td>-O; &ndash;osscan-guess; &ndash;fuzzy</td>
+          <td>Enable OS detection, guess near-match possibilities</td>
+      </tr>
+      <tr>
+          <td>-A</td>
+          <td>Aggressive Scan. Presently this enables OS detection (-O), version scanning (-sV), script scanning (-sC) and traceroute (&ndash;traceroute)</td>
+      </tr>
+      <tr>
+          <td>-p-</td>
+          <td>This flag scans for all TCP ports ranging from 0-65535</td>
+      </tr>
+      <tr>
+          <td>-p <port-ranges></td>
+          <td>Scan specified ports</td>
+      </tr>
+      <tr>
+          <td>&ndash;min-rate &lt;no. packet/sec&gt;</td>
+          <td>This is used to specify the minimum number of packets Nmap should send per second; it speeds up the scan as the number goes higher</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="timing-templates">Timing Templates</h3>
+<table>
+  <thead>
+      <tr>
+          <th>T0</th>
+          <th>T1</th>
+          <th>T2</th>
+          <th>T3</th>
+          <th>T4</th>
+          <th>T5</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Paranoid</td>
+          <td>Sneaky</td>
+          <td>Polite</td>
+          <td>Normal</td>
+          <td>Aggressive</td>
+          <td>Insane</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="understanding-network-traffic">Understanding Network Traffic</h2>
+<p>Changing the TCP connection options in nmap or using browser changes the type of network traffic in Wireshark. Differentiating all network scan traffic:</p>
+<ul>
+<li><strong>Browser</strong>:
+The network traffic captured shows full TCP handshake (<code>SYN, SYN-ACK, ACK</code>) for each new TCP connection. This is because the browser is establishing a full connection to retrieve the requested web page.</li>
+<li>Nmap Scan with <strong><code>-sS</code></strong> (TCP SYN Scan):
+The network traffic sent is (<code>SYN, SYN-ACK</code>). If nmap receives SYN-ACK then it indicates the port is open. There is no complete handshake with an ACK packet instead Nmap immediately sends an <code>RST</code> packet to close the connection referred to as (a half-open scan). This makes the scan faster and less likely to be logged by the target system.</li>
+<li>Nmap Scan with <strong><code>-sT</code></strong> (TCP Connect Scan):
+The network traffic sent is a full TCP connection (<code>SYN, SYN-ACK, ACK</code>) with each target port. This type of scan is more likely to be logged by the target system because it establishes a full connection</li>
+</ul>
+<h2 id="understanding-nse">Understanding NSE</h2>
+<p>The Nmap Scripting Engine (NSE) is a powerful reconnaissance tool used for vulnerabilities scan, automating exploits.</p>
+<p>Some categories include (Reference: <a href="https://tryhackme.com/room/furthernmap">TryHackMe</a>):</p>
+<table>
+  <thead>
+      <tr>
+          <th>category</th>
+          <th>description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>safe</td>
+          <td>Won&rsquo;t affect the target</td>
+      </tr>
+      <tr>
+          <td>intrusive</td>
+          <td><strong>Not safe</strong>: likely to affect the target</td>
+      </tr>
+      <tr>
+          <td>vuln</td>
+          <td>Scan for vulnerabilities</td>
+      </tr>
+      <tr>
+          <td>exploit</td>
+          <td>Attempt to exploit a vulnerability</td>
+      </tr>
+      <tr>
+          <td>auth</td>
+          <td>Attempt to bypass authentication for running services (e.g. Log into an FTP server anonymously)</td>
+      </tr>
+      <tr>
+          <td>brute</td>
+          <td>Attempt to bruteforce credentials for running services</td>
+      </tr>
+      <tr>
+          <td>discovery</td>
+          <td>Attempt to query running services for further information about the network (e.g. query an SNMP server).</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://nmap.org/book/performance-timing-templates.html">https://nmap.org/book/performance-timing-templates.html</a></li>
+<li><a href="https://nmap.org/nsedoc/categories/vuln.html">https://nmap.org/nsedoc/categories/vuln.html</a></li>
+<li><a href="https://nmap.org/book/nse-usage.html">https://nmap.org/book/nse-usage.html</a></li>
+<li><a href="https://mohomedarfath.medium.com/nmap-tryhackme-room-level-1-level-7-41ba9ff689ae">https://mohomedarfath.medium.com/nmap-tryhackme-room-level-1-level-7-41ba9ff689ae</a></li>
+</ul>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

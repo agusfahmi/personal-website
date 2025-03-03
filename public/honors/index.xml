@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Honors, Rewards and Achievements on Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+    <link>http://localhost:1313/honors/</link>
+    <description>Recent content in Honors, Rewards and Achievements on Agus Fahmi Aji Pramana&#39;s Blogging Site</description>
+    <image>
+      <title>Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+      <url>http://localhost:1313/logo.svg</url>
+      <link>http://localhost:1313/logo.svg</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 04 Nov 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/honors/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Student of the Month October 2023</title>
+      <link>http://localhost:1313/honors/student-of-the-month-october-2023/</link>
+      <pubDate>Sat, 04 Nov 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/honors/student-of-the-month-october-2023/</guid>
+      <description>Awarded as student of the October Month</description>
+      <content:encoded><![CDATA[<h2 id="key-achievements">Key Achievements</h2>
+<ul>
+<li><strong>Event Excellence</strong>: Achieved recognition through outstanding performance in events, cybersecurity awareness presentation and competitions.</li>
+<li><strong>Peer Mentor</strong>: Respected by peers for knowledge sharing and creating a supportive learning environment.</li>
+<li><strong>Proactive Leader</strong>: Known for driving positive change and continuous improvement.</li>
+</ul>
+<h2 id="gallery">Gallery</h2>
+<h3 id="announcement">Announcement</h3>
+<div class="center">
+<p>
+  
+  <input type="checkbox" id="zoomCheck-a673a" hidden />
+  <label for="zoomCheck-a673a">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/announcement.webp"
+      alt="Reward On"
+       />
+  </label>
+</p>
+</div>
+<h3 id="rewarded">Rewarded</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-ee768" hidden />
+  <label for="zoomCheck-ee768">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/certificate-on.webp"
+      alt="Reward On"
+       />
+  </label>
+</p>
+<h3 id="certificate">Certificate</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-7e138" hidden />
+  <label for="zoomCheck-7e138">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/certificate.webp"
+      alt="Certificate"
+       />
+  </label>
+</p>
+
+
+<style>
+  .center {
+    display: block;
+    width: 60%;
+    margin: auto;
+  }
+</style>
+
+
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Winner of Capture The Flag Competition</title>
+      <link>http://localhost:1313/honors/winner-of-capture-the-flag-competition/</link>
+      <pubDate>Sat, 21 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/honors/winner-of-capture-the-flag-competition/</guid>
+      <description>Experience sharing of CTF Competition sponsored by EC-Council</description>
+      <content:encoded><![CDATA[<h2 id="expressing-gratitude">Expressing Gratitude</h2>
+<p>I am thrilled and honored to share that I have won the inter-college <abbr title="Capture The Flag">CTF</abbr> Competition sponsored by <a href="https://www.eccouncil.org/"><strong>EC-Council</strong></a>, held at <a href="https://www.saultcollege.ca/"><strong>Sault College</strong></a>, TSW and BSW Campuses. I am grateful for the prize and recognition that I received from EC-Council, and were presented to me by the campus director of Sault College, Toronto South West.</p>
+<p>A special mention must be made of my instructor and program coordinator, who has consistently been a source of inspiration and played a key role in my achievement.</p>
+<h2 id="about-competition">About Competition</h2>
+<p>The challenge was performed on <a href="https://www.cyberq.io/">CyberQ</a>, a cloud-based platform that provides cyber targets for participants to capture the flag. It was individual competition, where each participant had to complete a scenario-based challenge within <em>one hour</em>, with <em>three hints</em> available in each flag at the cost of reduced score.</p>
+<p>The competition involved <strong>red teaming</strong>, individual participants, who performed cyber attacks simulation on target system on a target network and the <strong>white team</strong>, EC-Council’s technical team, who monitored and evaluated the performance of the participants.</p>
+<blockquote>
+<p>I&rsquo;ve written technical walkthrough explaining my preparation process, knowledge I gained and the strategy I employed to successfully capture all flags in just <strong>38 minutes</strong>. You can find it <a href="/blogs/cybersecurity/ctf-competition-preparation-journey/">here</a> 👈.</p></blockquote>
+<h2 id="captured-moments">Captured Moments</h2>
+<h3 id="competition-begun">Competition Begun</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-c753f" hidden />
+  <label for="zoomCheck-c753f">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/in-progress.webp"
+      alt="Competition Begun - Sagar Chamling Rai"
+       />
+  </label>
+</p>
+<h3 id="prizes-drawn">Prizes Drawn</h3>
+<div class="center">
+<p>
+  
+  <input type="checkbox" id="zoomCheck-59c35" hidden />
+  <label for="zoomCheck-59c35">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/with-prize.webp"
+      alt="Prizes Drawn - Sagar Chamling Rai"
+       />
+  </label>
+</p>
+</div>
+<h3 id="swags-on">Swags On</h3>
+<div class="center">
+<p>
+  
+  <input type="checkbox" id="zoomCheck-bb59e" hidden />
+  <label for="zoomCheck-bb59e">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/with-swags.webp"
+      alt="Swags On - Sagar Chamling Rai"
+       />
+  </label>
+</p>
+</div>
+<h3 id="stickers-adorn">Stickers Adorn</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-be571" hidden />
+  <label for="zoomCheck-be571">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/sticker-adorn.webp"
+      alt="Stickers Adorn - Sagar Chamling Rai"
+       />
+  </label>
+</p>
+
+
+<style>
+  .center {
+    display: block;
+    width: 60%;
+    margin: auto;
+  }
+</style>
+
+
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

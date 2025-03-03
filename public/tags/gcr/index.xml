@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gcr on Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+    <link>http://localhost:1313/tags/gcr/</link>
+    <description>Recent content in Gcr on Agus Fahmi Aji Pramana&#39;s Blogging Site</description>
+    <image>
+      <title>Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+      <url>http://localhost:1313/logo.svg</url>
+      <link>http://localhost:1313/logo.svg</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 18 Oct 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/gcr/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mission 2 Challenge - Intensive Cloud Training</title>
+      <link>http://localhost:1313/blogs/training/intensive-cloud-training/mission-2-challenge/</link>
+      <pubDate>Wed, 18 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blogs/training/intensive-cloud-training/mission-2-challenge/</guid>
+      <description>Learning and Outcome from Mission 2 Challenge</description>
+      <content:encoded><![CDATA[<h2 id="mission-introduction">Mission Introduction</h2>
+<p>In this mission, I have my Google Cloud SQL instance and Google Kubernetes Engine Cluster up and running from the previous Mission 1. Going further, I&rsquo;ll have to setup MySQL database, deploy image of application to Google Container Registry, deploy the app in cluster as GKE Workload. The main goal is deploy an app and make it publicly accessible.</p>
+<h3 id="inside">Inside</h3>
+<ul>
+<li>Manager IAM user to provide programmatic access to AWS S3 Bucket from Google Kubernetes Cluster app.</li>
+<li>Manually setup user in SQL Cloud, create database and table which will be used by the application.</li>
+<li>Build and upload the docker image in GCR (Google Container Registry).</li>
+<li>Connect the previous made application cluster to Google Cloud Container cluster.</li>
+<li>Apply the application Kubernetes configuration to run upload GCR image in a cluster</li>
+<li>Once, the app is up and running we use the public IP address to access the application.</li>
+</ul>
+<h2 id="begin-hands-on-project">Begin Hands-on Project</h2>
+<h3 id="user-creation-for-kubernetes-cluster-app-to-connect-s3">User creation for Kubernetes cluster app to connect S3</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-1c2de" hidden />
+  <label for="zoomCheck-1c2de">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/system-user.webp"
+      alt="System User Creation"
+       />
+  </label>
+</p>
+<h3 id="create-user-to-access-sql-instance">Create user to access SQL Instance</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-492d7" hidden />
+  <label for="zoomCheck-492d7">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/sql-user.webp"
+      alt="SQL Instance user account"
+       />
+  </label>
+</p>
+<h3 id="create-table-in-mysql-database">Create table in mysql database</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-ea05d" hidden />
+  <label for="zoomCheck-ea05d">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/sql-db-setup.webp"
+      alt="SQL DB Setup"
+       />
+  </label>
+</p>
+<h3 id="build-docker-image-and-push-it-to-gcr">Build Docker image and push it to GCR</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-c602d" hidden />
+  <label for="zoomCheck-c602d">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/console-build.webp"
+      alt="Successful Build"
+       />
+  </label>
+</p>
+<h3 id="container-registry-of-app">Container Registry of App</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-39c6d" hidden />
+  <label for="zoomCheck-39c6d">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/container-registry-build.webp"
+      alt="Container Registry Build"
+       />
+  </label>
+</p>
+<h3 id="connect-to-gke-cluster">Connect to GKE cluster</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-f97f0" hidden />
+  <label for="zoomCheck-f97f0">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/connect-to-cluster.webp"
+      alt="Connect luxxy cluster to GKE cluster"
+       />
+  </label>
+</p>
+<h2 id="mission-accomplished">Mission Accomplished</h2>
+<h3 id="deployed-application-in-cluster-as-workload">Deployed application in Cluster as Workload</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-0528b" hidden />
+  <label for="zoomCheck-0528b">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/kubernetes-workload.webp"
+      alt="Kubernetes workloads"
+       />
+  </label>
+</p>
+<h3 id="browsing-the-application">Browsing the application</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-64e29" hidden />
+  <label for="zoomCheck-64e29">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/running-server.webp"
+      alt="Browsing the application"
+       />
+  </label>
+</p>
+<h2 id="invite-to-the-cloud-bootcamp">Invite to The Cloud Bootcamp</h2>
+<ul>
+<li><a href="https://e.thecloudbootcamp.com/d8z5zO">https://e.thecloudbootcamp.com/d8z5zO</a></li>
+</ul>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

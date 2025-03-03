@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ec-Council on Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+    <link>http://localhost:1313/tags/ec-council/</link>
+    <description>Recent content in Ec-Council on Agus Fahmi Aji Pramana&#39;s Blogging Site</description>
+    <image>
+      <title>Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+      <url>http://localhost:1313/logo.svg</url>
+      <link>http://localhost:1313/logo.svg</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 21 Oct 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/ec-council/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Winner of Capture The Flag Competition</title>
+      <link>http://localhost:1313/honors/winner-of-capture-the-flag-competition/</link>
+      <pubDate>Sat, 21 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/honors/winner-of-capture-the-flag-competition/</guid>
+      <description>Experience sharing of CTF Competition sponsored by EC-Council</description>
+      <content:encoded><![CDATA[<h2 id="expressing-gratitude">Expressing Gratitude</h2>
+<p>I am thrilled and honored to share that I have won the inter-college <abbr title="Capture The Flag">CTF</abbr> Competition sponsored by <a href="https://www.eccouncil.org/"><strong>EC-Council</strong></a>, held at <a href="https://www.saultcollege.ca/"><strong>Sault College</strong></a>, TSW and BSW Campuses. I am grateful for the prize and recognition that I received from EC-Council, and were presented to me by the campus director of Sault College, Toronto South West.</p>
+<p>A special mention must be made of my instructor and program coordinator, who has consistently been a source of inspiration and played a key role in my achievement.</p>
+<h2 id="about-competition">About Competition</h2>
+<p>The challenge was performed on <a href="https://www.cyberq.io/">CyberQ</a>, a cloud-based platform that provides cyber targets for participants to capture the flag. It was individual competition, where each participant had to complete a scenario-based challenge within <em>one hour</em>, with <em>three hints</em> available in each flag at the cost of reduced score.</p>
+<p>The competition involved <strong>red teaming</strong>, individual participants, who performed cyber attacks simulation on target system on a target network and the <strong>white team</strong>, EC-Council’s technical team, who monitored and evaluated the performance of the participants.</p>
+<blockquote>
+<p>I&rsquo;ve written technical walkthrough explaining my preparation process, knowledge I gained and the strategy I employed to successfully capture all flags in just <strong>38 minutes</strong>. You can find it <a href="/blogs/cybersecurity/ctf-competition-preparation-journey/">here</a> 👈.</p></blockquote>
+<h2 id="captured-moments">Captured Moments</h2>
+<h3 id="competition-begun">Competition Begun</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-c753f" hidden />
+  <label for="zoomCheck-c753f">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/in-progress.webp"
+      alt="Competition Begun - Sagar Chamling Rai"
+       />
+  </label>
+</p>
+<h3 id="prizes-drawn">Prizes Drawn</h3>
+<div class="center">
+<p>
+  
+  <input type="checkbox" id="zoomCheck-59c35" hidden />
+  <label for="zoomCheck-59c35">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/with-prize.webp"
+      alt="Prizes Drawn - Sagar Chamling Rai"
+       />
+  </label>
+</p>
+</div>
+<h3 id="swags-on">Swags On</h3>
+<div class="center">
+<p>
+  
+  <input type="checkbox" id="zoomCheck-bb59e" hidden />
+  <label for="zoomCheck-bb59e">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/with-swags.webp"
+      alt="Swags On - Sagar Chamling Rai"
+       />
+  </label>
+</p>
+</div>
+<h3 id="stickers-adorn">Stickers Adorn</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-be571" hidden />
+  <label for="zoomCheck-be571">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/sticker-adorn.webp"
+      alt="Stickers Adorn - Sagar Chamling Rai"
+       />
+  </label>
+</p>
+
+
+<style>
+  .center {
+    display: block;
+    width: 60%;
+    margin: auto;
+  }
+</style>
+
+
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Capture The Flag Competition Preparation Journey</title>
+      <link>http://localhost:1313/blogs/cybersecurity/ctf-competition-preparation-journey/</link>
+      <pubDate>Thu, 19 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blogs/cybersecurity/ctf-competition-preparation-journey/</guid>
+      <description>Experience sharing, Cracking CTF preparation for competition</description>
+      <content:encoded><![CDATA[<blockquote>
+<p><strong>Important Note</strong>: Always follow ethical guidelines. Never use these skills for illegal activities.</p></blockquote>
+<blockquote>
+<p>You can find competition galleries <a href="/honors/winner-of-capture-the-flag-competition/">here</a> 👈.</p></blockquote>
+<h2 id="familiarization">Familiarization</h2>
+<p>The preparation journey led me to platforms like <strong>Hack The Box</strong>, <strong>TryHackMe</strong>, and <strong>CyberQ</strong>, all of which offered a free tier Capture the Flag resources and challenges, it helped me get started.</p>
+<p>I began solving basic challenges and gradually familiarized with the platforms, gaining fundamental skills in <em>port scanning</em> and <em>network discovery</em> done for <strong>enumeration</strong> as part of the <strong>reconnaissance</strong> process. As I progressed, I gained knowledge about potential network port specific <em>misconfigurations</em> that could potentially <em>bypass authentication</em>. In most challenges, <em>password cracking</em>, <em>directory traversal</em>, <em>reverse shell</em> and <em>achieving privilege escalation</em> were intermediate steps crucial for capturing the flags. I realized the importance of becoming proficient in these concepts in ethical hacking.</p>
+<blockquote>
+<p>Understanding all the concepts and tools was challenging, so I began to compile reference notes. This not only helped me memorize but also served as a handy guide. You can refer <a href="/categories/ethical-hacking/">here</a> 👈.</p></blockquote>
+<h2 id="building-mindset">Building Mindset</h2>
+<p>CTF challenges and competitions can vary based on different cloud platforms. Here are the basic strategy to help you start building a mindset for cracking CTFs:</p>
+<h3 id="enumeration">Enumeration</h3>
+<ul>
+<li>Discover networks to find the IP address of active hosts in the given network.</li>
+<li>Scan for operating system, open service ports with versions and look for common misconfigurations that could lead to bypass the authentication process.</li>
+<li>Use a browser to explore the application or perform directory traversal to find unsecured hidden paths.</li>
+</ul>
+<h3 id="exploitation">Exploitation</h3>
+<ul>
+<li>If password locking is an issue, there are many ways to crack passwords using dictionary or brute force attacks. Depending on the situation and target platform, decide which tools will be most effective for cracking password.</li>
+<li>Familiarize with the concept of reverse shell and tools that can generate the reverse shell file. This file will help us redirect to the target computer&rsquo;s shell, granting remote access.</li>
+<li>This file can be injected either after connecting through open ports or from cracked password.</li>
+<li>Once attacker get into the target system, there&rsquo;s a likelihood of further more misconfigurations. These can allow attacker to perform privilege escalation, potentially granting elevated access to resources.</li>
+</ul>
+<h2 id="competition">Competition</h2>
+<h3 id="context">Context</h3>
+<p>We were given a scenario with instructions and vulnerable cloud system in EC-Council&rsquo;s CyberQ platform. There were seven flags in total to capture, with the final one being the most challenging. Each flag was linked to the previous one, either directly or indirectly, and the seventh flag couldn’t be captured without finding the first six. In this challenge, we had to demonstrate scanning network skills, password cracking skills, reverse shell and privilege escalation in a Linux based target system.</p>
+<h3 id="the-pain">The Pain</h3>
+<p>Unfortunately, many of us faced difficulties as the virtual machine (VM) provided for the competition was hosted on a server in <strong>Singapore</strong>. Accessing it from <strong>North America</strong> resulted in a slow server response, <em>keyboard input lag</em>, and <em>key bouncing</em>. Despite the intense competitive environment and the server frustration, I successfully captured all the flags in just 38 minutes.</p>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-22a7b" hidden />
+  <label for="zoomCheck-22a7b">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/result.webp"
+      alt="CyberQ Result"
+       />
+  </label>
+</p>
+<h3 id="answer-hint">Answer Hint</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Pattern</th>
+          <th>Description</th>
+          <th>Example</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>N, NN</td>
+          <td>Represents single or two digit numeric</td>
+          <td>6, 22</td>
+      </tr>
+      <tr>
+          <td>aaaaaa</td>
+          <td>Represents all small alphabet of length 6</td>
+          <td>hannaa</td>
+      </tr>
+      <tr>
+          <td>aaaaaaaaaa-aaaaa-aaaaaa</td>
+          <td>Represents small alphabets with exact length and hyphen in between</td>
+          <td>gracemedia-media-player</td>
+      </tr>
+      <tr>
+          <td>NANNNNaaN.NaaNNaN-NNaNaNaNNNNNNNAN</td>
+          <td>Represents combination of alphabets and numbers</td>
+          <td>1F6154fc2.7fa29a5-48c6a7b6902590E7</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="tips">Tips</h3>
+<ul>
+<li>
+<p><strong>CyberQ Tip</strong>: To overcome the key bouncing issue, I typed commands in my system’s notepad and then copied them to the CyberQ VM using the <strong>Paste Clipboard Text</strong> button.</p>
+</li>
+<li>
+<p><strong>Troubleshooting Tip</strong>: <strong>Reset</strong> your VM, if you face black screen of death or any OS issue.</p>
+</li>
+<li>
+<p><strong>Submission Tip</strong>: It is specific to CyberQ, even if you submit all your flags correctly, the time doesn&rsquo;t stop unless you <strong>Ends/Terminates the running</strong> by the VM using the <strong>red power</strong> button. Then, finish lab by clicking <strong>Finish</strong> button.</p>
+</li>
+</ul>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

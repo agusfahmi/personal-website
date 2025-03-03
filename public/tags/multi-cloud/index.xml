@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Multi-Cloud on Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+    <link>http://localhost:1313/tags/multi-cloud/</link>
+    <description>Recent content in Multi-Cloud on Agus Fahmi Aji Pramana&#39;s Blogging Site</description>
+    <image>
+      <title>Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+      <url>http://localhost:1313/logo.svg</url>
+      <link>http://localhost:1313/logo.svg</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 19 Oct 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/multi-cloud/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mission 1 Challenge - Intensive Cloud Training</title>
+      <link>http://localhost:1313/blogs/training/intensive-cloud-training/mission-1-challenge/</link>
+      <pubDate>Tue, 17 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blogs/training/intensive-cloud-training/mission-1-challenge/</guid>
+      <description>Learning and Outcome from Mission 1 Challenge</description>
+      <content:encoded><![CDATA[<h2 id="mission-introduction">Mission Introduction</h2>
+<p>In this mission, I have to setup free tier of AWS and Google Cloud Account. Multi-Cloud is when any organization uses different cloud service providers to successfully run an application. It is also referred as a strategy of using the best services from two or more Cloud providers.</p>
+<h3 id="inside">Inside</h3>
+<ul>
+<li>Manager IAM user to provide programmatic access to Terraform user.</li>
+<li>We use Terraform (IaC) to provision Google Cloud SQL, GKE Cluster and AWS S3 Bucket using Google CloudShell.</li>
+</ul>
+<h2 id="join-community">Join Community</h2>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-5ca57" hidden />
+  <label for="zoomCheck-5ca57">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/introduce.webp"
+      alt="Introduce in Community"
+       />
+  </label>
+</p>
+<h2 id="aws-and-google-cloud-account-setup">AWS and Google Cloud Account Setup</h2>
+<h3 id="aws">AWS</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-17cb4" hidden />
+  <label for="zoomCheck-17cb4">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/aws-account.webp"
+      alt="AWS account"
+       />
+  </label>
+</p>
+<h3 id="google-cloud">Google Cloud</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-0fb67" hidden />
+  <label for="zoomCheck-0fb67">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/google-cloud-account.webp"
+      alt="Google Cloud account"
+       />
+  </label>
+</p>
+<h4 id="free-trail">Free Trail</h4>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-c1fea" hidden />
+  <label for="zoomCheck-c1fea">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/google-cloud-account-console.webp"
+      alt="Google Cloud Free Trail account"
+       />
+  </label>
+</p>
+<h2 id="begin-hands-on-project">Begin Hands-on Project</h2>
+<h3 id="setting-up-terraform-user-in-aws-iam">Setting up Terraform user in AWS IAM</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-b45f9" hidden />
+  <label for="zoomCheck-b45f9">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/iam-user.webp"
+      alt="IAM User Setup"
+       />
+  </label>
+</p>
+<h3 id="running-commands-in-google-cloudshell">Running commands in Google CloudShell</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-7ecee" hidden />
+  <label for="zoomCheck-7ecee">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/google-cloudshell.webp"
+      alt="Running commands in Google CloudShell"
+       />
+  </label>
+</p>
+<h3 id="initializing-terraform">Initializing Terraform</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-e2897" hidden />
+  <label for="zoomCheck-e2897">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/terraform-init.webp"
+      alt="Google Console Initialize Terraform"
+       />
+  </label>
+</p>
+<h3 id="aws-s3-bucket-setup-via-terraform">AWS S3 Bucket Setup via. Terraform</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-31282" hidden />
+  <label for="zoomCheck-31282">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/s3-bucket.webp"
+      alt="AWS S3 Bucket Setup"
+       />
+  </label>
+</p>
+<h3 id="google-sql-and-kubernetes-cluster-setup-via-terraform">Google SQL and Kubernetes Cluster Setup via. Terraform</h3>
+<h4 id="sql">SQL</h4>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-6ca38" hidden />
+  <label for="zoomCheck-6ca38">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/sql-instance.webp"
+      alt="SQL Instance"
+       />
+  </label>
+</p>
+<h4 id="kubernetes-cluster">Kubernetes Cluster</h4>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-b320b" hidden />
+  <label for="zoomCheck-b320b">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/kubernetes-cluster.webp"
+      alt="Kubernetes Cluster"
+       />
+  </label>
+</p>
+<h3 id="sql-network-configuration">SQL Network Configuration</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-4dd5c" hidden />
+  <label for="zoomCheck-4dd5c">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/sql-network-configuration.webp"
+      alt="SQL Network Configuration"
+       />
+  </label>
+</p>
+<h2 id="mission-accomplished">Mission Accomplished</h2>
+<h3 id="sql-instance">SQL Instance</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-c3d60" hidden />
+  <label for="zoomCheck-c3d60">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/sql-complete-setup.webp"
+      alt="SQL Instance Up and Running"
+       />
+  </label>
+</p>
+<h3 id="kubernetes">Kubernetes</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-c4627" hidden />
+  <label for="zoomCheck-c4627">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/kubernetes-complete-setup.webp"
+      alt="Kubernetes Complete Setup"
+       />
+  </label>
+</p>
+<h2 id="linkedin-post">LinkedIn Post</h2>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-b1371" hidden />
+  <label for="zoomCheck-b1371">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/linkedin-post.webp"
+      alt="LinkedIn Post"
+       />
+  </label>
+</p>
+<h2 id="invite-to-the-cloud-bootcamp">Invite to The Cloud Bootcamp</h2>
+<ul>
+<li><a href="https://e.thecloudbootcamp.com/d8z5zO">https://e.thecloudbootcamp.com/d8z5zO</a></li>
+</ul>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Mission 2 Challenge - Intensive Cloud Training</title>
+      <link>http://localhost:1313/blogs/training/intensive-cloud-training/mission-2-challenge/</link>
+      <pubDate>Wed, 18 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blogs/training/intensive-cloud-training/mission-2-challenge/</guid>
+      <description>Learning and Outcome from Mission 2 Challenge</description>
+      <content:encoded><![CDATA[<h2 id="mission-introduction">Mission Introduction</h2>
+<p>In this mission, I have my Google Cloud SQL instance and Google Kubernetes Engine Cluster up and running from the previous Mission 1. Going further, I&rsquo;ll have to setup MySQL database, deploy image of application to Google Container Registry, deploy the app in cluster as GKE Workload. The main goal is deploy an app and make it publicly accessible.</p>
+<h3 id="inside">Inside</h3>
+<ul>
+<li>Manager IAM user to provide programmatic access to AWS S3 Bucket from Google Kubernetes Cluster app.</li>
+<li>Manually setup user in SQL Cloud, create database and table which will be used by the application.</li>
+<li>Build and upload the docker image in GCR (Google Container Registry).</li>
+<li>Connect the previous made application cluster to Google Cloud Container cluster.</li>
+<li>Apply the application Kubernetes configuration to run upload GCR image in a cluster</li>
+<li>Once, the app is up and running we use the public IP address to access the application.</li>
+</ul>
+<h2 id="begin-hands-on-project">Begin Hands-on Project</h2>
+<h3 id="user-creation-for-kubernetes-cluster-app-to-connect-s3">User creation for Kubernetes cluster app to connect S3</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-1c2de" hidden />
+  <label for="zoomCheck-1c2de">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/system-user.webp"
+      alt="System User Creation"
+       />
+  </label>
+</p>
+<h3 id="create-user-to-access-sql-instance">Create user to access SQL Instance</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-492d7" hidden />
+  <label for="zoomCheck-492d7">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/sql-user.webp"
+      alt="SQL Instance user account"
+       />
+  </label>
+</p>
+<h3 id="create-table-in-mysql-database">Create table in mysql database</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-ea05d" hidden />
+  <label for="zoomCheck-ea05d">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/sql-db-setup.webp"
+      alt="SQL DB Setup"
+       />
+  </label>
+</p>
+<h3 id="build-docker-image-and-push-it-to-gcr">Build Docker image and push it to GCR</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-c602d" hidden />
+  <label for="zoomCheck-c602d">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/console-build.webp"
+      alt="Successful Build"
+       />
+  </label>
+</p>
+<h3 id="container-registry-of-app">Container Registry of App</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-39c6d" hidden />
+  <label for="zoomCheck-39c6d">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/container-registry-build.webp"
+      alt="Container Registry Build"
+       />
+  </label>
+</p>
+<h3 id="connect-to-gke-cluster">Connect to GKE cluster</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-f97f0" hidden />
+  <label for="zoomCheck-f97f0">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/connect-to-cluster.webp"
+      alt="Connect luxxy cluster to GKE cluster"
+       />
+  </label>
+</p>
+<h2 id="mission-accomplished">Mission Accomplished</h2>
+<h3 id="deployed-application-in-cluster-as-workload">Deployed application in Cluster as Workload</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-0528b" hidden />
+  <label for="zoomCheck-0528b">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/kubernetes-workload.webp"
+      alt="Kubernetes workloads"
+       />
+  </label>
+</p>
+<h3 id="browsing-the-application">Browsing the application</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-64e29" hidden />
+  <label for="zoomCheck-64e29">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/running-server.webp"
+      alt="Browsing the application"
+       />
+  </label>
+</p>
+<h2 id="invite-to-the-cloud-bootcamp">Invite to The Cloud Bootcamp</h2>
+<ul>
+<li><a href="https://e.thecloudbootcamp.com/d8z5zO">https://e.thecloudbootcamp.com/d8z5zO</a></li>
+</ul>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Mission 3 Challenge - Intensive Cloud Training</title>
+      <link>http://localhost:1313/blogs/training/intensive-cloud-training/mission-3-challenge/</link>
+      <pubDate>Thu, 19 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blogs/training/intensive-cloud-training/mission-3-challenge/</guid>
+      <description>Learning and Outcome from Mission 3 Challenge</description>
+      <content:encoded><![CDATA[<h2 id="mission-introduction">Mission Introduction</h2>
+<p>In this mission, we&rsquo;ll perform the database migration and files migration in Google Cloud SQL and AWS S3 respectively. After the migration process is done, we successfully finished all the mission from the trainings. Then we start to deprovision and delete all the resources to avoid charges in Cloud Services.</p>
+<h3 id="inside">Inside</h3>
+<ul>
+<li>We migrate the SQL dump file data to Google Cloud SQL using Google Cloud Shell.</li>
+<li>Then, we migrate the PDF files to S3 Bucket using AWS CloudShell.</li>
+<li>Deprovision and delete all resource using Terraform.</li>
+</ul>
+<h2 id="begin-hands-on-project">Begin Hands-on Project</h2>
+<h3 id="database-migration-to-google-cloud-sql-using-mysql-dump">Database migration to Google Cloud SQL using MySQL dump</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-5aa00" hidden />
+  <label for="zoomCheck-5aa00">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/dump-mysql.webp"
+      alt="Dump MySQL to Google CLoud"
+       />
+  </label>
+</p>
+<h3 id="pdf-files-migration-to-s3-bucket-using-aws-cloudshell">PDF Files Migration to S3 Bucket using AWS CloudShell</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-ac596" hidden />
+  <label for="zoomCheck-ac596">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/aws-cloudshell-upload.webp"
+      alt="AWS CloudShell PDF Uploads"
+       />
+  </label>
+</p>
+<h3 id="uploaded-files-in-aws-s3-bucket">Uploaded files in AWS S3 Bucket</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-e589b" hidden />
+  <label for="zoomCheck-e589b">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/listing-aws-s3.webp"
+      alt="Uploaded file in AWS S3 Bucket"
+       />
+  </label>
+</p>
+<h2 id="mission-accomplished">Mission Accomplished</h2>
+<h3 id="navigating-records-in-application">Navigating records in Application</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-ac1ce" hidden />
+  <label for="zoomCheck-ac1ce">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/navigating-records.webp"
+      alt="Navigating records in App"
+       />
+  </label>
+</p>
+<h3 id="accessing-the-file-from-application">Accessing the file from Application</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-5efe8" hidden />
+  <label for="zoomCheck-5efe8">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/accessing-file.webp"
+      alt="Accessing the file from Application"
+       />
+  </label>
+</p>
+<h2 id="cleanup">Cleanup</h2>
+<h3 id="disabling-deletion-protection-in-terraform-file">Disabling deletion protection in Terraform file</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-6c4a3" hidden />
+  <label for="zoomCheck-6c4a3">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/cloud-editor.webp"
+      alt="Updating configuration in Cloud Editor"
+       />
+  </label>
+</p>
+<h3 id="disabling-deletion-protection-in-tfstate">Disabling deletion protection in tfstate</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-5549d" hidden />
+  <label for="zoomCheck-5549d">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/cloud-editor-changes.webp"
+      alt="Updating tfstate in Cloud Editor"
+       />
+  </label>
+</p>
+<h3 id="deleted-resources">Deleted resources</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-061b6" hidden />
+  <label for="zoomCheck-061b6">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/deleted-resources.webp"
+      alt="Deleted resources"
+       />
+  </label>
+</p>
+<h2 id="certificate-of-completion">Certificate of Completion</h2>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-7e138" hidden />
+  <label for="zoomCheck-7e138">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/certificate.webp"
+      alt="Alt text"
+       />
+  </label>
+</p>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

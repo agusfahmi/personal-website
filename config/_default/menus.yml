@@ -1,0 +1,16 @@
+main:
+  - name: About Me
+    url: about-me
+    weight: 1
+  - name: Blogs
+    url: blogs
+    weight: 2
+  - name: Projects
+    url: projects
+    weight: 3
+  - name: Slides
+    url: slides
+    weight: 4
+  - name: Honors
+    url: honors
+    weight: 5

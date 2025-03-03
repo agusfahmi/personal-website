@@ -1,0 +1,833 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kubernetes on Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+    <link>http://localhost:1313/tags/kubernetes/</link>
+    <description>Recent content in Kubernetes on Agus Fahmi Aji Pramana&#39;s Blogging Site</description>
+    <image>
+      <title>Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+      <url>http://localhost:1313/logo.svg</url>
+      <link>http://localhost:1313/logo.svg</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 11 Feb 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Introduction to Containers, Docker, and IBM Cloud Container Registry Lab</title>
+      <link>http://localhost:1313/blogs/training/introduction-to-containers/introduction-to-containers-docker-ibm-cloud-container-registry-lab/</link>
+      <pubDate>Sun, 11 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blogs/training/introduction-to-containers/introduction-to-containers-docker-ibm-cloud-container-registry-lab/</guid>
+      <description>Explore and work on a hand-on Container, Docker and IBM Container Registry</description>
+      <content:encoded><![CDATA[<h2 id="objectives">Objectives</h2>
+<p>In this lab, I will:</p>
+<ul>
+<li>Pull an image from Docker Hub</li>
+<li>Run an image as a container using docker</li>
+<li>Build an image using a Dockerfile</li>
+<li>Push an image to IBM Cloud Container Registry</li>
+</ul>
+<h2 id="verify-environment-and-command-line-tools">Verify Environment and Command line tools</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ docker --version
+</span></span><span class="line"><span class="cl">Docker version 24.0.7, build afdd53b
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ ibmcloud version
+</span></span><span class="line"><span class="cl">ibmcloud version 2.20.0+f382323-2023-09-19T20:06:39+00:00
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ <span class="o">[</span> ! -d <span class="s1">&#39;CC201&#39;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> git clone <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  https://github.com/ibm-developer-skills-network/CC201.git
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> CC201/labs/1_ContainersAndDocker/
+</span></span><span class="line"><span class="cl">$ ls
+</span></span><span class="line"><span class="cl">Dockerfile  app.js  package.json
+</span></span></code></pre></div><h2 id="pulling-an-image-from-docker-hub-and-running-as-a-container">Pulling an image from Docker Hub and running as a container</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># listing images, initially empty</span>
+</span></span><span class="line"><span class="cl">$ docker images
+</span></span><span class="line"><span class="cl">REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># pull docker hello-world from Docker Hub</span>
+</span></span><span class="line"><span class="cl">$ docker pull hello-world
+</span></span><span class="line"><span class="cl">Using default tag: latest
+</span></span><span class="line"><span class="cl">latest: Pulling from library/hello-world
+</span></span><span class="line"><span class="cl">c1ec31eb5944: Pull <span class="nb">complete</span>
+</span></span><span class="line"><span class="cl">Digest: sha256:encoded-code
+</span></span><span class="line"><span class="cl">Status: Downloaded newer image <span class="k">for</span> hello-world:latest
+</span></span><span class="line"><span class="cl">docker.io/library/hello-world:latest
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># listing images again</span>
+</span></span><span class="line"><span class="cl">$ docker images
+</span></span><span class="line"><span class="cl">REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+</span></span><span class="line"><span class="cl">hello-world   latest    d2c94e258dcb   <span class="m">9</span> months ago   13.3kB
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># running `hello-world` image as a container</span>
+</span></span><span class="line"><span class="cl">$ docker run hello-world
+</span></span><span class="line"><span class="cl">Hello from Docker!
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># list the containers to see it exited successfully</span>
+</span></span><span class="line"><span class="cl">$ docker ps -a
+</span></span><span class="line"><span class="cl">CONTAINER ID IMAGE       COMMAND  CREATED STATUS   PORTS   NAMES
+</span></span><span class="line"><span class="cl">9c755c404f2c hello-world <span class="s2">&#34;/hello&#34;</span> <span class="m">1</span> sec   Exited <span class="o">(</span>0<span class="o">)</span> <span class="m">3</span> sec reverent_hoover
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># remove container</span>
+</span></span><span class="line"><span class="cl">$ docker container rm 9c755c404f2c
+</span></span><span class="line"><span class="cl">9c755c404f2c
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># verify the container has been removed</span>
+</span></span><span class="line"><span class="cl">$ docker ps -a
+</span></span><span class="line"><span class="cl">CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+</span></span></code></pre></div><h2 id="build-an-image-using-dockerfile">Build an image using Dockerfile</h2>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-ead9e" hidden />
+  <label for="zoomCheck-ead9e">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/exploring-dockerfile.webp"
+      alt="Exploring Dockerfile"
+       />
+  </label>
+</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ docker build . -t myimage:v1
+</span></span><span class="line"><span class="cl"><span class="o">=</span>&gt; <span class="o">=</span>&gt; naming to docker.io/library/myimage:v1          0.0s
+</span></span></code></pre></div><h2 id="run-the-image-as-a-container">Run the image as a container</h2>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-f2777" hidden />
+  <label for="zoomCheck-f2777">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/exploring-codebase.webp"
+      alt="Exploring codebase"
+       />
+  </label>
+</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># run container</span>
+</span></span><span class="line"><span class="cl">docker run -dp 8080:8080 myimage:v1
+</span></span><span class="line"><span class="cl">349f19114bfcb01a40328092a687f0cd18da3c97e07c8bb6e99e87aaeb4c83d4
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ping the application</span>
+</span></span><span class="line"><span class="cl">curl localhost:8080
+</span></span><span class="line"><span class="cl">Hello world from 349f19114bfc! Your app is up and running!
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># stop the list of all running container</span>
+</span></span><span class="line"><span class="cl">docker stop <span class="k">$(</span>docker ps -q<span class="k">)</span>
+</span></span><span class="line"><span class="cl">349f19114bfc
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># check container has stopped or not</span>
+</span></span><span class="line"><span class="cl">docker ps
+</span></span><span class="line"><span class="cl">CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+</span></span></code></pre></div><h2 id="push-the-image-to-ibm-cloud-container-registry">Push the image to IBM Cloud Container Registry</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># environment has already logged into IBM Cloud account</span>
+</span></span><span class="line"><span class="cl">$ ibmcloud target
+</span></span><span class="line"><span class="cl">API endpoint:   https://cloud.ibm.com
+</span></span><span class="line"><span class="cl">Region:         us-south
+</span></span><span class="line"><span class="cl">User:           ServiceId-9917a3b5-23f8-4163-a5f6-463699167d84 <span class="o">(</span>sn-labs-x<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Account:        QuickLabs - IBM Skills Network <span class="o">(</span>xyz<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Resource group: No resource group targeted
+</span></span><span class="line"><span class="cl">CF API endpoint:
+</span></span><span class="line"><span class="cl">Org:
+</span></span><span class="line"><span class="cl">Space:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># environment has created ICR namespace for you</span>
+</span></span><span class="line"><span class="cl">$ ibmcloud cr namespaces
+</span></span><span class="line"><span class="cl">Listing namespaces <span class="k">for</span> account <span class="s1">&#39;IBM Skills Network&#39;</span> in registry <span class="s1">&#39;us.icr.io&#39;</span>.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Namespace
+</span></span><span class="line"><span class="cl">sn-labs-x
+</span></span><span class="line"><span class="cl">sn-labsassets
+</span></span><span class="line"><span class="cl">OK
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># setting appropriate region where the namespace reside</span>
+</span></span><span class="line"><span class="cl">$ ibmcloud cr region-set us-south
+</span></span><span class="line"><span class="cl">The region is <span class="nb">set</span> to <span class="s1">&#39;us-south&#39;</span>, the registry is <span class="s1">&#39;us.icr.io&#39;</span>
+</span></span><span class="line"><span class="cl">OK
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># login to local Docker daemon into IBM Cloud Registry</span>
+</span></span><span class="line"><span class="cl">$ ibmcloud cr login
+</span></span><span class="line"><span class="cl">Logging <span class="s1">&#39;docker&#39;</span> in to <span class="s1">&#39;us.icr.io&#39;</span>...
+</span></span><span class="line"><span class="cl">Logged in to <span class="s1">&#39;us.icr.io&#39;</span>.
+</span></span><span class="line"><span class="cl">OK
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># export namespace as environment variable</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">export</span> <span class="nv">MY_NAMESPACE</span><span class="o">=</span>sn-labs-<span class="nv">$USERNAME</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># tag image so that it can be pushed</span>
+</span></span><span class="line"><span class="cl">$ docker tag myimage:v1 us.icr.io/<span class="nv">$MY_NAMESPACE</span>/hello-world:1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># push the newly tagged image to ICR</span>
+</span></span><span class="line"><span class="cl">$ docker push us.icr.io/<span class="nv">$MY_NAMESPACE</span>/hello-world:1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># to only view images within a specific namespace</span>
+</span></span><span class="line"><span class="cl">$ ibmcloud cr images --restrict <span class="nv">$MY_NAMESPACE</span>
+</span></span><span class="line"><span class="cl">ibmcloud cr images --restrict <span class="nv">$MY_NAMESPACE</span>
+</span></span><span class="line"><span class="cl">Listing images...
+</span></span><span class="line"><span class="cl">Repository                        Tag   Digest         Namespace   Created
+</span></span><span class="line"><span class="cl">us.icr.io/sn-labs-x/hello-world   <span class="m">1</span>     b63783d1b808   sn-labs-x   z sec
+</span></span><span class="line"><span class="cl">OK
+</span></span></code></pre></div><h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.coursera.org/learn/ibm-containers-docker-kubernetes-openshift">https://www.coursera.org/learn/ibm-containers-docker-kubernetes-openshift</a></li>
+</ul>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Mission 1 Challenge - Intensive Cloud Training</title>
+      <link>http://localhost:1313/blogs/training/intensive-cloud-training/mission-1-challenge/</link>
+      <pubDate>Tue, 17 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blogs/training/intensive-cloud-training/mission-1-challenge/</guid>
+      <description>Learning and Outcome from Mission 1 Challenge</description>
+      <content:encoded><![CDATA[<h2 id="mission-introduction">Mission Introduction</h2>
+<p>In this mission, I have to setup free tier of AWS and Google Cloud Account. Multi-Cloud is when any organization uses different cloud service providers to successfully run an application. It is also referred as a strategy of using the best services from two or more Cloud providers.</p>
+<h3 id="inside">Inside</h3>
+<ul>
+<li>Manager IAM user to provide programmatic access to Terraform user.</li>
+<li>We use Terraform (IaC) to provision Google Cloud SQL, GKE Cluster and AWS S3 Bucket using Google CloudShell.</li>
+</ul>
+<h2 id="join-community">Join Community</h2>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-5ca57" hidden />
+  <label for="zoomCheck-5ca57">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/introduce.webp"
+      alt="Introduce in Community"
+       />
+  </label>
+</p>
+<h2 id="aws-and-google-cloud-account-setup">AWS and Google Cloud Account Setup</h2>
+<h3 id="aws">AWS</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-17cb4" hidden />
+  <label for="zoomCheck-17cb4">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/aws-account.webp"
+      alt="AWS account"
+       />
+  </label>
+</p>
+<h3 id="google-cloud">Google Cloud</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-0fb67" hidden />
+  <label for="zoomCheck-0fb67">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/google-cloud-account.webp"
+      alt="Google Cloud account"
+       />
+  </label>
+</p>
+<h4 id="free-trail">Free Trail</h4>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-c1fea" hidden />
+  <label for="zoomCheck-c1fea">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/google-cloud-account-console.webp"
+      alt="Google Cloud Free Trail account"
+       />
+  </label>
+</p>
+<h2 id="begin-hands-on-project">Begin Hands-on Project</h2>
+<h3 id="setting-up-terraform-user-in-aws-iam">Setting up Terraform user in AWS IAM</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-b45f9" hidden />
+  <label for="zoomCheck-b45f9">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/iam-user.webp"
+      alt="IAM User Setup"
+       />
+  </label>
+</p>
+<h3 id="running-commands-in-google-cloudshell">Running commands in Google CloudShell</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-7ecee" hidden />
+  <label for="zoomCheck-7ecee">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/google-cloudshell.webp"
+      alt="Running commands in Google CloudShell"
+       />
+  </label>
+</p>
+<h3 id="initializing-terraform">Initializing Terraform</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-e2897" hidden />
+  <label for="zoomCheck-e2897">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/terraform-init.webp"
+      alt="Google Console Initialize Terraform"
+       />
+  </label>
+</p>
+<h3 id="aws-s3-bucket-setup-via-terraform">AWS S3 Bucket Setup via. Terraform</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-31282" hidden />
+  <label for="zoomCheck-31282">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/s3-bucket.webp"
+      alt="AWS S3 Bucket Setup"
+       />
+  </label>
+</p>
+<h3 id="google-sql-and-kubernetes-cluster-setup-via-terraform">Google SQL and Kubernetes Cluster Setup via. Terraform</h3>
+<h4 id="sql">SQL</h4>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-6ca38" hidden />
+  <label for="zoomCheck-6ca38">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/sql-instance.webp"
+      alt="SQL Instance"
+       />
+  </label>
+</p>
+<h4 id="kubernetes-cluster">Kubernetes Cluster</h4>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-b320b" hidden />
+  <label for="zoomCheck-b320b">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/kubernetes-cluster.webp"
+      alt="Kubernetes Cluster"
+       />
+  </label>
+</p>
+<h3 id="sql-network-configuration">SQL Network Configuration</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-4dd5c" hidden />
+  <label for="zoomCheck-4dd5c">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/sql-network-configuration.webp"
+      alt="SQL Network Configuration"
+       />
+  </label>
+</p>
+<h2 id="mission-accomplished">Mission Accomplished</h2>
+<h3 id="sql-instance">SQL Instance</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-c3d60" hidden />
+  <label for="zoomCheck-c3d60">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/sql-complete-setup.webp"
+      alt="SQL Instance Up and Running"
+       />
+  </label>
+</p>
+<h3 id="kubernetes">Kubernetes</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-c4627" hidden />
+  <label for="zoomCheck-c4627">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/kubernetes-complete-setup.webp"
+      alt="Kubernetes Complete Setup"
+       />
+  </label>
+</p>
+<h2 id="linkedin-post">LinkedIn Post</h2>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-b1371" hidden />
+  <label for="zoomCheck-b1371">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/linkedin-post.webp"
+      alt="LinkedIn Post"
+       />
+  </label>
+</p>
+<h2 id="invite-to-the-cloud-bootcamp">Invite to The Cloud Bootcamp</h2>
+<ul>
+<li><a href="https://e.thecloudbootcamp.com/d8z5zO">https://e.thecloudbootcamp.com/d8z5zO</a></li>
+</ul>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Mission 2 Challenge - Intensive Cloud Training</title>
+      <link>http://localhost:1313/blogs/training/intensive-cloud-training/mission-2-challenge/</link>
+      <pubDate>Wed, 18 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blogs/training/intensive-cloud-training/mission-2-challenge/</guid>
+      <description>Learning and Outcome from Mission 2 Challenge</description>
+      <content:encoded><![CDATA[<h2 id="mission-introduction">Mission Introduction</h2>
+<p>In this mission, I have my Google Cloud SQL instance and Google Kubernetes Engine Cluster up and running from the previous Mission 1. Going further, I&rsquo;ll have to setup MySQL database, deploy image of application to Google Container Registry, deploy the app in cluster as GKE Workload. The main goal is deploy an app and make it publicly accessible.</p>
+<h3 id="inside">Inside</h3>
+<ul>
+<li>Manager IAM user to provide programmatic access to AWS S3 Bucket from Google Kubernetes Cluster app.</li>
+<li>Manually setup user in SQL Cloud, create database and table which will be used by the application.</li>
+<li>Build and upload the docker image in GCR (Google Container Registry).</li>
+<li>Connect the previous made application cluster to Google Cloud Container cluster.</li>
+<li>Apply the application Kubernetes configuration to run upload GCR image in a cluster</li>
+<li>Once, the app is up and running we use the public IP address to access the application.</li>
+</ul>
+<h2 id="begin-hands-on-project">Begin Hands-on Project</h2>
+<h3 id="user-creation-for-kubernetes-cluster-app-to-connect-s3">User creation for Kubernetes cluster app to connect S3</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-1c2de" hidden />
+  <label for="zoomCheck-1c2de">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/system-user.webp"
+      alt="System User Creation"
+       />
+  </label>
+</p>
+<h3 id="create-user-to-access-sql-instance">Create user to access SQL Instance</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-492d7" hidden />
+  <label for="zoomCheck-492d7">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/sql-user.webp"
+      alt="SQL Instance user account"
+       />
+  </label>
+</p>
+<h3 id="create-table-in-mysql-database">Create table in mysql database</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-ea05d" hidden />
+  <label for="zoomCheck-ea05d">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/sql-db-setup.webp"
+      alt="SQL DB Setup"
+       />
+  </label>
+</p>
+<h3 id="build-docker-image-and-push-it-to-gcr">Build Docker image and push it to GCR</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-c602d" hidden />
+  <label for="zoomCheck-c602d">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/console-build.webp"
+      alt="Successful Build"
+       />
+  </label>
+</p>
+<h3 id="container-registry-of-app">Container Registry of App</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-39c6d" hidden />
+  <label for="zoomCheck-39c6d">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/container-registry-build.webp"
+      alt="Container Registry Build"
+       />
+  </label>
+</p>
+<h3 id="connect-to-gke-cluster">Connect to GKE cluster</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-f97f0" hidden />
+  <label for="zoomCheck-f97f0">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/connect-to-cluster.webp"
+      alt="Connect luxxy cluster to GKE cluster"
+       />
+  </label>
+</p>
+<h2 id="mission-accomplished">Mission Accomplished</h2>
+<h3 id="deployed-application-in-cluster-as-workload">Deployed application in Cluster as Workload</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-0528b" hidden />
+  <label for="zoomCheck-0528b">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/kubernetes-workload.webp"
+      alt="Kubernetes workloads"
+       />
+  </label>
+</p>
+<h3 id="browsing-the-application">Browsing the application</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-64e29" hidden />
+  <label for="zoomCheck-64e29">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/running-server.webp"
+      alt="Browsing the application"
+       />
+  </label>
+</p>
+<h2 id="invite-to-the-cloud-bootcamp">Invite to The Cloud Bootcamp</h2>
+<ul>
+<li><a href="https://e.thecloudbootcamp.com/d8z5zO">https://e.thecloudbootcamp.com/d8z5zO</a></li>
+</ul>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Introduction to Kubernetes Lab</title>
+      <link>http://localhost:1313/blogs/training/introduction-to-containers/introduction-to-kubernetes-lab/</link>
+      <pubDate>Sun, 11 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blogs/training/introduction-to-containers/introduction-to-kubernetes-lab/</guid>
+      <description>Hands-on kubectl CLI, Kubernetes Pod, Deployment, ReplicaSet and load balancing</description>
+      <content:encoded><![CDATA[<h2 id="objectives">Objectives</h2>
+<p>In this lab, I will:</p>
+<ul>
+<li>Use the <code>kubectl</code> CLI</li>
+<li>Create a Kubernetes Pod</li>
+<li>Create a Kubernetes Deployment</li>
+<li>Create a ReplicaSet that maintains a set number of replicas</li>
+<li>Witness Kubernetes load balancing in action</li>
+</ul>
+<h2 id="cloud-ide">Cloud IDE</h2>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-93250" hidden />
+  <label for="zoomCheck-93250">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/cloud-ide.webp"
+      alt="Cloud IDE"
+       />
+  </label>
+</p>
+<h2 id="verify-the-environment-and-command-line-tools">Verify the environment and command line tools</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ kubectl version
+</span></span><span class="line"><span class="cl">WARNING: This version information is deprecated and will be replaced
+</span></span><span class="line"><span class="cl">with the output from kubectl version --short.  Use --output<span class="o">=</span>yaml<span class="p">|</span>json
+</span></span><span class="line"><span class="cl">to get the full version.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Client Version: version.Info
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  Major:<span class="s2">&#34;1&#34;</span>,
+</span></span><span class="line"><span class="cl">  Minor:<span class="s2">&#34;27&#34;</span>,
+</span></span><span class="line"><span class="cl">  GitVersion:<span class="s2">&#34;v1.27.6&#34;</span>,
+</span></span><span class="line"><span class="cl">  GitCommit:<span class="s2">&#34;741c8db18a52787d734cbe4795f0b4ad860906d6&#34;</span>,
+</span></span><span class="line"><span class="cl">  GitTreeState:<span class="s2">&#34;clean&#34;</span>, BuildDate:<span class="s2">&#34;2023-09-13T09:21:34Z&#34;</span>,
+</span></span><span class="line"><span class="cl">  GoVersion:<span class="s2">&#34;go1.20.8&#34;</span>,
+</span></span><span class="line"><span class="cl">  Compiler:<span class="s2">&#34;gc&#34;</span>, Platform:<span class="s2">&#34;linux/amd64&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Kustomize Version: v5.0.1
+</span></span><span class="line"><span class="cl">Server Version: version.Info
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  Major:<span class="s2">&#34;1&#34;</span>,
+</span></span><span class="line"><span class="cl">  Minor:<span class="s2">&#34;26&#34;</span>,
+</span></span><span class="line"><span class="cl">  GitVersion:<span class="s2">&#34;v1.26.13+IKS&#34;</span>,
+</span></span><span class="line"><span class="cl">  GitCommit:<span class="s2">&#34;fbfb72fd9f7d07c29a23849656a07ce69833b650&#34;</span>,
+</span></span><span class="line"><span class="cl">  GitTreeState:<span class="s2">&#34;clean&#34;</span>,
+</span></span><span class="line"><span class="cl">  BuildDate:<span class="s2">&#34;2024-01-18T18:12:58Z&#34;</span>,
+</span></span><span class="line"><span class="cl">  GoVersion:<span class="s2">&#34;go1.20.13&#34;</span>,
+</span></span><span class="line"><span class="cl">  Compiler:<span class="s2">&#34;gc&#34;</span>,
+</span></span><span class="line"><span class="cl">  Platform:<span class="s2">&#34;linux/amd64&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="o">[</span> ! -d <span class="s1">&#39;CC201&#39;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> git clone <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  https://github.com/ibm-developer-skills-network/CC201.git
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ ls
+</span></span><span class="line"><span class="cl">Dockerfile  app.js  hello-world-apply.yaml
+</span></span><span class="line"><span class="cl">hello-world-create.yaml  package.json
+</span></span></code></pre></div><h2 id="using-the-kubectl-cli">Using the <code>kubectl</code> CLI</h2>
+<p>Kubernetes namespaces enable to virtualize a cluster. We already have access to one namespace in a Kubernetes cluster, <code>kubectl</code> is already set to target that cluster and namespace.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># kubectl requires configuration so that it targets the appropriate cluster.</span>
+</span></span><span class="line"><span class="cl">$ kubectl config get-clusters
+</span></span><span class="line"><span class="cl">NAME
+</span></span><span class="line"><span class="cl">labs-prod-kubernetes-sandbox/c8ana0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># kubectl  context is a group of access parameters, including a cluster,</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># a user, and a namespace.</span>
+</span></span><span class="line"><span class="cl">$ kubectl config get-contexts
+</span></span><span class="line"><span class="cl">CURRENT NAME       CLUSTER                              AUTHINFO   NAMESPACE
+</span></span><span class="line"><span class="cl">*       x-context  labs-prod-kubernetes-sandbox/c8ana0  x          sn-labs-x
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># list all the pods in your namespace.</span>
+</span></span><span class="line"><span class="cl">$ kubectl get pods
+</span></span><span class="line"><span class="cl">No resources found in sn-labs-x namespace.
+</span></span></code></pre></div><h2 id="create-a-pod-with-an-imperative-command">Create a Pod with an imperative command</h2>
+<p>We create a pod that run the <code>hello-world</code> image you built and push it to IBM Cloud Container Registry in the previous lab.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># exporting namespace as an environment variable so that</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># it can be used in subsequent commands.</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">export</span> <span class="nv">MY_NAMESPACE</span><span class="o">=</span>sn-labs-<span class="nv">$USERNAME</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># build and push the image</span>
+</span></span><span class="line"><span class="cl">$ docker build -t us.icr.io/<span class="nv">$MY_NAMESPACE</span>/hello-world:1 . <span class="o">&amp;&amp;</span> docker push us.icr.io/<span class="nv">$MY_NAMESPACE</span>/hello-world:1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># run the hello-world image as a container in Kubernetes</span>
+</span></span><span class="line"><span class="cl">$ kubectl run hello-world --image us.icr.io/<span class="nv">$MY_NAMESPACE</span>/hello-world:1 --overrides<span class="o">=</span><span class="s1">&#39;{&#34;spec&#34;:{&#34;template&#34;:{&#34;spec&#34;:{&#34;imagePullSecrets&#34;:[{&#34;name&#34;:&#34;icr&#34;}]}}}}&#39;</span>
+</span></span><span class="line"><span class="cl">  pod/hello-world created
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># list the pods in your namespace</span>
+</span></span><span class="line"><span class="cl">$ kubectl get pods
+</span></span><span class="line"><span class="cl">NAME          READY   STATUS    RESTARTS   AGE
+</span></span><span class="line"><span class="cl">hello-world   1/1     Running   <span class="m">0</span>          11s
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># the wide option for the output to get more details about the resource</span>
+</span></span><span class="line"><span class="cl">$ kubectl get pods -o wide
+</span></span><span class="line"><span class="cl">NAME          READY   STATUS    RESTARTS   AGE     IP               NODE          NOMINATED NODE   READINESS GATES
+</span></span><span class="line"><span class="cl">hello-world   1/1     Running   <span class="m">0</span>          2m31s   172.17.153.207   10.241.64.6   &lt;none&gt;           &lt;none&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># describe the pod to get more details about it</span>
+</span></span><span class="line"><span class="cl">$ kubectl describe pod hello-world
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># delete the pod</span>
+</span></span><span class="line"><span class="cl">$ kubectl delete pod hello-world
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># list the pods to verify that none exist</span>
+</span></span><span class="line"><span class="cl">$ kubectl get pods
+</span></span></code></pre></div><h2 id="create-a-pod-with-imperative-object-configuration">Create a Pod with imperative object configuration</h2>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-57f38" hidden />
+  <label for="zoomCheck-57f38">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/exploring-pod-configuration.webp"
+      alt="Exploring pod configuration"
+       />
+  </label>
+</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># hello-world-create.yaml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Pod</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">hello-world</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">hello-world</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">us.icr.io/sn-labs-x/hello-world:1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="m">8080</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">imagePullSecrets</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">icr</span><span class="w">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># imperative create a Pod using the provided configuration file</span>
+</span></span><span class="line"><span class="cl">$ kubectl create -f hello-world-create.yaml
+</span></span><span class="line"><span class="cl">  pod/hello-world created
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># list the pods in your namespace</span>
+</span></span><span class="line"><span class="cl">$ kubectl get pods
+</span></span><span class="line"><span class="cl">NAME          READY   STATUS    RESTARTS   AGE
+</span></span><span class="line"><span class="cl">hello-world   1/1     Running   <span class="m">0</span>          15s
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># delete the pod</span>
+</span></span><span class="line"><span class="cl">$ kubectl delete pod hello-world
+</span></span><span class="line"><span class="cl">pod <span class="s2">&#34;hello-world&#34;</span> deleted
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># list the pods to verify that non exist</span>
+</span></span><span class="line"><span class="cl">$ kubectl get pods
+</span></span><span class="line"><span class="cl">No resources found in sn-labs-x namespace.
+</span></span></code></pre></div><h2 id="create-a-pod-with-declarative-command">Create a Pod with declarative command</h2>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-ce9ec" hidden />
+  <label for="zoomCheck-ce9ec">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/exploring-pod-declarative-configuration.webp"
+      alt="Exploring pod declarative configuration"
+       />
+  </label>
+</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># hello-world-apply.yaml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">apps/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Deployment</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">generation</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l">hello-world</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">hello-world</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l">hello-world</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">strategy</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">rollingUpdate</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">maxSurge</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">maxUnavailable</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">RollingUpdate</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l">hello-world</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">us.icr.io/&lt;my_namespace&gt;/hello-world:1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">imagePullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">Always</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">hello-world</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="m">8080</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l">TCP</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">limits</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l">2m</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l">30Mi</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">requests</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l">1m</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l">10Mi</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">imagePullSecrets</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">icr</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">dnsPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">ClusterFirst</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">Always</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">securityContext</span><span class="p">:</span><span class="w"> </span>{}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">terminationGracePeriodSeconds</span><span class="p">:</span><span class="w"> </span><span class="m">30</span><span class="w">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># to set this configuration as the desired state in Kubernetes</span>
+</span></span><span class="line"><span class="cl">$ kubectl apply -f hello-world-apply.yaml
+</span></span><span class="line"><span class="cl">deployment.apps/hello-world created
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># get the deployments to ensure that the deployment was created</span>
+</span></span><span class="line"><span class="cl">$ kubectl get deployments
+</span></span><span class="line"><span class="cl">NAME          READY   UP-TO-DATE   AVAILABLE   AGE
+</span></span><span class="line"><span class="cl">hello-world   3/3     <span class="m">3</span>            <span class="m">3</span>           56s
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># list the pods to ensure that three replicas exist</span>
+</span></span><span class="line"><span class="cl">$ kubectl get pods
+</span></span><span class="line"><span class="cl">NAME                           READY   STATUS    RESTARTS   AGE
+</span></span><span class="line"><span class="cl">hello-world-5d7cc94cb5-npdtg   1/1     Running   <span class="m">0</span>          92s
+</span></span><span class="line"><span class="cl">hello-world-5d7cc94cb5-pskk6   1/1     Running   <span class="m">0</span>          92s
+</span></span><span class="line"><span class="cl">hello-world-5d7cc94cb5-rks8g   1/1     Running   <span class="m">0</span>          92s
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># delete the pod and created a new one immediately</span>
+</span></span><span class="line"><span class="cl">$ kubectl delete pod hello-world-5d7cc94cb5-npdtg <span class="o">&amp;&amp;</span> kubectl get pods
+</span></span><span class="line"><span class="cl">pod <span class="s2">&#34;hello-world-5d7cc94cb5-npdtg&#34;</span> deleted
+</span></span><span class="line"><span class="cl">NAME                           READY   STATUS    RESTARTS   AGE
+</span></span><span class="line"><span class="cl">hello-world-5d7cc94cb5-pskk6   1/1     Running   <span class="m">0</span>          4m29s
+</span></span><span class="line"><span class="cl">hello-world-5d7cc94cb5-rks8g   1/1     Running   <span class="m">0</span>          4m29s
+</span></span><span class="line"><span class="cl">hello-world-5d7cc94cb5-xn2tp   1/1     Running   <span class="m">0</span>          34s
+</span></span></code></pre></div><h2 id="load-balancing-the-application">Load balancing the application</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// app.js
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">os</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;os&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">hostname</span> <span class="o">=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">hostname</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;Hello world, &#39;</span> <span class="o">+</span> <span class="nx">hostname</span> <span class="o">+</span> <span class="s1">&#39;! Your app is up and running!\n&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Sample app is listening on port 8080.&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="line"><span class="cl"><span class="c"># Dockerfile</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">FROM</span><span class="s"> node:9.4.0-alpine</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">COPY</span> app.js .<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">COPY</span> package.json .<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> npm install <span class="o">&amp;&amp;</span><span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    apk update <span class="o">&amp;&amp;</span><span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    apk upgrade<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">EXPOSE</span><span class="s">  8080</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">CMD</span> node app.js<span class="err">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># access the application, expose it to the internet using Kubernetes service</span>
+</span></span><span class="line"><span class="cl">$ kubectl expose deployment/hello-world
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># list service in order to see that this service was created.</span>
+</span></span><span class="line"><span class="cl">$ kubectl get services
+</span></span><span class="line"><span class="cl">NAME          TYPE        CLUSTER-IP       EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>    AGE
+</span></span><span class="line"><span class="cl">hello-world   ClusterIP   172.21.142.190   &lt;none&gt;        8080/TCP   2m41s
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># create a proxy to make it accessible outside of the cluster</span>
+</span></span><span class="line"><span class="cl">$ kubectl proxy
+</span></span><span class="line"><span class="cl">Starting to serve on 127.0.0.1:8001
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ping the application to get a response</span>
+</span></span><span class="line"><span class="cl">$ curl -L localhost:8001/api/v1/namespaces/sn-labs-<span class="nv">$USERNAME</span>/services/hello-world/proxy
+</span></span><span class="line"><span class="cl">Hello world, hello-world-5d7cc94cb5-xn2tp! Your app is up and running!
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># run the command in loop, observe the Kubernetes load balancing the request</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># across the three replicas, each request could hit a different instance</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># of our application.</span>
+</span></span><span class="line"><span class="cl">$ <span class="k">for</span> i in <span class="sb">`</span>seq 10<span class="sb">`</span><span class="p">;</span> <span class="k">do</span> curl -L localhost:8001/api/v1/namespaces/sn-labs-<span class="nv">$USERNAME</span>/services/hello-world/proxy<span class="p">;</span> <span class="k">done</span>
+</span></span><span class="line"><span class="cl">Hello world, hello-world-5d7cc94cb5-pskk6! Your app is up and running!
+</span></span><span class="line"><span class="cl">Hello world, hello-world-5d7cc94cb5-pskk6! Your app is up and running!
+</span></span><span class="line"><span class="cl">Hello world, hello-world-5d7cc94cb5-xn2tp! Your app is up and running!
+</span></span><span class="line"><span class="cl">Hello world, hello-world-5d7cc94cb5-pskk6! Your app is up and running!
+</span></span><span class="line"><span class="cl">Hello world, hello-world-5d7cc94cb5-xn2tp! Your app is up and running!
+</span></span><span class="line"><span class="cl">Hello world, hello-world-5d7cc94cb5-pskk6! Your app is up and running!
+</span></span><span class="line"><span class="cl">Hello world, hello-world-5d7cc94cb5-rks8g! Your app is up and running!
+</span></span><span class="line"><span class="cl">Hello world, hello-world-5d7cc94cb5-rks8g! Your app is up and running!
+</span></span><span class="line"><span class="cl">Hello world, hello-world-5d7cc94cb5-pskk6! Your app is up and running!
+</span></span><span class="line"><span class="cl">Hello world, hello-world-5d7cc94cb5-xn2tp! Your app is up and running!
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># delete the deployment and service</span>
+</span></span><span class="line"><span class="cl">$ kubectl delete deployment/hello-world service/hello-world
+</span></span><span class="line"><span class="cl">  deployment.apps <span class="s2">&#34;hello-world&#34;</span> deleted
+</span></span><span class="line"><span class="cl">  service <span class="s2">&#34;hello-world&#34;</span> deleted
+</span></span></code></pre></div><h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.coursera.org/learn/ibm-containers-docker-kubernetes-openshift">https://www.coursera.org/learn/ibm-containers-docker-kubernetes-openshift</a></li>
+<li><a href="https://github.com/ibm-developer-skills-network/CC201">https://github.com/ibm-developer-skills-network/CC201</a></li>
+</ul>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

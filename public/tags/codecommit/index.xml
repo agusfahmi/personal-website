@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Codecommit on Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+    <link>http://localhost:1313/tags/codecommit/</link>
+    <description>Recent content in Codecommit on Agus Fahmi Aji Pramana&#39;s Blogging Site</description>
+    <image>
+      <title>Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+      <url>http://localhost:1313/logo.svg</url>
+      <link>http://localhost:1313/logo.svg</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 26 Oct 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/codecommit/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Learn Modern DevOps in the AWS Console</title>
+      <link>http://localhost:1313/blogs/training/modern-devops-in-the-aws-console/</link>
+      <pubDate>Thu, 26 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blogs/training/modern-devops-in-the-aws-console/</guid>
+      <description>AWS Builder Labs in AWS Console</description>
+      <content:encoded><![CDATA[<h2 id="working-with-aws-codecommit-fundamental">Working with AWS CodeCommit (Fundamental)</h2>
+<h3 id="overview---lab-1">Overview - Lab 1</h3>
+<p>AWS CodeCommit is a highly scalable, managed source control service that hosts private Git repositories. CodeCommit stores your data in Amazon S3 and Amazon DynamoDB giving your repositories high scalability, availability, and durability. You simply create a repository to store your code.</p>
+<p>This lab demonstrates how to:</p>
+<ul>
+<li>Create a code repository using AWS CodeCommit via the Amazon Management Console</li>
+<li>Create a local code repository on the Linux instance running in EC2 using git</li>
+<li>Synchronize a local repository with an AWS CodeCommit repository</li>
+</ul>
+<h3 id="lab-1-begins">Lab 1 Begins</h3>
+<h4 id="creating-an-aws-codecommit-repository">Creating an AWS CodeCommit repository</h4>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-dff13" hidden />
+  <label for="zoomCheck-dff13">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/codecommit.webp"
+      alt="Creating repository in AWS CodeCommit"
+       />
+  </label>
+</p>
+<h4 id="connecting-to-aws-ec2-instance-using-aws-session-manager">Connecting to AWS EC2 Instance using AWS Session Manager</h4>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-db349" hidden />
+  <label for="zoomCheck-db349">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/session-manager.webp"
+      alt="Connecting to EC2 Instance using AWS Session Manager"
+       />
+  </label>
+</p>
+<h4 id="visualizing-the-instance-session-in-aws-session-manager">Visualizing the instance session in AWS Session Manager</h4>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-5ff1c" hidden />
+  <label for="zoomCheck-5ff1c">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/session.webp"
+      alt="Session in AWS Session Manager"
+       />
+  </label>
+</p>
+<h4 id="working-on-linux-local-repository-in-console-connection">Working on Linux local repository in Console Connection</h4>
+<p>Configuring the Git credential helper with AWS credential profile, which allows Git credential helper to send the path to repositories.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git config --global credential.helper <span class="s1">&#39;!aws codecommit credential-helper $@&#39;</span>
+</span></span><span class="line"><span class="cl">git config --global credential.UseHttpPath <span class="nb">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git clone https://git-codecommit.us-east-1.amazonaws.com/v1/repos/My-Repo.
+</span></span></code></pre></div><p>
+  
+  <input type="checkbox" id="zoomCheck-97a03" hidden />
+  <label for="zoomCheck-97a03">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/console.webp"
+      alt="Working on local repository in Console Connection"
+       />
+  </label>
+</p>
+<h4 id="pushed-changes-in-aws-codecommit-repository">Pushed Changes in AWS CodeCommit Repository</h4>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-c86ad" hidden />
+  <label for="zoomCheck-c86ad">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/code-commit-changes.webp"
+      alt="Pushed changes in AWS CodeCommit Repository"
+       />
+  </label>
+</p>
+<h2 id="auditing-your-security-with-aws-trusted-advisor-intermediate">Auditing Your Security with AWS Trusted Advisor (Intermediate)</h2>
+<h3 id="overview---lab-2">Overview - Lab 2</h3>
+<p>This lab guides you through the steps to audit your AWS resources to ensure your configuration complies with basic security best practices. This lab makes use of AWS Trusted Advisor as it applies to security. The topics covered include working with security groups, Multi-factor Authentication (MFA), and AWS Identity and Access Management (IAM).</p>
+<blockquote>
+<p>Note: AWS Security Model is <strong>shared responsibility</strong>, where both AWS and customers come together to achieve security objective. AWS provides controls that customer can use to secure cloud resources includes IAM, Amazon Virtual Private Clouds (VPCs), security groups, network ACLs and certificates.</p></blockquote>
+<p>You will be able to do the following:</p>
+<ul>
+<li>Use Trusted Advisor to perform a basic audit of your AWS resources</li>
+<li>Modify Amazon Elastic Compute Cloud (Amazon EC2) Security Groups to meet best practices</li>
+<li>Configure Multi-factor Authentication (MFA) (Optional, requiring installation of software on a mobile device)</li>
+</ul>
+<h3 id="lab-2-begins">Lab 2 Begins</h3>
+<h4 id="check-trusted-advisor-recommendations">Check Trusted Advisor Recommendations</h4>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-67899" hidden />
+  <label for="zoomCheck-67899">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/check-recommendations.webp"
+      alt="Check Trusted Advisor Recommendations"
+       />
+  </label>
+</p>
+<h4 id="security-group-with-unrestricted-ports">Security Group with unrestricted ports</h4>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-fe7e0" hidden />
+  <label for="zoomCheck-fe7e0">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/unrestricted-port.webp"
+      alt="Security Groups - Specific Ports Unrestricted"
+       />
+  </label>
+</p>
+<h4 id="editing-inbound-rules">Editing inbound rules</h4>
+<h5 id="editing-tcp-inbound-rules">Editing TCP inbound rules</h5>
+<p>The port (tcp/port 21) is unrestricted in the security group and is not currently needed and should be removed from the rules.</p>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-6cf9a" hidden />
+  <label for="zoomCheck-6cf9a">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/editing-ftp-rules.webp"
+      alt="Editing inbound rules"
+       />
+  </label>
+</p>
+<h5 id="modified-ftp-port-inbound-rule">Modified FTP port inbound rule</h5>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-f5d45" hidden />
+  <label for="zoomCheck-f5d45">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/modified-ftp-rules.webp"
+      alt="Modified FTP port inbound rule"
+       />
+  </label>
+</p>
+<h5 id="editing-mysql-inbound-rules">Editing MySQL inbound rules</h5>
+<p>The rule is permitting incoming traffic to port <code>3306</code> from <code>0.0.0.0/0</code>, which means traffic will be permitted from <strong>any computer on the Internet</strong>.</p>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-1eb2c" hidden />
+  <label for="zoomCheck-1eb2c">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/editing-mysql-rules.webp"
+      alt="Editing MySQL inbound rule"
+       />
+  </label>
+</p>
+<h5 id="modified-mysql-inbound-rules">Modified MySQL inbound rules</h5>
+<p>This rule now permits access to the RDS database only from members of the Web Security Group</p>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-5c73a" hidden />
+  <label for="zoomCheck-5c73a">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/modified-mysql-rules.webp"
+      alt="Modified MySQL inbound rules"
+       />
+  </label>
+</p>
+<h4 id="re-check-trusted-advisor-recommendations-result">Re-check Trusted Advisor Recommendations Result</h4>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-68931" hidden />
+  <label for="zoomCheck-68931">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/recheck-recommendations.webp"
+      alt="Rechecking Trusted Advisor Recommendations Result"
+       />
+  </label>
+</p>
+<blockquote>
+<p>In some situations, you want to approve having ports open like <code>tcp/22</code> and <code>tcp/3389</code> this can be simple done by selecting <strong>Exclude &amp; Refresh</strong>.</p></blockquote>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-27740" hidden />
+  <label for="zoomCheck-27740">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/recheck-after-exclude.webp"
+      alt="After excluding and rechecking Recommendation"
+       />
+  </label>
+</p>
+<h4 id="setting-mfa-in-aws-iam-user">Setting MFA in AWS IAM user</h4>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-dd842" hidden />
+  <label for="zoomCheck-dd842">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/setup-mfa.webp"
+      alt="Setting MFA in AWS IAM user"
+       />
+  </label>
+</p>
+<h2 id="automate-application-testing-using-aws-codebuild-advanced">Automate Application Testing Using AWS CodeBuild (Advanced)</h2>
+<h3 id="overview---lab-3">Overview - Lab 3</h3>
+<p>Incorporating automated testing into your DevOps pipelines is crucial to increase speed and efficiency by ensuring that your application functions properly after every update.</p>
+<p>This lab demonstrates how you can use AWS CodeBuild as a part of your Continuous Integration pipelines to test and build your code. You will be able to:</p>
+<ul>
+<li>Configure CodeBuild to perform application testing</li>
+<li>Troubleshoot and fix CI/CD pipeline failures</li>
+<li>Review CodeBuild reports and logs</li>
+<li>Apply common code testing strategies</li>
+<li>Describe the importance of robust test coverage</li>
+</ul>
+<h3 id="lab-3-begins">Lab 3 Begins</h3>
+<h4 id="explore-application-in-aws-cloud9">Explore application in AWS Cloud9</h4>
+<h5 id="browsing-cloud9">Browsing Cloud9</h5>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-dbf73" hidden />
+  <label for="zoomCheck-dbf73">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/browsing-cloud9.webp"
+      alt="Explore application in AWS Cloud9"
+       />
+  </label>
+</p>
+<h5 id="cloud9-development">Cloud9 Development</h5>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-19ce4" hidden />
+  <label for="zoomCheck-19ce4">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/cloud9-development.webp"
+      alt="AWS Cloud9 Development Environment"
+       />
+  </label>
+</p>
+<h5 id="previewing-application-in-cloud9">Previewing Application in Cloud9</h5>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-bfccf" hidden />
+  <label for="zoomCheck-bfccf">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/preview-application.webp"
+      alt="Previewing Application in Cloud9"
+       />
+  </label>
+</p>
+<h4 id="automating-testing-in-codebuild">Automating Testing in CodeBuild</h4>
+<blockquote>
+<p>The test result and failures will not be visible or easy to interpret, CodeBuild support to display test and coverage reports exported by framework in the reports section of <code>buildspec.yml</code>. CodeBuild supports the following formats: Cucumber JSON, JUnit XML, NUnit XML, NUnit3 XML, TestNG XML, and Visual Studio TRX. For code coverage reports, you can use the following formats: JaCoCo XML, SimpleCov JSON, Clover XML, and Cobertura XML.</p></blockquote>
+<h5 id="adding-ci-step-and-redirecting-to-reports">Adding CI step and redirecting to reports</h5>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-dfce4" hidden />
+  <label for="zoomCheck-dfce4">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/codebuild-testing.webp"
+      alt="Automating Testing in CodeBuild"
+       />
+  </label>
+</p>
+<h5 id="pushing-changes-to-codecommit">Pushing changes to CodeCommit</h5>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-50261" hidden />
+  <label for="zoomCheck-50261">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/pushing-changes.webp"
+      alt="Commit and pushing changes"
+       />
+  </label>
+</p>
+<h4 id="review-build-pipeline">Review Build Pipeline</h4>
+<h5 id="failed-codepipeline-of-web-application">Failed CodePipeline of Web Application</h5>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-4b582" hidden />
+  <label for="zoomCheck-4b582">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/failed-pipeline.webp"
+      alt="Failed CodePipeline of web application"
+       />
+  </label>
+</p>
+<h5 id="command-execution-error">Command Execution Error</h5>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-bbe35" hidden />
+  <label for="zoomCheck-bbe35">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/command-execution-error.webp"
+      alt="COMMAND_EXECUTION_ERROR"
+       />
+  </label>
+</p>
+<h5 id="pushing-the-fix-detected-by-automated-tests">Pushing the fix detected by Automated Tests</h5>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-c87ee" hidden />
+  <label for="zoomCheck-c87ee">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/fixing-code.webp"
+      alt="Fixing code issues and pushing changes"
+       />
+  </label>
+</p>
+<blockquote>
+<p>Error: This build was not successful due to following error.</p></blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> /codebuild/output/src2610253420/src/react-app/node_modules/@adobe/
+</span></span><span class="line"><span class="cl"> css-tools/dist/index.cjs:118
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>, options?.source <span class="o">||</span> <span class="s2">&#34;&#34;</span><span class="o">)</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">              ^
+</span></span><span class="line"><span class="cl">SyntaxError: Unexpected token <span class="s1">&#39;.&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">at Runtime.createScriptFromCode <span class="o">(</span>node_modules/jest-runtime/build/index.js:1350:14<span class="o">)</span>
+</span></span><span class="line"><span class="cl">at Object.&lt;anonymous&gt; <span class="o">(</span>node_modules/@testing-library/jest-dom/dist/utils.js:21:17<span class="o">)</span>
+</span></span></code></pre></div>]]></content:encoded>
+    </item>
+  </channel>
+</rss>
