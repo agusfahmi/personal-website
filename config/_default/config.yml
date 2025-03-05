@@ -175,6 +175,8 @@ services:
     disableInlineCSS: true
   x:
     disableInlineCSS: true
-disqus:
+  disqus:
     shortname: agusfahmiajipramana-com
-  
+  googleAnalytics:
+    id: G-PJ6VCR89GD
+    

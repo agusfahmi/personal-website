@@ -5,10 +5,3 @@ title = 'Agus Fahmi Aji Pramana'
 [params]
 	social = true
 	
-[services]
-  [services.disqus]
-    shortname = 'agusfahmiajipramana-com'
-
-[services]
-  [services.googleAnalytics]
-    id = 'G-PJ6VCR89GD'
