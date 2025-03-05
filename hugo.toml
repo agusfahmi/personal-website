@@ -8,3 +8,7 @@ title = 'Agus Fahmi Aji Pramana'
 [services]
   [services.disqus]
     shortname = 'agusfahmiajipramana-com'
+
+[services]
+  [services.googleAnalytics]
+    id = 'G-PJ6VCR89GD'
