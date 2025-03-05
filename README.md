@@ -13,17 +13,7 @@ Welcome to my blogging website.
 - Install Go
 - Install Hugo - Make sure you install latest version of hugo(>=0.119.0).
 
-## contributing
-
-Feel free to send pull requests.
-
 ### setup and run
-
-```bash
-git clone git@github.com:cham11ng/sagarchamling.com
-
-cd sagarchamling.com
-```
 
 ```bash
 $ make
