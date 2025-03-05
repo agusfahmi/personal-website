@@ -4,3 +4,7 @@ title = 'Agus Fahmi Aji Pramana'
 
 [params]
 	social = true
+	
+[services]
+  [services.disqus]
+    shortname = 'agusfahmiajipramana-com'
