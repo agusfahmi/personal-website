@@ -1,7 +1,7 @@
 baseURL: 'https://agusfahmiajipramana.com/'
 title: Agus Fahmi Aji Pramana's Blogging Site
 pagination:
-  pagerSize: 10
+  pagerSize: 5
 theme: PaperMod
 
 enableInlineShortcodes: true
