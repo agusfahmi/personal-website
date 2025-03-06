@@ -20,12 +20,50 @@ minify:
 
 languages:
   en:
-    languageName: 'English'
+    languageAltTitle: "English"
+    LanguageName: "🇺🇸"
     weight: 1
-    taxonomies:
-      category: categories
-      tag: tags
-      series: series
+    contentDir: content/en
+    homeInfoParams:
+      Title: "Agus Fahmi Aji Pramana"
+      Content: >
+        Welcome to my blog! Explore a wide range of topics in technology, programming, networking, cybersecurity, and more. Join me on my journey as I continue to learn and share insights on the latest industry trends.
+
+  id:
+    languageAltTitle: "Indonesian"
+    LanguageName: "🇮🇩"
+    weight: 2
+    contentDir: content/id
+    menu:
+      main:
+        - identifier: about
+          name: tentang
+          url: /about/
+          weight: 10
+        - identifier: blog
+          name: blog
+          url: /post/
+          weight: 20
+        - identifier: archives
+          name: arsip
+          url: /archives/
+          weight: 30
+        - identifier: projects
+          name: proyek
+          url: /projects/
+          weight: 40
+        - identifier: tags
+          name: tag
+          url: /tags/
+          weight: 50
+        - identifier: search
+          name: cari
+          url: /search/
+          weight: 60
+    homeInfoParams:
+      Title: "Agus Fahmi Aji Pramana"
+      Content: >
+        Selamat datang di blog saya! Temukan berbagai topik seputar teknologi, pemrograman, jaringan, keamanan siber, dan banyak lagi. Bergabunglah dengan saya dalam perjalanan ini untuk terus belajar dan berbagi wawasan mengenai tren industri terbaru.
 
 outputs:
   home:
