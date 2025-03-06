@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Competition on Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+    <link>http://localhost:1313/tags/competition/</link>
+    <description>Recent content in Competition on Agus Fahmi Aji Pramana&#39;s Blogging Site</description>
+    <image>
+      <title>Agus Fahmi Aji Pramana&#39;s Blogging Site</title>
+      <url>http://localhost:1313/logo.svg</url>
+      <link>http://localhost:1313/logo.svg</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 21 Oct 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/competition/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Finalist of COMPFEST Artificial Intelligence Competition</title>
+      <link>http://localhost:1313/honors/artificial-intelligence-competition/</link>
+      <pubDate>Sat, 21 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/honors/artificial-intelligence-competition/</guid>
+      <description>Experience competition of AIC Competition</description>
+      <content:encoded><![CDATA[<h2 id="expressing-gratitude">Expressing Gratitude</h2>
+<p>It is with great joy and honor that I announce I have reached the final round of the national <strong><a href="https://compfest.id">Compfest Competition</a></strong>, organized by the Faculty of Computer Science, University of Indonesia. I am truly grateful for this incredible opportunity to represent my campus on the international stage. I would also like to extend my deepest appreciation to my instructors and program coordinators who have been a continuous source of inspiration and played an essential role in this achievement.</p>
+<h2 id="about-competition">About Competition</h2>
+<p>This competition is part of Compfest, focused on the <em>Artificial Intelligence (AI)</em> competition. Of the 144 teams that registered, only 12 teams made it to the final round. With careful preparation, we traveled from Malang to Jakarta to participate in this competition, where we had the invaluable opportunity to be mentored by professionals in the field.</p>
+<blockquote>
+<p>We developed an AI-based application for oral health that can detect diseases at an early stage. The technologies we used include <em>TensorFlow, Kotlin</em>, and various machine learning libraries with an open-source dataset. Although we did not win, we are proud of the effort we put into this competition and remain excited to continue growing and learning more.</p></blockquote>
+<h2 id="captured-moments">Captured Moments</h2>
+<h3 id="competition-begun">Competition Begun</h3>
+<p>
+  
+  <input type="checkbox" id="zoomCheck-8af3e" hidden />
+  <label for="zoomCheck-8af3e">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/during-competition.webp"
+      alt="Competition Begun - Agus Fahmi Aji Pramana"
+       />
+  </label>
+</p>
+<h3 id="photoboth">Photoboth</h3>
+<div class="center">
+<p>
+  
+  <input type="checkbox" id="zoomCheck-415e5" hidden />
+  <label for="zoomCheck-415e5">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/photoboth.webp"
+      alt="Prizes Drawn - Agus Fahmi Aji Pramana"
+       />
+  </label>
+</p>
+</div>
+<h3 id="together">Together</h3>
+<div class="center">
+<p>
+  
+  <input type="checkbox" id="zoomCheck-7ea33" hidden />
+  <label for="zoomCheck-7ea33">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/together.webp"
+      alt="Swags On - Agus Fahmi Aji Pramana"
+       />
+  </label>
+</p>
+</div>
+<h3 id="awarding-night">Awarding Night</h3>
+<div class="center">
+<p>
+  
+  <input type="checkbox" id="zoomCheck-28e40" hidden />
+  <label for="zoomCheck-28e40">
+    <img
+      class="zoomCheck"
+      loading="lazy"
+      decoding="async"
+      src="img/awarding-night.webp"
+      alt="Swags On - Agus Fahmi Aji Pramana"
+       />
+  </label>
+</p>
+</div>
+
+
+<style>
+  .center {
+    display: block;
+    width: 60%;
+    margin: auto;
+  }
+</style>
+
+
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

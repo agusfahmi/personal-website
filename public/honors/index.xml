@@ -11,153 +11,83 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 04 Nov 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 21 Oct 2023 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/honors/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Student of the Month October 2023</title>
-      <link>http://localhost:1313/honors/student-of-the-month-october-2023/</link>
-      <pubDate>Sat, 04 Nov 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/honors/student-of-the-month-october-2023/</guid>
-      <description>Awarded as student of the October Month</description>
-      <content:encoded><![CDATA[<h2 id="key-achievements">Key Achievements</h2>
-<ul>
-<li><strong>Event Excellence</strong>: Achieved recognition through outstanding performance in events, cybersecurity awareness presentation and competitions.</li>
-<li><strong>Peer Mentor</strong>: Respected by peers for knowledge sharing and creating a supportive learning environment.</li>
-<li><strong>Proactive Leader</strong>: Known for driving positive change and continuous improvement.</li>
-</ul>
-<h2 id="gallery">Gallery</h2>
-<h3 id="announcement">Announcement</h3>
-<div class="center">
-<p>
-  
-  <input type="checkbox" id="zoomCheck-a673a" hidden />
-  <label for="zoomCheck-a673a">
-    <img
-      class="zoomCheck"
-      loading="lazy"
-      decoding="async"
-      src="img/announcement.webp"
-      alt="Reward On"
-       />
-  </label>
-</p>
-</div>
-<h3 id="rewarded">Rewarded</h3>
-<p>
-  
-  <input type="checkbox" id="zoomCheck-ee768" hidden />
-  <label for="zoomCheck-ee768">
-    <img
-      class="zoomCheck"
-      loading="lazy"
-      decoding="async"
-      src="img/certificate-on.webp"
-      alt="Reward On"
-       />
-  </label>
-</p>
-<h3 id="certificate">Certificate</h3>
-<p>
-  
-  <input type="checkbox" id="zoomCheck-7e138" hidden />
-  <label for="zoomCheck-7e138">
-    <img
-      class="zoomCheck"
-      loading="lazy"
-      decoding="async"
-      src="img/certificate.webp"
-      alt="Certificate"
-       />
-  </label>
-</p>
-
-
-<style>
-  .center {
-    display: block;
-    width: 60%;
-    margin: auto;
-  }
-</style>
-
-
-]]></content:encoded>
-    </item>
-    <item>
-      <title>Winner of Capture The Flag Competition</title>
-      <link>http://localhost:1313/honors/winner-of-capture-the-flag-competition/</link>
+      <title>Finalist of COMPFEST Artificial Intelligence Competition</title>
+      <link>http://localhost:1313/honors/artificial-intelligence-competition/</link>
       <pubDate>Sat, 21 Oct 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/honors/winner-of-capture-the-flag-competition/</guid>
-      <description>Experience sharing of CTF Competition sponsored by EC-Council</description>
+      <guid>http://localhost:1313/honors/artificial-intelligence-competition/</guid>
+      <description>Experience competition of AIC Competition</description>
       <content:encoded><![CDATA[<h2 id="expressing-gratitude">Expressing Gratitude</h2>
-<p>I am thrilled and honored to share that I have won the inter-college <abbr title="Capture The Flag">CTF</abbr> Competition sponsored by <a href="https://www.eccouncil.org/"><strong>EC-Council</strong></a>, held at <a href="https://www.saultcollege.ca/"><strong>Sault College</strong></a>, TSW and BSW Campuses. I am grateful for the prize and recognition that I received from EC-Council, and were presented to me by the campus director of Sault College, Toronto South West.</p>
-<p>A special mention must be made of my instructor and program coordinator, who has consistently been a source of inspiration and played a key role in my achievement.</p>
+<p>It is with great joy and honor that I announce I have reached the final round of the national <strong><a href="https://compfest.id">Compfest Competition</a></strong>, organized by the Faculty of Computer Science, University of Indonesia. I am truly grateful for this incredible opportunity to represent my campus on the international stage. I would also like to extend my deepest appreciation to my instructors and program coordinators who have been a continuous source of inspiration and played an essential role in this achievement.</p>
 <h2 id="about-competition">About Competition</h2>
-<p>The challenge was performed on <a href="https://www.cyberq.io/">CyberQ</a>, a cloud-based platform that provides cyber targets for participants to capture the flag. It was individual competition, where each participant had to complete a scenario-based challenge within <em>one hour</em>, with <em>three hints</em> available in each flag at the cost of reduced score.</p>
-<p>The competition involved <strong>red teaming</strong>, individual participants, who performed cyber attacks simulation on target system on a target network and the <strong>white team</strong>, EC-Council’s technical team, who monitored and evaluated the performance of the participants.</p>
+<p>This competition is part of Compfest, focused on the <em>Artificial Intelligence (AI)</em> competition. Of the 144 teams that registered, only 12 teams made it to the final round. With careful preparation, we traveled from Malang to Jakarta to participate in this competition, where we had the invaluable opportunity to be mentored by professionals in the field.</p>
 <blockquote>
-<p>I&rsquo;ve written technical walkthrough explaining my preparation process, knowledge I gained and the strategy I employed to successfully capture all flags in just <strong>38 minutes</strong>. You can find it <a href="/blogs/cybersecurity/ctf-competition-preparation-journey/">here</a> 👈.</p></blockquote>
+<p>We developed an AI-based application for oral health that can detect diseases at an early stage. The technologies we used include <em>TensorFlow, Kotlin</em>, and various machine learning libraries with an open-source dataset. Although we did not win, we are proud of the effort we put into this competition and remain excited to continue growing and learning more.</p></blockquote>
 <h2 id="captured-moments">Captured Moments</h2>
 <h3 id="competition-begun">Competition Begun</h3>
 <p>
   
-  <input type="checkbox" id="zoomCheck-c753f" hidden />
-  <label for="zoomCheck-c753f">
+  <input type="checkbox" id="zoomCheck-8af3e" hidden />
+  <label for="zoomCheck-8af3e">
     <img
       class="zoomCheck"
       loading="lazy"
       decoding="async"
-      src="img/in-progress.webp"
-      alt="Competition Begun - Sagar Chamling Rai"
+      src="img/during-competition.webp"
+      alt="Competition Begun - Agus Fahmi Aji Pramana"
        />
   </label>
 </p>
-<h3 id="prizes-drawn">Prizes Drawn</h3>
+<h3 id="photoboth">Photoboth</h3>
 <div class="center">
 <p>
   
-  <input type="checkbox" id="zoomCheck-59c35" hidden />
-  <label for="zoomCheck-59c35">
+  <input type="checkbox" id="zoomCheck-415e5" hidden />
+  <label for="zoomCheck-415e5">
     <img
       class="zoomCheck"
       loading="lazy"
       decoding="async"
-      src="img/with-prize.webp"
-      alt="Prizes Drawn - Sagar Chamling Rai"
+      src="img/photoboth.webp"
+      alt="Prizes Drawn - Agus Fahmi Aji Pramana"
        />
   </label>
 </p>
 </div>
-<h3 id="swags-on">Swags On</h3>
+<h3 id="together">Together</h3>
 <div class="center">
 <p>
   
-  <input type="checkbox" id="zoomCheck-bb59e" hidden />
-  <label for="zoomCheck-bb59e">
+  <input type="checkbox" id="zoomCheck-7ea33" hidden />
+  <label for="zoomCheck-7ea33">
     <img
       class="zoomCheck"
       loading="lazy"
       decoding="async"
-      src="img/with-swags.webp"
-      alt="Swags On - Sagar Chamling Rai"
+      src="img/together.webp"
+      alt="Swags On - Agus Fahmi Aji Pramana"
        />
   </label>
 </p>
 </div>
-<h3 id="stickers-adorn">Stickers Adorn</h3>
+<h3 id="awarding-night">Awarding Night</h3>
+<div class="center">
 <p>
   
-  <input type="checkbox" id="zoomCheck-be571" hidden />
-  <label for="zoomCheck-be571">
+  <input type="checkbox" id="zoomCheck-28e40" hidden />
+  <label for="zoomCheck-28e40">
     <img
       class="zoomCheck"
       loading="lazy"
       decoding="async"
-      src="img/sticker-adorn.webp"
-      alt="Stickers Adorn - Sagar Chamling Rai"
+      src="img/awarding-night.webp"
+      alt="Swags On - Agus Fahmi Aji Pramana"
        />
   </label>
 </p>
+</div>
 
 
 <style>

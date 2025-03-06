@@ -98,9 +98,6 @@
     <loc>http://localhost:1313/blogs/cybersecurity/cloud-security-assessment-using-scoutsuite-pacu-prowler/</loc>
     <lastmod>2023-11-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/honors/</loc>
-    <lastmod>2023-11-04T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/tags/pacu/</loc>
     <lastmod>2023-11-04T00:00:00+00:00</lastmod>
   </url><url>
@@ -108,9 +105,6 @@
     <lastmod>2023-11-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/scoutsuite/</loc>
-    <lastmod>2023-11-04T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/honors/student-of-the-month-october-2023/</loc>
     <lastmod>2023-11-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blogs/training/amazon-vpc-lab/</loc>
@@ -155,22 +149,22 @@
     <loc>http://localhost:1313/tags/trusted-advisor/</loc>
     <lastmod>2023-10-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/capture-the-flag/</loc>
+    <loc>http://localhost:1313/tags/artificial-intelligence/</loc>
     <lastmod>2023-10-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/cyberq/</loc>
+    <loc>http://localhost:1313/tags/competition/</loc>
     <lastmod>2023-10-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/ec-council/</loc>
+    <loc>http://localhost:1313/tags/compfest/</loc>
     <lastmod>2023-10-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/honors/winner-of-capture-the-flag-competition/</loc>
+    <loc>http://localhost:1313/honors/artificial-intelligence-competition/</loc>
+    <lastmod>2023-10-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/honors/</loc>
     <lastmod>2023-10-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/aws-cloudshell/</loc>
-    <lastmod>2023-10-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blogs/cybersecurity/ctf-competition-preparation-journey/</loc>
     <lastmod>2023-10-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/cloud-computing/</loc>
