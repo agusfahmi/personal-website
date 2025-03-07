@@ -1,7 +1,7 @@
 ---
 title: '#data science'
-summary: 'Data Science Some blogs are Subject to Change'
-description: 'Data Science Some blogs are Subject to Change'
+summary: 'Articles related to data science'
+description: 'Articles related to data science'
 showReadingTime: false
 showDate: false
 hideMeta: true

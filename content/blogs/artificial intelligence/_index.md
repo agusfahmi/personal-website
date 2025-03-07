@@ -1,7 +1,7 @@
 ---
 title: '#artificial intelligence'
-summary: 'AI, References'
-description: 'AI Article, References'
+summary: 'Articles related to AI, LLM and more'
+description: 'Articles related to AI, LLM and more'
 showReadingTime: false
 showDate: false
 hideMeta: true
