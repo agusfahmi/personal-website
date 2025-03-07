@@ -57,7 +57,7 @@ Proses ini penting ketika fitur dalam dataset memiliki skala yang sangat berbeda
 
 - **Normalisasi**: Menyelaraskan data ke dalam rentang [0, 1] atau [-1, 1].
 - **Standarisasi**: Mengubah data sehingga memiliki rata-rata 0 dan deviasi standar 1.
-```normalization
+```python
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 
 # Standarisasi
@@ -73,7 +73,7 @@ Data kategorikal harus dikonversi ke format numerik agar dapat digunakan dalam m
 
 - **Label Encoding**: Mengonversi kategori menjadi angka.
 - **One-Hot Encoding**: Membuat kolom biner untuk setiap kategori.
-```labeling
+```python
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 
 # Label Encoding
@@ -88,7 +88,7 @@ Outlier adalah nilai ekstrem yang bisa mempengaruhi model dan analisis. Ada bebe
 
 - **Menghapus Outlier**: Menghapus nilai yang terlalu jauh dari rata-rata.
 - **Transformasi**: Menggunakan transformasi matematis seperti log atau kuadrat untuk meredam efek outlier.
-```outliers
+```python
 # Deteksi outlier menggunakan IQR
 Q1 = df['column'].quantile(0.25)
 Q3 = df['column'].quantile(0.75)
@@ -100,7 +100,7 @@ df_no_outliers = df[(df['column'] >= (Q1 - 1.5 * IQR)) & (df['column'] <= (Q3 + 
 
 ### 5. Pembagian Data untuk Pelatihan dan Pengujian
 Sebelum melatih model, penting untuk membagi data menjadi dua set: data pelatihan dan data pengujian. Pembagian yang umum adalah 80% untuk pelatihan dan 20% untuk pengujian.
-```split
+```python
 from sklearn.model_selection import train_test_split
 
 # Membagi data
