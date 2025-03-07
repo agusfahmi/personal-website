@@ -73,7 +73,7 @@ Data kategorikal harus dikonversi ke format numerik agar dapat digunakan dalam m
 
 - **Label Encoding**: Mengonversi kategori menjadi angka.
 - **One-Hot Encoding**: Membuat kolom biner untuk setiap kategori.
-```
+```labeling
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 
 # Label Encoding
