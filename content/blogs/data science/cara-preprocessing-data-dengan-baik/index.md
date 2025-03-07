@@ -57,8 +57,8 @@ Proses ini penting ketika fitur dalam dataset memiliki skala yang sangat berbeda
 
 - **Normalisasi**: Menyelaraskan data ke dalam rentang [0, 1] atau [-1, 1].
 - **Standarisasi**: Mengubah data sehingga memiliki rata-rata 0 dan deviasi standar 1.
-
-```from sklearn.preprocessing import StandardScaler, MinMaxScaler
+```
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
 
 # Standarisasi
 scaler = StandardScaler()
@@ -73,9 +73,9 @@ Data kategorikal harus dikonversi ke format numerik agar dapat digunakan dalam m
 
 - **Label Encoding**: Mengonversi kategori menjadi angka.
 - **One-Hot Encoding**: Membuat kolom biner untuk setiap kategori.
-
-from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 ```
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+
 # Label Encoding
 encoder = LabelEncoder()
 df['encoded_column'] = encoder.fit_transform(df['category_column'])
@@ -100,9 +100,9 @@ df_no_outliers = df[(df['column'] >= (Q1 - 1.5 * IQR)) & (df['column'] <= (Q3 + 
 
 ### 5. Pembagian Data untuk Pelatihan dan Pengujian
 Sebelum melatih model, penting untuk membagi data menjadi dua set: data pelatihan dan data pengujian. Pembagian yang umum adalah 80% untuk pelatihan dan 20% untuk pengujian.
-
-from sklearn.model_selection import train_test_split
 ```
+from sklearn.model_selection import train_test_split
+
 # Membagi data
 X_train, X_test, y_train, y_test = train_test_split(df.drop('target', axis=1), df['target'], test_size=0.2, random_state=42)
 ```
